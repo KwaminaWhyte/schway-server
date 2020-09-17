@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let feedSchema = new Schema({
-  userId: {
+let commentSchema = new Schema({
+  feed_id: {
     type: String,
     required: true,
   },
@@ -12,9 +12,7 @@ let feedSchema = new Schema({
   },
   body: {
     type: String,
-  },
-  mediaUrl: {
-    type: String,
+    required: true,
   },
   timestamp: {
     type: Date,
@@ -23,4 +21,4 @@ let feedSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Feed", feedSchema);
+module.exports = mongoose.model("comment", commentSchema);

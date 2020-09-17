@@ -16,18 +16,20 @@ const userSchema = new Schema({
     type: String,
     required: true,
     min: 5,
+    unique: true
   },
   email: {
     type: String,
     required: true,
     min: 12,
+    unique: true
   },
   password: {
     type: String,
     required: true,
     min: 10,
   },
-  dateregistered: {
+  date_registered: {
     type: Date,
     default: Date.now,
     required: true,
