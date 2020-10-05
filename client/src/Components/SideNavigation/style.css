@@ -1,0 +1,42 @@
+.SideNavigation {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  height: 100vh;
+  width: 200px;
+  background-color: #ffffff;
+  align-items: center;
+  box-shadow: 0px 2px 5px 3px #e1e1e1;
+}
+
+.side_btn {
+  display: flex;
+  text-decoration: none;
+  margin: 6px 0;
+  padding: 5px 20px;
+  /* background-color: #e7e9eb; */
+  /* box-shadow: 5px 5px 8px #cbced1, -5px -5px 8px #ffffff; */
+  border-radius: 20px;
+  transition-duration: 0.5s;
+  color: grey;
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+  width: 70%;
+}
+
+.side_btn_active {
+  /* box-shadow: inset 5px 5px 8px #cbced1, inset -5px -5px 8px #ffffff; */
+  transition-duration: 0.5s;
+  transform: translateX(10px);
+  border-radius: 20px 0px 0px 20px;
+  /* background-color: rgba(255, 0, 0, 0.377); */
+  color: blueviolet;
+}
+
+.icon_style {
+  margin-right: 12px;
+  background-color: #e1e1e1;
+  padding: 5px;
+  border-radius: 8px;
+}

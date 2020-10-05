@@ -1,0 +1,49 @@
+.FeedCard {
+  width: 88%;
+  margin: 10px auto;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px 3px #e1e1e1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed_dp_container {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  padding: 5px 15px 5px 5px;
+  width: fit-content;
+  /* background-color: #00000071; */
+  /* color: white; */
+  /* z-index: 11; */
+  /* border: 1px solid #efefef; */
+}
+
+.feed_dp {
+  width: 55px;
+  height: 55px;
+  border-radius: 20px;
+  margin-right: 10px;
+  border: 0.1px solid blueviolet;
+  /* z-index: 12; */
+}
+
+.feed_btm_icn {
+  display: flex;
+  padding: 5px 12px;
+  border-radius: 30px;
+  margin: 0 12px;
+}
+
+.feed_btm_icn:nth-child(1) {
+  /* background-color: #ff373771; */
+}
+
+.feed_btm_icn:nth-child(2) {
+  /* background-color: #f2ff3771; */
+}
+
+.feed_btm_icn:nth-child(3) {
+  /* background-color: #3744ff71; */
+}

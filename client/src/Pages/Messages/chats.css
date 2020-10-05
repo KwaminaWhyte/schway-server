@@ -1,0 +1,52 @@
+.chat_item_container {
+  margin: 12px;
+  background-color: white;
+  padding: 12px;
+  border-radius: 20px;
+  /* box-shadow: 1px 3px 4px grey, -3px -4px 3px white; */
+  /* box-shadow: 10px 10px 15px #bcbdbe, -10px -10px 15px #ffffff; */
+  text-decoration: none;
+  transition-duration: 0.5s;
+  /* scale: 0.97; */
+}
+
+.chat_item_container_active {
+  /* box-shadow: inset 1px 3px 4px grey, inset -3px -4px 3px white; */
+  /* box-shadow: inset 10px 10px 15px #bcbdbe, inset -10px -10px 15px #ffffff; */
+  transition-duration: 0.5s;
+  /* scale: 0.98; */
+}
+
+.chat_files_container {
+  display: flex;
+  margin: 12px 9px;
+}
+
+.chat_file {
+  width: fit-content;
+  border-radius: 20px;
+  padding: 5px 12px;
+  margin: 0 8px;
+  font-size: 13px;
+  /* box-shadow: 10px 10px 15px #cbced1, -10px -10px 15px #ffffff; */
+}
+
+.doc_file {
+  background-color: rgba(255, 255, 0, 0.4);
+  color: rgb(148, 148, 0);
+}
+
+.img_file {
+  background-color: rgba(0, 0, 255, 0.4);
+  color: blue;
+}
+
+.audio_file {
+  background-color: rgba(0, 128, 0, 0.4);
+  color: green;
+}
+
+.video_file {
+  background-color: rgba(255, 0, 0, 0.4);
+  color: red;
+}

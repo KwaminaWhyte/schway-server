@@ -1,0 +1,19 @@
+// import { LOGIN_SUCCESS } from "../actions/types";
+
+const initState = {
+  users: [],
+};
+
+const userReducer = (state = initState, action) => {
+  switch (action.type) {
+    case "FETCH_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default userReducer;

@@ -1,0 +1,17 @@
+.Profile {
+  /* background-color: red; */
+  min-height: 100vh;
+  width: calc(100vw - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+.cover_image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  width: 98%;
+  border-radius: 25px;
+  margin: 10px auto 10px auto;
+  /* box-shadow: 0px 3px 4px 1px #727272; */
+}
