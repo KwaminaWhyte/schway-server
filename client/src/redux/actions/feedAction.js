@@ -63,7 +63,7 @@ export const deleteFeed = (id) => (dispatch, getState) => {
         payload: id,
       });
 
-      // console.log(res);
+      console.log(res);
     })
     .catch((err) => {
       // dispatch(returnError(err.response.data, err.response.status));

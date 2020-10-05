@@ -35,13 +35,23 @@ router.put("/:id/update", auth, (req, res) => {
 });
 
 router.delete("/:id/delete", auth, (req, res) => {
-  console.log(req.params.id);
-  Feed.deleteOne({ _id: req.params.id })
-    .then((feed) => {
-      res.send(feed);
-      console.log(feed);
+  // console.log(req.params.id);
+
+  Feed.findById(req.params.id)
+    .then((data) => {
+      if (req.user.id === data.userId) {
+        console.log("Good to delete this feed");
+
+        Feed.deleteOne({ _id: req.params.id })
+          .then((feed) => {
+            res.send(feed);
+          })
+          .catch((err) => res.send({ message: err }));
+      } else {
+        console.log("Not Owner of feed");
+      }
     })
-    .catch((err) => res.send({ message: err }));
+    .catch((err) => res.send(err));
 });
 
 module.exports = router;

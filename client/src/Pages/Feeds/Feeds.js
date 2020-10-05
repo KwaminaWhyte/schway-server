@@ -14,6 +14,8 @@ import {
   IoIosPaperPlane,
 } from "react-icons/io";
 
+import { FaBars } from "react-icons/fa";
+
 import "./feeds.css";
 import FeedCard from "../../Components/FeedCard";
 import RightFeed from "../../Components/RightFeed";
@@ -66,9 +68,8 @@ class Feeds extends Component {
 
     if (e.target.value !== "") {
       currentList = this.props.feeds;
-      console.log(currentList);
       newList = currentList.filter((feed) => {
-        const lc = feed.name.toLowerCase();
+        const lc = feed.user.toLowerCase();
         const filter = e.target.value.toLowerCase();
         return lc.includes(filter);
       });
@@ -86,6 +87,10 @@ class Feeds extends Component {
     this.setState({ feedDetails: false });
   };
 
+  openSideMenu = () => {
+    document.getElementById("side_menu").style = "width: 80vw; margin-left: 0";
+  };
+
   render() {
     let { feeds } = this.props;
 
@@ -93,7 +98,18 @@ class Feeds extends Component {
       <div className="Feeds">
         <section className="main_feeds_container">
           <section className="search_bar_container">
-            <IoIosSearch size={20} color="blue" />
+            <IoIosSearch
+              size={20}
+              onClick={this.openSideMenu}
+              color="blue"
+              className="toggle_search"
+            />
+            <FaBars
+              size={20}
+              onClick={this.openSideMenu}
+              color="blue"
+              className="toggle_bars"
+            />
             <input
               style={{
                 flex: 1,
@@ -102,7 +118,7 @@ class Feeds extends Component {
                 border: "none",
               }}
               placeholder="search..."
-              // onChange={this.handleSearch}
+              onChange={this.handleSearch}
               type="search"
               name="search"
               id="search"
@@ -145,18 +161,8 @@ class Feeds extends Component {
             </Link>
           </section>
 
-          {/* {users.map((user) => (
-            <h1>{user.username}</h1>
-          ))} */}
-
           {feeds &&
-            feeds.map((feed) => (
-              <FeedCard
-                key={feed._id}
-                feed={feed}
-                // user={users.filter((user) => user._id === feed.userId)}
-              />
-            ))}
+            feeds.map((feed) => <FeedCard key={feed._id} feed={feed} />)}
         </section>
 
         <section className="right_bar_container">

@@ -6,6 +6,7 @@ import {
   IoIosNotificationsOutline,
   IoIosLogOut,
 } from "react-icons/io";
+import { FaTimesCircle } from "react-icons/fa";
 import { FiHome } from "react-icons/fi";
 import { GiPerson } from "react-icons/gi";
 
@@ -19,13 +20,15 @@ class SideNavigation extends Component {
     // console.log(this.props);
   }
 
+  closeSideMenu = () => {
+    document.getElementById("side_menu").style = "width: 0;";
+  };
+
   render() {
     let { user } = this.props.auth;
 
-    // console.log(user);
-
     return (
-      <nav className="SideNavigation">
+      <nav id="side_menu" className="SideNavigation">
         <section
           style={{
             marginBottom: 20,
@@ -39,6 +42,10 @@ class SideNavigation extends Component {
             // padding: 7,
           }}
         >
+          <FaTimesCircle
+            style={{ fontSize: 30, margin: "8px 0 20px auto" }}
+            onClick={this.closeSideMenu}
+          />
           <img
             src={require("../../assets/img/profile2.jpg")}
             style={{
@@ -79,7 +86,7 @@ class SideNavigation extends Component {
           Feeds
         </NavLink>
         <NavLink
-          //   exact
+          // exact
           activeClassName="side_btn_active"
           className="side_btn"
           to={`${this.props.url}messages`}

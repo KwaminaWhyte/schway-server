@@ -15,3 +15,5 @@ export const USER_LOADED = "USER_LOADED";
 
 export const GET_ERROR = "GET_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+export const GO_TO_URL = "GO_TO_URL";

@@ -8627,6 +8627,13 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-awesome-popover@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-popover/-/react-awesome-popover-6.1.1.tgz#3e37d3d3d4ad49d23b0e73a8d247dc3b1a5260e0"
+  integrity sha512-jBLcTpd6NaCBwWVfONzDqry4rowBgnHh7DW4bWJAd2GxMif6XAbIIBk2UDBWLjLqjhaFeL/c0QCLGElJpyDPZg==
+  dependencies:
+    react "^16.9.0"
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -8815,7 +8822,12 @@ react-scripts@3.4.3:
   optionalDependencies:
     fsevents "2.1.2"
 
-react@^16.13.1:
+react-timeago@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-5.2.0.tgz#d655d40aa55e4fe08a92234481a6aea7f656ab5d"
+  integrity sha512-wCEEDGQHMdFh/PLp+Hj5vk9ZoC4KjQ5u0u6+KrrY9rny5LqJ2gZvNNEAS4mhSZDV1i7JLgQI5VQTAux7f+vj2w==
+
+react@^16.13.1, react@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==

@@ -17,7 +17,7 @@ export default class Home extends Component {
       <div className="Home">
         <SideNavigation url={this.props.computedMatch.url} />
 
-        <section style={{ marginLeft: 200 }}>
+        <section>
           <Route
             exact
             path={`${this.props.computedMatch.url}`}

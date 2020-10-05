@@ -7,6 +7,7 @@ import {
   IoIosHeart,
   IoIosMenu,
 } from "react-icons/io";
+import TimeAgo from "react-timeago";
 import ReactPlayer from "react-player";
 
 import "./style.css";
@@ -84,7 +85,7 @@ class FeedCard extends Component {
               <p>
                 Winneba{" "}
                 <span style={{ fontSize: 12 }}>
-                  <i>{feed.timestamp}</i>
+                  <TimeAgo date={feed.timestamp} />
                 </span>
               </p>
             </div>

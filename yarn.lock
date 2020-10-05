@@ -1067,6 +1067,11 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-timeago@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-5.2.0.tgz#d655d40aa55e4fe08a92234481a6aea7f656ab5d"
+  integrity sha512-wCEEDGQHMdFh/PLp+Hj5vk9ZoC4KjQ5u0u6+KrrY9rny5LqJ2gZvNNEAS4mhSZDV1i7JLgQI5VQTAux7f+vj2w==
+
 readable-stream@^2.3.5:
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.7.tgz#1eca1cf711aef814c04f62252a36a62f6cb23b57"

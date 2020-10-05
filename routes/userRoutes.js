@@ -40,8 +40,8 @@ router.post("/register", async (req, res) => {
     .then((user) => {
       jwt.sign(
         { id: user._id },
-        "Famous10@stanleyotabil_fuckuall360",
-        { expiresIn: 4600 },
+        process.env.JWT_SECRET || "Famous10",
+        { expiresIn: 864000 },
         (err, token) => {
           if (err) throw err;
           res.send({ token, user });
@@ -65,8 +65,8 @@ router.post("/login", async (req, res) => {
 
   jwt.sign(
     { id: user._id },
-    "Famous10@stanleyotabil_fuckuall360",
-    { expiresIn: 4600 },
+    process.env.JWT_SECRET || "Famous10",
+    { expiresIn: 864000 },
     (err, token) => {
       if (err) throw err;
       res.send({ token, user });
