@@ -33,14 +33,14 @@ class FeedCard extends Component {
           src='{require("../../assets/audio/audio.mp3")}'
         ></audio>
       );
-    else if (type === "mp4")
+    else if (type === "video/mp4")
       return (
         <ReactPlayer
           url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
           controls={true}
         />
       );
-    else if (type === "img")
+    else if (type === "image/png" || "image/jpeg")
       return (
         <img
           style={{
@@ -82,11 +82,9 @@ class FeedCard extends Component {
                   {feed.user}
                 </Link>
               </h1>
-              <p>
-                Winneba{" "}
-                <span style={{ fontSize: 12 }}>
-                  <TimeAgo date={feed.timestamp} />
-                </span>
+              <p style={{ fontSize: 12 }}>Winneba</p>
+              <p style={{ fontSize: 12 }}>
+                <TimeAgo date={feed.timestamp} />
               </p>
             </div>
           </div>
@@ -100,8 +98,8 @@ class FeedCard extends Component {
         <p style={{ margin: "5px 50px" }}>{feed.body}</p>
 
         <section>
-          {feed.file ? (
-            this.fileTypeChanger(feed.filetype)
+          {feed.mediaUrl ? (
+            this.fileTypeChanger(feed.mediaType)
           ) : (
             <div
               style={{

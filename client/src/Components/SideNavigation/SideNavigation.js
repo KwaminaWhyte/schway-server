@@ -43,8 +43,9 @@ class SideNavigation extends Component {
           }}
         >
           <FaTimesCircle
-            style={{ fontSize: 30, margin: "8px 0 20px auto" }}
+            style={{ margin: "8px 0 20px auto" }}
             onClick={this.closeSideMenu}
+            size={35}
           />
           <img
             src={require("../../assets/img/profile2.jpg")}

@@ -16,6 +16,9 @@ let feedSchema = new Schema({
   mediaUrl: {
     type: String,
   },
+  mediaType: {
+    type: String,
+  },
   timestamp: {
     type: Date,
     default: Date.now,
@@ -23,4 +26,4 @@ let feedSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Feed", feedSchema);
+module.exports = mongoose.model("feed", feedSchema);

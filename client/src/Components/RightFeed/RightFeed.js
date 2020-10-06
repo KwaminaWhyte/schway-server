@@ -7,7 +7,7 @@ import { follow } from "../../assets/data";
 export default class RightFeed extends Component {
   render() {
     return (
-      <section style={{ position: "sticky", top: 10 }}>
+      <section style={{ position: "sticky", top: 70 }}>
         <div className="sm_info_container">
           <h1 style={{ margin: 10 }}>Who to follow</h1>
 
@@ -30,17 +30,17 @@ export default class RightFeed extends Component {
                 src={require("../../assets/img/profile3.jpg")}
                 alt=""
               />
-              <div>
+              <div style={{ fontSize: 15 }}>
                 <h1>Mark Zuk</h1>
                 <p>@markbhdhdfhj33</p>
               </div>
 
               <p
                 style={{
-                  backgroundColor: "blue",
+                  backgroundColor: "blueviolet",
                   borderRadius: 20,
                   fontSize: 11,
-                  padding: "3px 6px",
+                  padding: "5px 6px",
                   fontWeight: "bold",
                   color: "white",
                   marginLeft: "auto",
