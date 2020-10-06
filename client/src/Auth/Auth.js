@@ -36,14 +36,13 @@ class Auth extends Component {
   };
 
   hideLoginSection = () => {
-    document.getElementById("login_section").style = "margin-left: 130vw;";
+    document.getElementById("login_section").style = "margin-left: 100vw;";
     document.getElementById("register_section").style = "margin-left: 0vw;";
   };
 
   showLoginSection = () => {
     document.getElementById("login_section").style = "margin-left: 0vw;";
-    document.getElementById("register_section").style =
-      "margin-left: -130vw; display: flex;";
+    document.getElementById("register_section").style = "margin-left: -100vw;";
   };
 
   render() {
@@ -64,7 +63,7 @@ class Auth extends Component {
           {this.state.showSignIn ? (
             <>
               <h1>Creae an account</h1>
-              <h1
+              <h2
                 onClick={() => this.setState({ showSignIn: false })}
                 style={{
                   backgroundColor: "white",
@@ -75,13 +74,13 @@ class Auth extends Component {
                 }}
               >
                 Register
-              </h1>
+              </h2>
             </>
           ) : (
             <>
               <h1>Have an account?</h1>
 
-              <h1
+              <h2
                 onClick={() => this.setState({ showSignIn: true })}
                 style={{
                   backgroundColor: "white",
@@ -92,17 +91,23 @@ class Auth extends Component {
                 }}
               >
                 Login
-              </h1>
+              </h2>
             </>
           )}
         </section>
 
         <section id="register_section" className="reg_log_container">
           <div
-            style={{ marginRight: "auto", marginLeft: 40, marginTop: "auto" }}
+            style={{
+              marginRight: "auto",
+              marginLeft: 20,
+              marginTop: "auto",
+              height: 100,
+            }}
           >
-            <h1>Register User</h1>
-            <p>Please sign in to continue</p>
+            <h1 style={{ fontWeight: "bolder", fontSize: 33 }}>
+              Create Account
+            </h1>
           </div>
 
           <form
@@ -116,7 +121,7 @@ class Auth extends Component {
                 value={this.state.firstname}
                 type="text"
                 name="firstname"
-                placeholder="firstname"
+                placeholder="First Name"
               />
             </div>
 
@@ -126,7 +131,7 @@ class Auth extends Component {
                 value={this.state.lastname}
                 type="text"
                 name="lastname"
-                placeholder="lastname"
+                placeholder="Last Name"
               />
             </div>
 
@@ -136,40 +141,35 @@ class Auth extends Component {
                 value={this.state.username}
                 type="text"
                 name="username"
-                placeholder="username"
+                placeholder="Username"
               />
             </div>
 
             <div className="form_field_container">
+              <IoIosMail size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.email}
                 type="email"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
               />
             </div>
 
             <div className="form_field_container">
+              <IoIosLock size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.password}
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
               />
             </div>
 
             <input type="submit" value="SIGN UP" />
           </form>
-          <p
-            style={{
-              marginTop: "auto",
-              marginBottom: 55,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
+          <p className="toggle_small_screen">
             Already have an account?{" "}
             <Link to="#" onClick={this.showLoginSection}>
               Sing in
@@ -179,9 +179,14 @@ class Auth extends Component {
 
         <section id="login_section" className="reg_log_container">
           <div
-            style={{ marginRight: "auto", marginLeft: 40, marginTop: "auto" }}
+            style={{
+              marginRight: "auto",
+              marginLeft: 20,
+              marginTop: "auto",
+              height: 100,
+            }}
           >
-            <h1>Login</h1>
+            <h1 style={{ fontWeight: "bolder", fontSize: 33 }}>Login</h1>
             <p>Please sign in to continue</p>
           </div>
 
@@ -191,37 +196,30 @@ class Auth extends Component {
             method="POST"
           >
             <div className="form_field_container">
-              <IoIosMail />
+              <IoIosMail size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.email}
                 type="email"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
               />
             </div>
 
             <div className="form_field_container">
-              <IoIosLock />
+              <IoIosLock size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.password}
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
               />
             </div>
 
             <input type="submit" value="LOGIN" />
           </form>
-          <p
-            style={{
-              marginTop: "auto",
-              marginBottom: 55,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
+          <p className="toggle_small_screen">
             Dont have an account?{" "}
             <Link to="#" onClick={this.hideLoginSection}>
               Sign up
