@@ -62,7 +62,6 @@ class Home extends Component {
       this.props.newFeed({
         user,
         body,
-        mediaUrl: media,
         mediaType: media.type,
       });
       this.setState({ feedModal: false, body: "", media: "" });
