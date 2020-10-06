@@ -165,13 +165,15 @@ class Auth extends Component {
           <p
             style={{
               marginTop: "auto",
-              marginBottom: 20,
+              marginBottom: 55,
               marginLeft: "auto",
               marginRight: "auto",
             }}
           >
             Already have an account?{" "}
-            <Link onClick={this.showLoginSection}>Sing in</Link>
+            <Link to="#" onClick={this.showLoginSection}>
+              Sing in
+            </Link>
           </p>
         </section>
 
@@ -215,13 +217,15 @@ class Auth extends Component {
           <p
             style={{
               marginTop: "auto",
-              marginBottom: 20,
+              marginBottom: 55,
               marginLeft: "auto",
               marginRight: "auto",
             }}
           >
             Dont have an account?{" "}
-            <Link onClick={this.hideLoginSection}>Sign up</Link>
+            <Link to="#" onClick={this.hideLoginSection}>
+              Sign up
+            </Link>
           </p>
         </section>
       </div>
