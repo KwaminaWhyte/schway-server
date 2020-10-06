@@ -42,6 +42,7 @@ class Home extends Component {
 
   uploadImage = (image) => {
     let storageType = image.type;
+
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
@@ -125,6 +126,10 @@ class Home extends Component {
               onClick={this.openSideMenu}
               color="blue"
               className="toggle_bars"
+              style={{
+                margin: "0px 8px",
+                cursor: "pointer",
+              }}
             />
 
             <input
@@ -150,7 +155,7 @@ class Home extends Component {
                 backgroundColor: "#e1e1e1",
                 borderRadius: 20,
                 padding: 4,
-                marginLeft: 8,
+                margin: "0px 8px",
                 cursor: "pointer",
               }}
               size={20}
