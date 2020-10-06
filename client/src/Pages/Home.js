@@ -32,6 +32,7 @@ class Home extends Component {
     body: "",
     mediaUrl: "",
     mediaType: "",
+    uploadProgress: 0,
   };
 
   componentDidMount() {
@@ -43,7 +44,9 @@ class Home extends Component {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        console.log(snapshot);
+      },
       (error) => {
         console.log("error", error);
       },
@@ -62,8 +65,6 @@ class Home extends Component {
 
   handleFeedModalFile = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
-
     this.setState({
       mediaType: e.target.files[0].type,
     });
@@ -75,7 +76,6 @@ class Home extends Component {
     e.preventDefault();
 
     let { name, value } = e.target;
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 

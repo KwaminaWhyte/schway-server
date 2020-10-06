@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FETCH_FEEDS, NEW_FEED, DELETE_FEED } from "./types";
 import { tokenConfig } from "./authAction";
-// import { returnError } from "./errorAction";
+import { returnError } from "./errorAction";
 
 export const fetchFeeds = () => (dispatch) => {
   axios
@@ -13,8 +13,8 @@ export const fetchFeeds = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      // dispatch(returnError(err.response.data, err.response.status));
-      // console.log(err.response.data, err.response.status);
+      dispatch(returnError(err.response.data, err.response.status));
+      console.log(err.response.data, err.response.status);
       console.log(err);
     });
 };
@@ -30,7 +30,7 @@ export const fetchFeed = (id) => (dispatch) => {
       // console.log(project);
     })
     .catch((err) => {
-      // dispatch(returnError(err.response.data, err.response.status));
+      dispatch(returnError(err.response.data, err.response.status));
       console.log(err);
     });
 };
@@ -49,7 +49,7 @@ export const newFeed = (data) => (dispatch, getState) => {
       // console.log(res.data);
     })
     .catch((err) => {
-      // dispatch(returnError(err.response.data, err.response.status));
+      dispatch(returnError(err.response.data, err.response.status));
       console.log(err);
     });
 };
@@ -62,8 +62,6 @@ export const deleteFeed = (id) => (dispatch, getState) => {
         type: DELETE_FEED,
         payload: id,
       });
-
-      console.log(res);
     })
     .catch((err) => {
       // dispatch(returnError(err.response.data, err.response.status));
@@ -83,7 +81,7 @@ export const updateFeed = (data, id) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      // dispatch(returnError(err.response.data, err.response.status));
+      dispatch(returnError(err.response.data, err.response.status));
       console.log(err);
     });
 };

@@ -20,7 +20,7 @@ class FeedCard extends Component {
   componentDidMount() {}
 
   fileTypeChanger = (type, url) => {
-    if (type === "audio/mpeg" || "audio/mp3")
+    if (type === "audio/mpeg")
       return (
         <audio
           controls={true}
