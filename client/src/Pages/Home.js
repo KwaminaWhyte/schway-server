@@ -41,6 +41,7 @@ class Home extends Component {
   }
 
   uploadImage = (image) => {
+    let storageType = image.type;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",

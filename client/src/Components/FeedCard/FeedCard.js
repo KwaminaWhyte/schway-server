@@ -34,7 +34,7 @@ class FeedCard extends Component {
         ></audio>
       );
     else if (type === "video/mp4")
-      return <ReactPlayer url={url} controls={true} />;
+      return <ReactPlayer url={url} controls={true} width="100%" />;
     else if (type === "image/png" || "image/jpeg")
       return (
         <img
@@ -77,7 +77,7 @@ class FeedCard extends Component {
                   {feed.user}
                 </Link>
               </h1>
-              <p style={{ fontSize: 12 }}>Winneba {feed.mediaType}</p>
+              <p style={{ fontSize: 12 }}>Winneba</p>
               <p style={{ fontSize: 12 }}>
                 <TimeAgo date={feed.timestamp} />
               </p>
@@ -90,7 +90,7 @@ class FeedCard extends Component {
           />
         </section>
 
-        <p style={{ margin: "5px 50px" }}>{feed.body}</p>
+        <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
         <section>
           {feed.mediaUrl ? (
