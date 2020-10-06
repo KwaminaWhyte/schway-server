@@ -41,13 +41,17 @@ class Home extends Component {
   }
 
   uploadImage = (image) => {
-    let storageType = image.type;
+    // let storageType = image.type;
+    // check every file type and direct all media to their respective folders
 
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        console.log(snapshot);
+        const uploadProgress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        this.setState({ uploadProgress });
       },
       (error) => {
         console.log("error", error);
@@ -229,7 +233,7 @@ class Home extends Component {
               // marginRight: "-50%",
               // transform: "translate(-50%, -50%)",
 
-              width: "50%",
+              width: "67%",
               height: "fit-contents",
               marginLeft: "auto",
               marginRight: "auto",
@@ -264,7 +268,11 @@ class Home extends Component {
               placeholder="What's on your mind?"
             ></textarea>
 
-            <p>{this.state.mediaUrl}</p>
+            <progress
+              style={{ color: "blueviolet", width: "100%" }}
+              value={this.state.uploadProgress}
+              max="100"
+            />
 
             <input
               style={{

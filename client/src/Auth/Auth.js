@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+import { IoIosMail, IoIosLock } from "react-icons/io";
 
 import "./style.css";
 import { registerUser, loginUser } from "../redux/actions/authAction";
@@ -32,6 +33,17 @@ class Auth extends Component {
     e.preventDefault();
     let { email, password } = this.state;
     this.props.loginUser({ email, password });
+  };
+
+  hideLoginSection = () => {
+    document.getElementById("login_section").style = "margin-left: 130vw;";
+    document.getElementById("register_section").style = "margin-left: 0vw;";
+  };
+
+  showLoginSection = () => {
+    document.getElementById("login_section").style = "margin-left: 0vw;";
+    document.getElementById("register_section").style =
+      "margin-left: -130vw; display: flex;";
   };
 
   render() {
@@ -85,79 +97,132 @@ class Auth extends Component {
           )}
         </section>
 
-        <section className="reg_log_container">
-          <h1>Register User</h1>
+        <section id="register_section" className="reg_log_container">
+          <div
+            style={{ marginRight: "auto", marginLeft: 40, marginTop: "auto" }}
+          >
+            <h1>Register User</h1>
+            <p>Please sign in to continue</p>
+          </div>
 
           <form
             className="reg_log_form_container"
             onSubmit={this.registerUser}
             method="post"
           >
-            <input
-              onChange={this.handleText}
-              value={this.state.firstname}
-              type="text"
-              name="firstname"
-              placeholder="firstname"
-            />
-            <input
-              onChange={this.handleText}
-              value={this.state.lastname}
-              type="text"
-              name="lastname"
-              placeholder="lastname"
-            />
-            <input
-              onChange={this.handleText}
-              value={this.state.username}
-              type="text"
-              name="username"
-              placeholder="username"
-            />
-            <input
-              onChange={this.handleText}
-              value={this.state.email}
-              type="email"
-              name="email"
-              placeholder="email"
-            />
-            <input
-              onChange={this.handleText}
-              value={this.state.password}
-              type="password"
-              name="password"
-              placeholder="password"
-            />
+            <div className="form_field_container">
+              <input
+                onChange={this.handleText}
+                value={this.state.firstname}
+                type="text"
+                name="firstname"
+                placeholder="firstname"
+              />
+            </div>
 
-            <input type="submit" value="Register" />
+            <div className="form_field_container">
+              <input
+                onChange={this.handleText}
+                value={this.state.lastname}
+                type="text"
+                name="lastname"
+                placeholder="lastname"
+              />
+            </div>
+
+            <div className="form_field_container">
+              <input
+                onChange={this.handleText}
+                value={this.state.username}
+                type="text"
+                name="username"
+                placeholder="username"
+              />
+            </div>
+
+            <div className="form_field_container">
+              <input
+                onChange={this.handleText}
+                value={this.state.email}
+                type="email"
+                name="email"
+                placeholder="email"
+              />
+            </div>
+
+            <div className="form_field_container">
+              <input
+                onChange={this.handleText}
+                value={this.state.password}
+                type="password"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+
+            <input type="submit" value="SIGN UP" />
           </form>
+          <p
+            style={{
+              marginTop: "auto",
+              marginBottom: 20,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            Already have an account?{" "}
+            <Link onClick={this.showLoginSection}>Sing in</Link>
+          </p>
         </section>
 
-        <section className="reg_log_container">
-          <h1>Login User</h1>
+        <section id="login_section" className="reg_log_container">
+          <div
+            style={{ marginRight: "auto", marginLeft: 40, marginTop: "auto" }}
+          >
+            <h1>Login</h1>
+            <p>Please sign in to continue</p>
+          </div>
 
           <form
             className="reg_log_form_container"
             onSubmit={this.loginUser}
-            method="post"
+            method="POST"
           >
-            <input
-              onChange={this.handleText}
-              value={this.state.email}
-              type="email"
-              name="email"
-              placeholder="email"
-            />
-            <input
-              onChange={this.handleText}
-              value={this.state.password}
-              type="password"
-              name="password"
-              placeholder="password"
-            />
+            <div className="form_field_container">
+              <IoIosMail />
+              <input
+                onChange={this.handleText}
+                value={this.state.email}
+                type="email"
+                name="email"
+                placeholder="email"
+              />
+            </div>
 
-            <input type="submit" value="Log In" />
+            <div className="form_field_container">
+              <IoIosLock />
+              <input
+                onChange={this.handleText}
+                value={this.state.password}
+                type="password"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+
+            <input type="submit" value="LOGIN" />
           </form>
+          <p
+            style={{
+              marginTop: "auto",
+              marginBottom: 20,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            Dont have an account?{" "}
+            <Link onClick={this.hideLoginSection}>Sign up</Link>
+          </p>
         </section>
       </div>
     );
