@@ -12,10 +12,10 @@ router.get("", (req, res) => {
 });
 
 router.post("/new", auth, (req, res) => {
-  let { user, body, mediaUrl } = req.body;
+  let { user, body, mediaUrl, mediaType } = req.body;
   let userId = req.user.id;
 
-  Feed.create({ userId, user, body, mediaUrl })
+  Feed.create({ userId, user, body, mediaUrl, mediaType })
     .then((feed) => res.send(feed))
     .catch((err) => res.send({ message: err }));
 });

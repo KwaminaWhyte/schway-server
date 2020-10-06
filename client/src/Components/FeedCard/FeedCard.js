@@ -19,8 +19,8 @@ class FeedCard extends Component {
 
   componentDidMount() {}
 
-  fileTypeChanger = (type) => {
-    if (type === "mp3")
+  fileTypeChanger = (type, url) => {
+    if (type === "audio/mpeg" || "audio/mp3")
       return (
         <audio
           controls={true}
@@ -30,16 +30,11 @@ class FeedCard extends Component {
             borderRadius: 20,
           }}
           name="my_awesome_audio"
-          src='{require("../../assets/audio/audio.mp3")}'
+          src={url}
         ></audio>
       );
     else if (type === "video/mp4")
-      return (
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-          controls={true}
-        />
-      );
+      return <ReactPlayer url={url} controls={true} />;
     else if (type === "image/png" || "image/jpeg")
       return (
         <img
@@ -47,7 +42,7 @@ class FeedCard extends Component {
             width: "100%",
             borderRadius: 20,
           }}
-          src={require("../../assets/img/profile2.jpg")}
+          src={url}
           alt=""
         />
       );
@@ -82,7 +77,7 @@ class FeedCard extends Component {
                   {feed.user}
                 </Link>
               </h1>
-              <p style={{ fontSize: 12 }}>Winneba</p>
+              <p style={{ fontSize: 12 }}>Winneba {feed.mediaType}</p>
               <p style={{ fontSize: 12 }}>
                 <TimeAgo date={feed.timestamp} />
               </p>
@@ -99,7 +94,7 @@ class FeedCard extends Component {
 
         <section>
           {feed.mediaUrl ? (
-            this.fileTypeChanger(feed.mediaType)
+            this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
           ) : (
             <div
               style={{

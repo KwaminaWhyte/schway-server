@@ -3,6 +3,8 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 
+import { storage } from "../firebase";
+
 import {
   IoIosCloseCircle,
   IoIosSearch,
@@ -28,7 +30,8 @@ class Home extends Component {
 
     user: "",
     body: "",
-    media: null,
+    mediaUrl: "",
+    mediaType: "",
   };
 
   componentDidMount() {
@@ -36,13 +39,36 @@ class Home extends Component {
     this.setState({ user });
   }
 
+  uploadImage = (image) => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log("error", error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            this.setState({ mediaUrl: url });
+            console.log(url);
+          });
+      }
+    );
+  };
+
   handleFeedModalFile = (e) => {
     e.preventDefault();
-    console.log(e.target.name, e.target.files[0]);
+    console.log(e.target.files[0]);
 
     this.setState({
-      media: e.target.files[0],
+      mediaType: e.target.files[0].type,
     });
+
+    this.uploadImage(e.target.files[0]);
   };
 
   handleFeedModalText = (e) => {
@@ -55,16 +81,22 @@ class Home extends Component {
 
   submitNewFeed = (e) => {
     e.preventDefault();
-    let { user, body, media } = this.state;
+    let { user, body, mediaUrl, mediaType } = this.state;
 
     if (body !== "") {
-      // console.log({ user, body, mediaUrl: media, mediaType: media.type });
+      console.log({ user, body, mediaUrl, mediaType });
       this.props.newFeed({
         user,
         body,
-        // mediaType: media.type,
+        mediaUrl,
+        mediaType,
       });
-      this.setState({ feedModal: false, body: "", media: "" });
+      this.setState({
+        feedModal: false,
+        body: "",
+        mediaUrl: "",
+        mediaType: "",
+      });
     } else {
       alert("Type something");
     }
@@ -100,7 +132,7 @@ class Home extends Component {
                 margin: "0 12px",
                 borderRadius: 12,
                 border: "none",
-                height: 30,
+                height: 36,
                 padding: "0 6px",
                 fontSize: 16,
               }}
@@ -226,6 +258,8 @@ class Home extends Component {
               placeholder="What's on your mind?"
             ></textarea>
 
+            <p>{this.state.mediaUrl}</p>
+
             <input
               style={{
                 backgroundColor: "rgba(137, 43, 226, 0.19)",
@@ -235,8 +269,6 @@ class Home extends Component {
                 margin: 6,
               }}
               onChange={this.handleFeedModalFile}
-              name="media"
-              value={this.state.mediaUrl}
               type="file"
             />
 
