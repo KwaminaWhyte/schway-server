@@ -58,11 +58,11 @@ class Home extends Component {
     let { user, body, media } = this.state;
 
     if (body !== "") {
-      console.log({ user, body, mediaUrl: media, mediaType: media.type });
+      // console.log({ user, body, mediaUrl: media, mediaType: media.type });
       this.props.newFeed({
         user,
         body,
-        mediaType: media.type,
+        // mediaType: media.type,
       });
       this.setState({ feedModal: false, body: "", media: "" });
     } else {
