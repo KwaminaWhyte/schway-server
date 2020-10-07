@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Modal from "react-modal";
+import { Button, Modal } from "react-bootstrap";
 
 import { storage } from "../firebase";
 
-import {
-  IoIosCloseCircle,
-  IoIosSearch,
-  IoIosAddCircleOutline,
-} from "react-icons/io";
+import { IoIosSearch, IoIosAddCircleOutline } from "react-icons/io";
 import { FaBars } from "react-icons/fa";
 
 import "./style.css";
@@ -207,72 +203,49 @@ class Home extends Component {
         </section>
 
         <Modal
-          ariaHideApp={false}
-          isOpen={this.state.feedModal}
-          onRequestClose={() => this.setState({ feedModal: false })}
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.326)",
-              zIndex: 310,
-              // display: "flex",
-            },
-            content: {
-              // top: "50%",
-              // left: "50%",
-              // right: "auto",
-              // bottom: "auto",
-              // marginRight: "-50%",
-              // transform: "translate(-50%, -50%)",
-
-              width: "70%",
-              height: "fit-contents",
-              marginLeft: "auto",
-              marginRight: "auto",
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 12,
-              border: "none",
-            },
-          }}
-          contentLabel="Example Modal"
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={this.state.feedModal}
+          onHide={() => this.setState({ feedModal: false })}
         >
-          <IoIosCloseCircle
-            onClick={() => this.setState({ feedModal: false })}
-            size={20}
-            color="red"
-            style={{ marginLeft: "auto" }}
-          />
-          <form
-            className="new_feed_form_container"
-            onSubmit={this.submitNewFeed}
-          >
-            <textarea
-              onChange={this.handleFeedModalText}
-              name="body"
-              value={this.state.body}
-              cols="30"
-              rows="10"
-              placeholder="What's on your mind?"
-              style={{ resize: "none", fontSize: 19 }}
-            ></textarea>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            <form
+              className="new_feed_form_container"
+              onSubmit={this.submitNewFeed}
+            >
+              <textarea
+                onChange={this.handleFeedModalText}
+                name="body"
+                value={this.state.body}
+                cols="30"
+                rows="10"
+                placeholder="What's on your mind?"
+                style={{ resize: "none", fontSize: 19 }}
+              ></textarea>
 
-            <progress
-              style={{ color: "blueviolet", width: "100%" }}
-              value={this.state.uploadProgress}
-              max="100"
-            />
+              <progress
+                style={{ color: "blueviolet", width: "100%" }}
+                value={this.state.uploadProgress}
+                max="100"
+              />
 
-            <input
-              style={{
-                border: "none",
-              }}
-              onChange={this.handleFeedModalFile}
-              type="file"
-            />
-
-            {/* <IoIosPaperPlane size={20} /> */}
-            <input type="submit" value="POST" />
-          </form>
+              <input
+                style={{
+                  border: "none",
+                  marginBottom: 12,
+                }}
+                onChange={this.handleFeedModalFile}
+                type="file"
+              />
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={this.submitNewFeed}>
+              Post
+            </Button>
+          </Modal.Footer>
         </Modal>
       </div>
     );

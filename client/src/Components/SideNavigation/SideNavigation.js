@@ -16,9 +16,7 @@ import { logoutUser } from "../../redux/actions/authAction";
 class SideNavigation extends Component {
   state = {};
 
-  componentDidMount() {
-    // console.log(this.props);
-  }
+  componentDidMount() {}
 
   closeSideMenu = () => {
     document.getElementById("side_menu").style = "width: 0;";
@@ -39,13 +37,12 @@ class SideNavigation extends Component {
             height: 190,
             display: "flex",
             flexDirection: "column",
-            // padding: 7,
           }}
         >
           <FaTimesCircle
             style={{ margin: "8px 0 20px auto" }}
             onClick={this.closeSideMenu}
-            size={40}
+            size={50}
           />
           <img
             src={require("../../assets/img/profile2.jpg")}
@@ -70,9 +67,9 @@ class SideNavigation extends Component {
             exact
             to={`${this.props.url}profile/${user.username}`}
           >
-            <h1>
+            <h6>
               {user.firstname} {user.lastname}
-            </h1>
+            </h6>
             @{user.username}
           </NavLink>
         </section>
@@ -83,7 +80,7 @@ class SideNavigation extends Component {
           className="side_btn"
           to={`${this.props.url}`}
         >
-          <FiHome className="icon_style" size={18} />
+          <FiHome className="icon_style" size={30} />
           Feeds
         </NavLink>
         <NavLink
@@ -92,7 +89,7 @@ class SideNavigation extends Component {
           className="side_btn"
           to={`${this.props.url}messages`}
         >
-          <IoIosChatbubbles className="icon_style" size={18} />
+          <IoIosChatbubbles className="icon_style" size={30} />
           Messages
         </NavLink>
         <NavLink
@@ -101,7 +98,7 @@ class SideNavigation extends Component {
           className="side_btn"
           to={`${this.props.url}contacts`}
         >
-          <GiPerson className="icon_style" size={18} />
+          <GiPerson className="icon_style" size={30} />
           Contacts
         </NavLink>
         <NavLink
@@ -110,7 +107,7 @@ class SideNavigation extends Component {
           className="side_btn"
           to={`${this.props.url}notifications`}
         >
-          <IoIosNotificationsOutline className="icon_style" size={18} />
+          <IoIosNotificationsOutline className="icon_style" size={30} />
           Notifications
         </NavLink>
         {/* <NavLink
@@ -143,7 +140,7 @@ class SideNavigation extends Component {
               color: "white",
               fontWeight: "bold",
             }}
-            size={18}
+            size={30}
           />
         </NavLink>
       </nav>

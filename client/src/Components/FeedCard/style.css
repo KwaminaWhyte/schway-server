@@ -74,29 +74,3 @@
 .mainmenubtn {
   cursor: pointer;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-child {
-  display: none;
-  background-color: white;
-  min-width: 200px;
-  position: fixed;
-  z-index: 200;
-  box-shadow: 0px 2px 3px 3px #e1e1e156;
-  border-radius: 9px;
-  margin-left: -180px;
-}
-.dropdown-child a {
-  color: blue;
-  padding: 12px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-child a:hover {
-  background-color: turquoise;
-}
-/* .dropdown:hover .dropdown-child {
-  display: block;
-} */

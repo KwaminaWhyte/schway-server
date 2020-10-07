@@ -9,7 +9,7 @@ export default class RightFeed extends Component {
     return (
       <section style={{ position: "sticky", top: 70 }}>
         <div className="sm_info_container">
-          <h1 style={{ margin: 10 }}>Who to follow</h1>
+          <h6 style={{ margin: 10 }}>Who to follow</h6>
 
           {follow.map((item) => (
             <div
@@ -31,7 +31,7 @@ export default class RightFeed extends Component {
                 alt=""
               />
               <div style={{ fontSize: 15 }}>
-                <h1>Mark Zuk</h1>
+                <h6>Mark Zuk</h6>
                 <p>@markbhdhdfhj33</p>
               </div>
 
@@ -65,7 +65,7 @@ export default class RightFeed extends Component {
         </div>
 
         <div className="sm_info_container">
-          <h1 style={{ margin: 10 }}>Events taoday</h1>
+          <h6 style={{ margin: 10 }}>Events taoday</h6>
 
           <div
             style={{
@@ -116,7 +116,7 @@ export default class RightFeed extends Component {
         </div>
 
         <div className="sm_info_container">
-          <h1>some tother</h1>
+          <h6>some tother</h6>
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae

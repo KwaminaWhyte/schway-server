@@ -9,8 +9,7 @@ import {
 } from "react-icons/io";
 import TimeAgo from "react-timeago";
 import ReactPlayer from "react-player";
-import Modal from "react-modal";
-import { IoIosCloseCircle } from "react-icons/io";
+import { Modal, OverlayTrigger, Popover } from "react-bootstrap";
 
 import "./style.css";
 import { deleteFeed } from "../../redux/actions/feedAction";
@@ -74,10 +73,7 @@ class FeedCard extends Component {
     this.props.fetchComments(feed_id);
   };
 
-  feedDropDown = () => {
-    document.getElementsByClassName("dropdown").style = "display: block;";
-    document.getElementsByClassName("dropdown-child").style = "display: block;";
-  };
+  feedDropDown = () => {};
 
   render() {
     let { feed, comments } = this.props;
@@ -99,37 +95,51 @@ class FeedCard extends Component {
               alt=""
             />
 
-            <div style={{ zIndex: 12 }}>
-              <h1>
+            <div
+              style={{
+                zIndex: 12,
+              }}
+            >
+              <h6>
                 <Link
                   style={{ textDecoration: "none", color: "black" }}
                   to={`/profile/${feed.user}`}
                 >
                   {feed.user.username}
                 </Link>
-              </h1>
+              </h6>
               {/* <p style={{ fontSize: 12 }}>Winneba</p> */}
-              <p style={{ fontSize: 12 }}>
+              <p style={{ fontSize: 12, margin: 0, padding: 0 }}>
                 <TimeAgo date={feed.timestamp} />
               </p>
             </div>
           </div>
 
-          <div className="dropdown">
-            <IoIosMenu
-              // onClick={this.feedDropDown}
+          <OverlayTrigger
+            trigger="click"
+            key="bottom"
+            placement="bottom"
+            overlay={
+              <Popover id={`popover-positioned-bottom`}>
+                <Popover.Content
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
+                  <p style={{ margin: 8 }}>
+                    <strong>Report Feed</strong>
+                  </p>
 
-              onClick={() => this.props.deleteFeed(feed._id)}
-              className="mainmenubtn"
-              size={20}
-            />
-            <div className="dropdown-child">
-              <a href="http://wwww.yourdomain.com/page1.html">Sub Menu 1</a>
-              <a href="http://wwww.yourdomain.com/page2.html">Sub Menu 2</a>
-              <p>Report Feed</p>
-              <p onClick={() => this.props.deleteFeed(feed._id)}>Delete Feed</p>
-            </div>
-          </div>
+                  <p
+                    style={{ margin: 8, color: "red" }}
+                    onClick={() => this.props.deleteFeed(feed._id)}
+                  >
+                    <strong>Delete Feed</strong>
+                  </p>
+                </Popover.Content>
+              </Popover>
+            }
+          >
+            <IoIosMenu className="mainmenubtn" size={20} />
+          </OverlayTrigger>
         </section>
 
         <p style={{ margin: "5px 20px" }}>{feed.body}</p>
@@ -180,122 +190,111 @@ class FeedCard extends Component {
         </section>
 
         <Modal
-          ariaHideApp={false}
-          isOpen={this.state.feedDetailsModal}
-          onRequestClose={() => this.setState({ feedDetailsModal: false })}
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.326)",
-              zIndex: 310,
-              // display: "flex",
-            },
-            content: {
-              width: "70%",
-              height: "fit-contents",
-              marginLeft: "auto",
-              marginRight: "auto",
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 12,
-              border: "none",
-            },
-          }}
-          contentLabel="Example Modal"
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={this.state.feedDetailsModal}
+          onHide={() => this.setState({ feedDetailsModal: false })}
         >
-          <IoIosCloseCircle
-            onClick={() => this.setState({ feedDetailsModal: false })}
-            size={20}
-            color="red"
-            style={{ marginLeft: "auto" }}
-          />
-          <section>
-            <p style={{ margin: "5px 20px" }}>{feed.body}</p>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            <section>
+              <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
-            {feed.mediaUrl ? (
-              this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
-            ) : (
-              <div
-                style={{
-                  height: 1,
-                }}
-              />
-            )}
-          </section>
+              {feed.mediaUrl ? (
+                this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
+              ) : (
+                <div
+                  style={{
+                    height: 1,
+                  }}
+                />
+              )}
+            </section>
 
-          <form
-            className="new_feed_form_container"
-            onSubmit={this.submitNewComment}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              height: "fit-contents",
-              alignItems: "center",
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          >
-            <textarea
-              onChange={this.handleCommentText}
-              name="body"
-              value={this.state.body}
-              cols="30"
-              rows="1"
-              placeholder="Add a comment"
+            <form
+              className="new_feed_form_container"
+              onSubmit={this.submitNewComment}
               style={{
-                resize: "none",
-                fontSize: 19,
-                flex: 1,
-                margin: "0 5px 0 0",
+                display: "flex",
+                flexDirection: "row",
+                height: "fit-contents",
+                alignItems: "center",
+                marginTop: 10,
+                marginBottom: 10,
               }}
-            ></textarea>
-
-            <input
-              style={{ margin: 0, height: 40 }}
-              type="submit"
-              value="COMMENT"
-            />
-          </form>
-
-          <section>
-            <h1>{comments.length} Comments</h1>
-
-            {comments.map((comment) => (
-              <div
-                key={comment._id}
+            >
+              <textarea
+                onChange={this.handleCommentText}
+                name="body"
+                value={this.state.body}
+                cols="30"
+                rows="1"
+                placeholder="Add a comment"
                 style={{
-                  backgroundColor: "#e1e1e1",
-                  margin: 5,
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: 4,
+                  resize: "none",
+                  fontSize: 19,
+                  flex: 1,
+                  margin: "0 5px 0 0",
                 }}
-              >
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <img
-                    src={require("../../assets/img/profile2.jpg")}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 26,
-                      marginTop: "auto",
-                      marginLeft: 8,
-                      marginBottom: 6,
-                    }}
-                    alt=""
-                  />
+              ></textarea>
 
-                  <div style={{ marginLeft: 12 }}>
-                    <h4>{comment.user.username}</h4>
-                    <p style={{ fontSize: 12 }}>
-                      <TimeAgo date={comment.timestamp} />
-                    </p>
+              <input
+                style={{
+                  display: "flex",
+                  margin: 0,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: 30,
+                  height: 30,
+                  padding: 0,
+                }}
+                type="submit"
+                value=">"
+              />
+            </form>
+
+            <section>
+              <h6>{comments.length} Comments</h6>
+
+              {comments.map((comment) => (
+                <div
+                  key={comment._id}
+                  style={{
+                    backgroundColor: "#e1e1e1",
+                    margin: 5,
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: 4,
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src={require("../../assets/img/profile2.jpg")}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: 26,
+                        marginTop: "auto",
+                        marginLeft: 8,
+                        marginBottom: 6,
+                      }}
+                      alt=""
+                    />
+
+                    <div style={{ marginLeft: 12 }}>
+                      <h6>{comment.user.username}</h6>
+                      <p style={{ fontSize: 12, padding: 0, margin: 0 }}>
+                        <TimeAgo date={comment.timestamp} />
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <p style={{ marginLeft: 50 }}>{comment.body}</p>
-              </div>
-            ))}
-          </section>
+                  <p style={{ marginLeft: 50 }}>{comment.body}</p>
+                </div>
+              ))}
+            </section>
+          </Modal.Body>
         </Modal>
       </div>
     );
