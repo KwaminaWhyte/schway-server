@@ -109,7 +109,7 @@ class FeedCard extends Component {
                   {feed.user.username}
                 </Link>
               </h1>
-              <p style={{ fontSize: 12 }}>Winneba</p>
+              {/* <p style={{ fontSize: 12 }}>Winneba</p> */}
               <p style={{ fontSize: 12 }}>
                 <TimeAgo date={feed.timestamp} />
               </p>
