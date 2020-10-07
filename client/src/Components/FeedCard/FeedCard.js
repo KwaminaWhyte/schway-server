@@ -61,7 +61,6 @@ class FeedCard extends Component {
 
   handleCommentText = (e) => {
     e.preventDefault();
-
     let { name, value } = e.target;
     this.setState({ [name]: value });
   };

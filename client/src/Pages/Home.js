@@ -171,21 +171,6 @@ class Home extends Component {
               size={20}
               color="blueviolet"
             />
-            {/* 
-            <Link
-              style={{
-                backgroundColor: "#e1e1e1",
-                borderRadius: 20,
-                padding: 0,
-                margin: "auto 8px",
-              }}
-              to="/explore"
-            >
-              <IoIosNavigate
-                size={20}
-                color="blueviolet"
-              />
-            </Link> */}
           </section>
 
           <Route
@@ -239,15 +224,7 @@ class Home extends Component {
               // marginRight: "-50%",
               // transform: "translate(-50%, -50%)",
               borderRadius: 12,
-
-              // display: "flex",
-              // flexDirection: "column",
-
-              // width: "67%",
-              // height: "fit-contents",
-              // marginLeft: "auto",
-              // marginRight: "auto",
-              // border: "none",
+              border: "none",
             },
           }}
           contentLabel="Example Modal"

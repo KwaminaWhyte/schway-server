@@ -29,6 +29,9 @@ const userSchema = new Schema({
     required: true,
     min: 10,
   },
+  loaction: {
+    type: String,
+  },
   date_registered: {
     type: Date,
     default: Date.now,
