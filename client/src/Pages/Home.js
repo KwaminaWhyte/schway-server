@@ -223,6 +223,13 @@ class Home extends Component {
               // bottom: "auto",
               // marginRight: "-50%",
               // transform: "translate(-50%, -50%)",
+
+              width: "70%",
+              height: "fit-contents",
+              marginLeft: "auto",
+              marginRight: "auto",
+              display: "flex",
+              flexDirection: "column",
               borderRadius: 12,
               border: "none",
             },

@@ -38,6 +38,8 @@ textarea {
 @media only screen and (max-width: 600px) {
   .main_feeds_container {
     width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .right_bar_container {
