@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 let commentSchema = new Schema({
   feed_id: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Feed",
     required: true,
   },
   user: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   body: {
@@ -21,4 +23,4 @@ let commentSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("comment", commentSchema);
+module.exports = mongoose.model("Comment", commentSchema);

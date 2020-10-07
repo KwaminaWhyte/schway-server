@@ -15,6 +15,9 @@ body {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+textarea,
+input {
   outline: none;
+  font-family: "Open Sans", sans-serif;
 }

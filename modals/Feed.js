@@ -2,12 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let feedSchema = new Schema({
-  userId: {
-    type: String,
-    required: true,
-  },
   user: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   body: {
@@ -19,6 +16,7 @@ let feedSchema = new Schema({
   mediaType: {
     type: String,
   },
+  likes: [],
   timestamp: {
     type: Date,
     default: Date.now,
@@ -26,4 +24,4 @@ let feedSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("feed", feedSchema);
+module.exports = mongoose.model("Feed", feedSchema);

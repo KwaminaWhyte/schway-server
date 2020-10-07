@@ -27,7 +27,7 @@
     "eject": "react-scripts eject",
     "serve": "serve -s build"
   },
-  "proxy": "http://schwayserver.herokuapp.com",
+  "proxy": "http://localhost:1437",
   "secure": false,
   "eslintConfig": {
     "extends": "react-app"
@@ -43,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
   }
 }

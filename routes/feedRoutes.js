@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const Feed = require("../modals/Feed");
+const Comment = require("../modals/Comment");
 const auth = require("../middlewares/auth");
 
 router.get("", (req, res) => {
-  Feed.find()
+  Feed.find({})
+    .populate("user")
     .sort("-timestamp")
     .then((feeds) => res.send(feeds))
     .catch((err) => res.send({ message: err }));
@@ -13,9 +15,8 @@ router.get("", (req, res) => {
 
 router.post("/new", auth, (req, res) => {
   let { user, body, mediaUrl, mediaType } = req.body;
-  let userId = req.user.id;
 
-  Feed.create({ userId, user, body, mediaUrl, mediaType })
+  Feed.create({ user, body, mediaUrl, mediaType })
     .then((feed) => res.send(feed))
     .catch((err) => res.send({ message: err }));
 });
@@ -39,8 +40,12 @@ router.delete("/:id/delete", auth, (req, res) => {
 
   Feed.findById(req.params.id)
     .then((data) => {
-      if (req.user.id === data.userId) {
+      if (req.user.id == data.user) {
         console.log("Good to delete this feed");
+
+        Comment.deleteMany({ feed_id: req.params.id })
+          .then((comments) => console.log("comments deleted", comments))
+          .catch((err) => console.log(err));
 
         Feed.deleteOne({ _id: req.params.id })
           .then((feed) => {

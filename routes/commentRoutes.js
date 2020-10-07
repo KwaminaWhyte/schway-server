@@ -5,6 +5,7 @@ const Comment = require("../modals/Comment");
 
 router.get("/feed/:id", (req, res) => {
   Comment.find({ feed_id: req.params.id })
+    .populate("user")
     .sort("-timestamp")
     .then((comments) => res.send(comments))
     .catch((err) => res.send(err));

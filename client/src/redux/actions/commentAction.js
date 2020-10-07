@@ -5,7 +5,7 @@ import { tokenConfig } from "./authAction";
 
 export const fetchComments = (id) => (dispatch) => {
   axios
-    .get(`/feed/${id}`)
+    .get(`/comment/feed/${id}`)
     .then((res) => {
       dispatch({
         type: "FETCH_COMMENTS",
@@ -19,7 +19,7 @@ export const newComment = (data) => (dispatch, getState) => {
   let body = JSON.stringify(data);
 
   axios
-    .post("/new", body, tokenConfig(getState))
+    .post("/comment/new", body, tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: "NEW_COMMENT",

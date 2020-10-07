@@ -9,7 +9,6 @@ import {
   IoIosCloseCircle,
   IoIosSearch,
   IoIosAddCircleOutline,
-  IoIosPaperPlane,
 } from "react-icons/io";
 import { FaBars } from "react-icons/fa";
 
@@ -36,7 +35,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    let user = this.props.user.username;
+    let user = this.props.user._id;
     this.setState({ user });
   }
 
@@ -119,12 +118,6 @@ class Home extends Component {
 
         <section>
           <section className="search_bar_container">
-            <IoIosSearch
-              size={20}
-              onClick={this.openSideMenu}
-              color="blue"
-              className="toggle_search"
-            />
             <FaBars
               size={25}
               onClick={this.openSideMenu}
@@ -136,22 +129,35 @@ class Home extends Component {
               }}
             />
 
-            <input
+            <div
               style={{
                 flex: 1,
                 margin: "0 12px",
-                borderRadius: 12,
-                border: "none",
+                borderRadius: 20,
                 height: 36,
                 padding: "0 6px",
                 fontSize: 16,
+                backgroundColor: "#e1e1e1",
+                display: "flex",
+                alignItems: "center",
               }}
-              placeholder="search..."
-              onChange={this.handleSearch}
-              type="search"
-              name="search"
-              id="search"
-            />
+            >
+              <IoIosSearch size={20} color="blue" />
+              <input
+                style={{
+                  border: "none",
+                  flex: 1,
+                  fontSize: 17,
+                  backgroundColor: "#e1e1e1",
+                  padding: "0 8px",
+                }}
+                placeholder="Search Schway"
+                onChange={this.handleSearch}
+                type="text"
+                name="search"
+                id="search"
+              />
+            </div>
 
             <IoIosAddCircleOutline
               onClick={() => this.setState({ feedModal: true })}
@@ -223,37 +229,35 @@ class Home extends Component {
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.326)",
               zIndex: 310,
-              display: "flex",
+              // display: "flex",
             },
             content: {
-              // top: "30%",
+              // top: "50%",
               // left: "50%",
               // right: "auto",
               // bottom: "auto",
               // marginRight: "-50%",
               // transform: "translate(-50%, -50%)",
-
-              width: "67%",
-              height: "fit-contents",
-              marginLeft: "auto",
-              marginRight: "auto",
-              display: "flex",
-              flexDirection: "column",
               borderRadius: 12,
-              border: "none",
+
+              // display: "flex",
+              // flexDirection: "column",
+
+              // width: "67%",
+              // height: "fit-contents",
+              // marginLeft: "auto",
+              // marginRight: "auto",
+              // border: "none",
             },
           }}
           contentLabel="Example Modal"
         >
-          <div style={{ display: "flex" }}>
-            <h1>Create feed</h1>
-            <IoIosCloseCircle
-              onClick={() => this.setState({ feedModal: false })}
-              size={20}
-              color="red"
-              style={{ marginLeft: "auto" }}
-            />
-          </div>
+          <IoIosCloseCircle
+            onClick={() => this.setState({ feedModal: false })}
+            size={20}
+            color="red"
+            style={{ marginLeft: "auto" }}
+          />
           <form
             className="new_feed_form_container"
             onSubmit={this.submitNewFeed}
@@ -262,10 +266,10 @@ class Home extends Component {
               onChange={this.handleFeedModalText}
               name="body"
               value={this.state.body}
-              id=""
               cols="30"
               rows="10"
               placeholder="What's on your mind?"
+              style={{ resize: "none", fontSize: 19 }}
             ></textarea>
 
             <progress
@@ -276,17 +280,13 @@ class Home extends Component {
 
             <input
               style={{
-                backgroundColor: "rgba(137, 43, 226, 0.19)",
-                borderRadius: 20,
-                padding: "8px 12px",
-                display: "flex",
-                margin: 6,
+                border: "none",
               }}
               onChange={this.handleFeedModalFile}
               type="file"
             />
 
-            <IoIosPaperPlane size={20} />
+            {/* <IoIosPaperPlane size={20} /> */}
             <input type="submit" value="POST" />
           </form>
         </Modal>

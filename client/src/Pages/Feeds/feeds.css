@@ -31,10 +31,6 @@ textarea {
   padding: 10px;
 }
 
-.toggle_search {
-  display: block;
-}
-
 .toggle_bars {
   display: none;
 }
@@ -45,10 +41,6 @@ textarea {
   }
 
   .right_bar_container {
-    display: none;
-  }
-
-  .toggle_search {
     display: none;
   }
 
