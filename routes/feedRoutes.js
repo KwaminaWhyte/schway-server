@@ -8,6 +8,7 @@ const auth = require("../middlewares/auth");
 router.get("", (req, res) => {
   Feed.find({})
     .populate("user")
+    .populate("comments")
     .sort("-timestamp")
     .then((feeds) => res.send(feeds))
     .catch((err) => res.send({ message: err }));

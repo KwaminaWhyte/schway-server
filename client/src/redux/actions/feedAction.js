@@ -14,8 +14,6 @@ export const fetchFeeds = () => (dispatch) => {
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
-      console.log(err.response.data, err.response.status);
-      console.log(err);
     });
 };
 
@@ -27,17 +25,14 @@ export const fetchFeed = (id) => (dispatch) => {
         type: "FETCH_FEED",
         payload: project,
       });
-      // console.log(project);
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
-      console.log(err);
     });
 };
 
 export const newFeed = (data) => (dispatch, getState) => {
   let body = JSON.stringify(data);
-  console.log(body);
 
   axios
     .post("/feeds/new/", body, tokenConfig(getState))
@@ -46,11 +41,9 @@ export const newFeed = (data) => (dispatch, getState) => {
         type: NEW_FEED,
         payload: res.data,
       });
-      // console.log(res.data);
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
-      console.log(err);
     });
 };
 
@@ -64,8 +57,7 @@ export const deleteFeed = (id) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      // dispatch(returnError(err.response.data, err.response.status));
-      console.log(err);
+      dispatch(returnError(err.response.data, err.response.status));
     });
 };
 
@@ -82,6 +74,5 @@ export const updateFeed = (data, id) => (dispatch, getState) => {
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
-      console.log(err);
     });
 };

@@ -7,6 +7,7 @@ import {
   USER_LOADED,
   LOGOUT_SUCCESS,
   AUTH_ERROR,
+  GO_TO_URL,
 } from "../actions/types";
 
 const initState = {
@@ -14,6 +15,8 @@ const initState = {
   isAuthenticated: false,
   isLoading: false,
   user: null,
+  slug: "/",
+  queryParams: "",
 };
 
 const authReducer = (state = initState, action) => {
@@ -50,6 +53,12 @@ const authReducer = (state = initState, action) => {
         user: null,
         isAuthenticated: false,
         isLoading: false,
+      };
+    case GO_TO_URL:
+      return {
+        ...state,
+        slug: action.slug,
+        queryParams: action.queryParams,
       };
     default:
       return state;

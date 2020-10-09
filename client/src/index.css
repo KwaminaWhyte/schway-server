@@ -9,9 +9,20 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
   /* font-family: "Kumbh Sans", sans-serif; */
   font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+p {
+  margin: 0;
+  padding: 0;
 }
 
 input:focus,
@@ -20,4 +31,15 @@ textarea,
 input {
   outline: none;
   font-family: "Open Sans", sans-serif;
+}
+
+.SwitchContainer {
+  width: calc(100vw - 690px);
+}
+
+@media only screen and (max-width: 600px) {
+  .SwitchContainer {
+    /* width: 100vw; */
+    margin-bottom: 55px;
+  }
 }

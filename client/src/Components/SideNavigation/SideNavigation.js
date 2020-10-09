@@ -8,16 +8,11 @@ import {
 } from "react-icons/io";
 import { FaTimesCircle } from "react-icons/fa";
 import { FiHome } from "react-icons/fi";
-import { GiPerson } from "react-icons/gi";
 
 import "./style.css";
 import { logoutUser } from "../../redux/actions/authAction";
 
 class SideNavigation extends Component {
-  state = {};
-
-  componentDidMount() {}
-
   closeSideMenu = () => {
     document.getElementById("side_menu").style = "width: 0;";
   };
@@ -40,9 +35,10 @@ class SideNavigation extends Component {
           }}
         >
           <FaTimesCircle
+            className="close_side_btn"
             style={{ margin: "8px 0 20px auto" }}
             onClick={this.closeSideMenu}
-            size={50}
+            size={30}
           />
           <img
             src={require("../../assets/img/profile2.jpg")}
@@ -56,6 +52,7 @@ class SideNavigation extends Component {
             }}
             alt=""
           />
+
           <NavLink
             style={{
               color: "white",
@@ -64,8 +61,8 @@ class SideNavigation extends Component {
               padding: 8,
               width: "fit-contents",
             }}
-            exact
-            to={`${this.props.url}profile/${user.username}`}
+            exact={true}
+            to={`/profile/${user.username}`}
           >
             <h6>
               {user.firstname} {user.lastname}
@@ -78,38 +75,31 @@ class SideNavigation extends Component {
           exact
           activeClassName="side_btn_active"
           className="side_btn"
-          to={`${this.props.url}`}
+          to="/"
         >
           <FiHome className="icon_style" size={30} />
-          Feeds
+          Home
         </NavLink>
+
         <NavLink
-          // exact
           activeClassName="side_btn_active"
           className="side_btn"
-          to={`${this.props.url}messages`}
+          to="/messages"
         >
           <IoIosChatbubbles className="icon_style" size={30} />
           Messages
         </NavLink>
+
         <NavLink
           exact
           activeClassName="side_btn_active"
           className="side_btn"
-          to={`${this.props.url}contacts`}
-        >
-          <GiPerson className="icon_style" size={30} />
-          Contacts
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="side_btn_active"
-          className="side_btn"
-          to={`${this.props.url}notifications`}
+          to="/notifications"
         >
           <IoIosNotificationsOutline className="icon_style" size={30} />
           Notifications
         </NavLink>
+
         {/* <NavLink
           exact
           activeClassName="side_btn_active"
@@ -120,29 +110,18 @@ class SideNavigation extends Component {
           Settings
         </NavLink> */}
 
-        <NavLink
+        <IoIosLogOut
           onClick={() => this.props.logoutUser()}
-          exact
+          className="icon_style"
           style={{
-            color: "red",
-            textDecoration: "none",
-            padding: 8,
+            backgroundColor: "red",
+            color: "white",
             fontWeight: "bold",
             marginTop: "auto",
             marginBottom: 20,
           }}
-          to="/"
-        >
-          <IoIosLogOut
-            className="icon_style"
-            style={{
-              backgroundColor: "red",
-              color: "white",
-              fontWeight: "bold",
-            }}
-            size={30}
-          />
-        </NavLink>
+          size={30}
+        />
       </nav>
     );
   }

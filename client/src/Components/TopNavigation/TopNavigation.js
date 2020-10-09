@@ -1,25 +1,14 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
-
-import { storage } from "../firebase";
-
-import { IoIosSearch, IoIosAddCircleOutline } from "react-icons/io";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaBars } from "react-icons/fa";
 
 import "./style.css";
-import SideNavigation from "../Components/SideNavigation";
+import { storage } from "../../firebase";
+import { newFeed } from "../../redux/actions/feedAction";
 
-import { newFeed } from "../redux/actions/feedAction";
-
-import Feeds from "./Feeds";
-import Messages from "./Messages";
-import Contacts from "./Contacts";
-import Profile from "./Profile";
-import Explore from "./Explore";
-
-class Home extends Component {
+class TopNavigation extends Component {
   state = {
     feedModal: false,
 
@@ -36,7 +25,6 @@ class Home extends Component {
   }
 
   uploadImage = (image) => {
-    // let storageType = image.type;
     // check every file type and direct all media to their respective folders
 
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -103,104 +91,64 @@ class Home extends Component {
     }
   };
 
+  openSearchBox = (e) => {
+    e.preventDefault();
+
+    console.log("showing search box");
+  };
+
+  handleSearch = (e) => {
+    e.preventDefault();
+    let currentList = [];
+    let newList = [];
+
+    if (e.target.value !== "") {
+      currentList = this.props.feeds;
+      newList = currentList.filter((feed) => {
+        const lc = feed.user.toLowerCase();
+        const filter = e.target.value.toLowerCase();
+        return lc.includes(filter);
+      });
+    } else {
+      newList = this.props.feeds;
+    }
+    this.setState({ feeds: newList });
+  };
+
   openSideMenu = () => {
     document.getElementById("side_menu").style = "width: 65vw; margin-left: 0";
   };
 
   render() {
     return (
-      <div className="Home">
-        <SideNavigation url={this.props.computedMatch.url} />
+      <>
+        <nav className="TopNavigation">
+          <FaBars
+            onClick={this.openSideMenu}
+            size={25}
+            color="blue"
+            className="toggle_bars"
+            style={{
+              margin: "0px 8px",
+              cursor: "pointer",
+            }}
+          />
 
-        <section>
-          <section className="search_bar_container">
-            <FaBars
-              size={25}
-              onClick={this.openSideMenu}
-              color="blue"
-              className="toggle_bars"
-              style={{
-                margin: "0px 8px",
-                cursor: "pointer",
-              }}
-            />
+          <p style={{ fontSize: 23, fontWeight: "bold", marginLeft: 8 }}>
+            {this.props.pageTitle}
+          </p>
 
-            <div
-              style={{
-                flex: 1,
-                margin: "0 12px",
-                borderRadius: 20,
-                height: 36,
-                padding: "0 6px",
-                fontSize: 16,
-                backgroundColor: "#e1e1e1",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <IoIosSearch size={20} color="blue" />
-              <input
-                style={{
-                  border: "none",
-                  flex: 1,
-                  fontSize: 17,
-                  backgroundColor: "#e1e1e1",
-                  padding: "0 8px",
-                }}
-                placeholder="Search Schway"
-                onChange={this.handleSearch}
-                type="text"
-                name="search"
-                id="search"
-              />
-            </div>
+          <div style={{ marginLeft: "auto", display: "flex" }}>
+            {this.props.rightContents}
 
             <IoIosAddCircleOutline
               onClick={() => this.setState({ feedModal: true })}
-              style={{
-                backgroundColor: "#e1e1e1",
-                borderRadius: 20,
-                padding: 4,
-                margin: "0px 8px",
-                cursor: "pointer",
-              }}
+              className="nav_icon_sty"
               size={20}
               color="blueviolet"
             />
-          </section>
-
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}`}
-            component={Feeds}
-          />
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}messages`}
-            component={Messages}
-          />
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}contacts`}
-            component={Contacts}
-          />
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}settings`}
-            component={Feeds}
-          />
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}profile/:userId`}
-            component={Profile}
-          />
-
-          <Route
-            exact
-            path={`${this.props.computedMatch.url}explore`}
-            component={Explore}
-          />
-        </section>
+          </div>
+        </nav>
 
         <Modal
           size="lg"
@@ -247,7 +195,7 @@ class Home extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-      </div>
+      </>
     );
   }
 }
@@ -258,4 +206,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { newFeed })(Home);
+export default connect(mapStateToProps, { newFeed })(TopNavigation);

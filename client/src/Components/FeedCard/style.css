@@ -1,11 +1,8 @@
 .FeedCard {
-  width: 88%;
-  margin: 10px auto;
-  border-radius: 20px;
-  box-shadow: 0px 2px 3px 3px #e1e1e156;
-  background-color: white;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  border-bottom: 0.3px solid #c7c7c7;
 }
 
 .feed_dp_container {
@@ -14,10 +11,6 @@
   border-radius: 25px;
   padding: 5px 15px 5px 5px;
   width: fit-content;
-  /* background-color: #00000071; */
-  /* color: white; */
-  /* z-index: 11; */
-  /* border: 1px solid #efefef; */
 }
 
 .feed_dp {
@@ -25,8 +18,8 @@
   height: 55px;
   border-radius: 20px;
   margin-right: 10px;
+  margin-bottom: auto;
   border: 0.1px solid blueviolet;
-  /* z-index: 12; */
 }
 
 .feed_btm_icn {
@@ -37,21 +30,9 @@
   cursor: pointer;
 }
 
-.feed_btm_icn:nth-child(1) {
-  /* background-color: #ff373771; */
-}
-
-.feed_btm_icn:nth-child(2) {
-  /* background-color: #f2ff3771; */
-}
-
-.feed_btm_icn:nth-child(3) {
-  /* background-color: #3744ff71; */
-}
-
 @media only screen and (max-width: 600px) {
   .FeedCard {
-    width: 98%;
+    width: 100%;
   }
 }
 
@@ -73,4 +54,6 @@
 
 .mainmenubtn {
   cursor: pointer;
+  margin-bottom: auto;
+  margin-top: 8px;
 }

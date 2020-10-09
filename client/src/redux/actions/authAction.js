@@ -8,6 +8,7 @@ import {
   USER_LOADING,
   USER_LOADED,
   LOGOUT_SUCCESS,
+  GO_TO_URL,
 } from "./types";
 import { returnError } from "./errorAction";
 
@@ -40,8 +41,6 @@ export const loadUser = () => (dispatch, getState) => {
         type: USER_LOADED,
         payload: res.data,
       });
-
-      // console.log(res.data);
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
@@ -63,8 +62,6 @@ export const registerUser = (data) => (dispatch, getState) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
-
-      // console.log(res.data);
     })
     .catch((err) => {
       dispatch(
@@ -93,8 +90,6 @@ export const loginUser = (data) => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-
-      // console.log(res.data);
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status, LOGIN_FAIL));
@@ -108,5 +103,13 @@ export const loginUser = (data) => (dispatch) => {
 export const logoutUser = () => (dispatch) => {
   dispatch({
     type: LOGOUT_SUCCESS,
+  });
+};
+
+export const changeURL = (data) => (dispatch) => {
+  dispatch({
+    type: GO_TO_URL,
+    slug: data.slug,
+    queryParams: data.queryParams,
   });
 };

@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { IoIosMail, IoIosLock } from "react-icons/io";
 
 import "./style.css";
-import { registerUser, loginUser } from "../redux/actions/authAction";
+import { registerUser, loginUser } from "../../redux/actions/authAction";
 
 class Auth extends Component {
   state = {

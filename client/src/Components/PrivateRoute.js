@@ -3,8 +3,22 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Loading from "./Loading";
+import { changeURL } from "../redux/actions/authAction";
 
 class PrivateRoute extends React.Component {
+  componentDidMount() {
+    console.log(this.props.location);
+
+    if (this.props.location.pathname !== "/") {
+      let data = {
+        slug: this.props.location.pathname,
+        queryParams: this.props.location.search,
+      };
+
+      this.props.changeURL(data);
+    }
+  }
+
   render() {
     let { isAuthenticated, isLoading } = this.props.auth;
     let Component = this.props.component;
@@ -17,14 +31,7 @@ class PrivateRoute extends React.Component {
           } else if (isAuthenticated) {
             return <Component {...this.props} />;
           } else {
-            return (
-              <Redirect
-                to={{
-                  pathname: "/login",
-                  state: { from: this.props.location },
-                }}
-              />
-            );
+            return <Redirect to="/login" {...this.props} />;
           }
         }}
       />
@@ -38,4 +45,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(PrivateRoute);
+export default connect(mapStateToProps, { changeURL })(PrivateRoute);

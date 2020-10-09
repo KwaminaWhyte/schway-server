@@ -7,9 +7,9 @@ import { follow } from "../../assets/data";
 export default class RightFeed extends Component {
   render() {
     return (
-      <section style={{ position: "sticky", top: 70 }}>
+      <section style={{ position: "sticky", top: 60 }}>
         <div className="sm_info_container">
-          <h6 style={{ margin: 10 }}>Who to follow</h6>
+          <h6 style={{ margin: 10, fontWeight: "bold" }}>Who to follow</h6>
 
           {follow.map((item) => (
             <div
@@ -53,7 +53,7 @@ export default class RightFeed extends Component {
 
           <p
             style={{
-              backgroundColor: "#e1e1e1",
+              backgroundColor: "white",
               padding: "6px 10px",
               borderRadius: 20,
               fontWeight: "bold",
@@ -115,7 +115,7 @@ export default class RightFeed extends Component {
           </div>
         </div>
 
-        <div className="sm_info_container">
+        {/* <div className="sm_info_container">
           <h6>some tother</h6>
 
           <p>
@@ -124,7 +124,7 @@ export default class RightFeed extends Component {
             nihil nostrum, eum temporibus, quod distinctio praesentium
             accusantium quia, accusamus nisi laboriosam!
           </p>
-        </div>
+        </div> */}
       </section>
     );
   }

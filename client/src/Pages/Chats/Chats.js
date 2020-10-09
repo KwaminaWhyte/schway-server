@@ -13,6 +13,11 @@ export default class Chats extends Component {
     userId: 1,
   };
 
+  closeChat = () => {
+    document.getElementById("chat_section").style = "margin-left: 100vw;";
+    // document.getElementById("msg_section").style = "margin-left: 0vw;";
+  };
+
   render() {
     if (this.props.chatId === "") {
       return (
@@ -30,38 +35,50 @@ export default class Chats extends Component {
     }
 
     return (
-      <div
-        style={{
-          height: "100vh",
-          overflowX: "hidden",
-          overflowY: "auto",
-        }}
-      >
+      <div className="chat_container">
         <section
           style={{
-            position: "sticky",
+            position: "fixed",
             top: 0,
             backgroundColor: "white",
-            height: 35,
-            padding: 5,
+            height: 55,
+            padding: "5px 0",
             display: "flex",
             alignItems: "center",
-            boxShadow: "0px 1px 3px 3px #e1e1e1",
+            width: "100%",
+            borderBottom: "0.3px solid #e1e1e1",
           }}
         >
+          <p
+            className="chat_back_btn"
+            onClick={this.closeChat}
+            style={{
+              fontWeight: "bold",
+              padding: 6,
+              color: "red",
+            }}
+          >
+            Back
+          </p>
+
           <img
-            style={{ width: 35, height: 35, borderRadius: "50%" }}
+            style={{
+              width: 35,
+              height: 35,
+              borderRadius: "50%",
+              marginLeft: 8,
+            }}
             src={require("../../assets/img/profile.jpg")}
             alt=""
           />
           <div
             style={{ display: "flex", flexDirection: "column", marginLeft: 12 }}
           >
-            <h1>{this.props.name}</h1>
+            <h6>{this.props.name}</h6>
             <p style={{ fontSize: 12, color: "grey" }}>Last seen 6 hours ago</p>
           </div>
 
-          <div style={{ marginLeft: "auto" }}>
+          <div style={{ marginLeft: "auto", marginRight: 8 }}>
             <IoIosMenu />
           </div>
         </section>

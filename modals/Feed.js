@@ -17,6 +17,12 @@ let feedSchema = new Schema({
     type: String,
   },
   likes: [],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   timestamp: {
     type: Date,
     default: Date.now,

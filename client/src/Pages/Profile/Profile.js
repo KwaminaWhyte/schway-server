@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import "./profile.css";
 import { fetchUser } from "../../redux/actions/userAction";
+import TopNavigation from "../../Components/TopNavigation/TopNavigation";
 
 class Profile extends Component {
   state = {};
@@ -19,6 +20,8 @@ class Profile extends Component {
 
     return (
       <div className="Profile">
+        <TopNavigation pageTitle={user.username} />
+
         <section
           className="cover_image"
           style={{
@@ -40,24 +43,23 @@ class Profile extends Component {
             alt=""
           />
           <div style={{ marginTop: "auto", marginLeft: 12 }}>
-            <h1>
+            <p style={{ fontSize: 23, fontWeight: "bold" }}>
               {user.firstname} {user.lastname}
-            </h1>
-            <p style={{ fontSize: 12, color: "grey" }}>
+            </p>
+            <p style={{ fontSize: 13, color: "grey" }}>
               <i>@{user.username}</i>
             </p>
-            <p style={{ fontSize: 14 }}>UI/UX Developer @app_deity</p>
+            {/* <p style={{ fontSize: 14 }}>UI/UX Developer @app_deity</p> */}
           </div>
         </section>
 
         <section
           style={{
             display: "flex",
-            width: "95%",
-            margin: "50px auto 10px auto",
+            width: "100%",
+            margin: "30px auto 10px auto",
             padding: 15,
-            backgroundColor: "white",
-            borderRadius: 20,
+            backgroundColor: "grey",
           }}
         >
           <p>Profile Page</p>

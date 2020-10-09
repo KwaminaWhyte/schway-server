@@ -1,14 +1,8 @@
 .Feeds {
-  min-height: 100vh;
+  min-height: calc(100vh - 55px);
   display: flex;
-}
-
-.main_feeds_container {
-  width: 65%;
-}
-
-.right_bar_container {
-  width: 32%;
+  width: 100%;
+  flex-direction: column;
 }
 
 .new_feed_form_container {
@@ -30,23 +24,11 @@ textarea {
   padding: 10px;
 }
 
-.toggle_bars {
-  display: none;
-}
-
 @media only screen and (max-width: 600px) {
-  .main_feeds_container {
+  .Feeds {
     width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .right_bar_container {
-    display: none;
-  }
-
-  .toggle_bars {
-    display: block;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
   }
 }
 

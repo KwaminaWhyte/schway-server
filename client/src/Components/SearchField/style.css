@@ -1,0 +1,22 @@
+.SearchFieldContainer {
+  display: flex;
+  position: sticky;
+  align-items: center;
+  top: 0px;
+  padding: 5px 0;
+  z-index: 200;
+  width: 100%;
+  height: 55px;
+}
+
+.SearchField {
+  flex: 1;
+  margin: 0 12px;
+  border-radius: 20px;
+  height: 36px;
+  padding: 0 6px;
+  font-size: 16px;
+  background-color: #e1e1e1;
+  display: flex;
+  align-items: center;
+}

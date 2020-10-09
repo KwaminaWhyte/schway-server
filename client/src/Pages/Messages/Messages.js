@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { NavLink, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./chats.css";
+import "./style.css";
 import Chats from "../Chats";
 import { chats } from "../../assets/data";
 import { fetchUser } from "../../redux/actions/userAction";
+import TopNavigation from "../../Components/TopNavigation";
 
 class Messages extends Component {
   state = {
@@ -45,133 +46,95 @@ class Messages extends Component {
     this.setState({ chats: newList });
   };
 
+  openChat = () => {
+    // document.getElementById("msg_section").style =
+    //   "margin-left: -100%; width: 0";
+    document.getElementById("chat_section").style = "margin-left: 0;";
+  };
+
   render() {
     let { users } = this.props;
 
     return (
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          width: "calc(100vw - 200px)",
-          position: "fixed",
-        }}
-      >
-        <section
+      <div className="Messages">
+        <TopNavigation pageTitle="Messages" />
+
+        <div
           style={{
-            width: "45%",
             display: "flex",
-            flexDirection: "column",
-            height: "100vh",
-            overflowX: "hidden",
-            overflowY: "auto",
-            borderRight: "1px solid grey",
           }}
         >
-          <div
-            style={{
-              position: "sticky",
-              top: 0,
-              backgroundColor: "white",
-              height: 35,
-              padding: 5,
-              display: "flex",
-              alignItems: "center",
-              boxShadow: "0px 1px 3px 3px #e1e1e1",
-              zIndex: 200,
-            }}
-          >
-            <h1>Chats</h1>
-
-            <input
-              style={{ borderRadius: 20, border: "none", padding: 10, flex: 1 }}
-              onChange={this.handleSearch}
-              type="search"
-              name="search"
-              placeholder="search..."
-              id="search"
-            />
-          </div>
-          {users.map((user) => (
-            <NavLink
-              key={user._id}
-              exact
-              onClick={() =>
-                this.setState({ chatId: user._id, name: user.username })
-              }
-              to={`${this.props.match.url}/${user.username}`}
-              className="chat_item_container"
-              activeClassName="chat_item_container_active"
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
+          <section id="msg_section" className="msg_section">
+            {users.map((user) => (
+              <NavLink
+                key={user._id}
+                exact
+                onClick={() => {
+                  this.setState({ chatId: user._id, name: user.username });
+                  this.openChat();
                 }}
+                to={`${this.props.computedMatch.url}/${user.username}`}
+                className="msg_item_container"
+                activeClassName="msg_item_container_active"
               >
-                <img
-                  style={{ width: 60, height: 60, borderRadius: "50%" }}
-                  src={require("../../assets/img/profile.jpg")}
-                  alt=""
-                />
-                <div style={{ marginLeft: 12 }}>
-                  <p
-                    style={{
-                      fontWeight: "bold",
-                      color: "#131313",
-                      fontSize: 17,
-                    }}
-                  >
-                    {user.username}
-                  </p>
-                  <p style={{ color: "#5e5e5e" }}>someting else</p>
-                </div>
-
-                <p
+                <div
                   style={{
-                    marginLeft: "auto",
-                    color: "#5e5e5e",
-                    fontSize: 14,
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
-                  timestamp
+                  <img
+                    style={{ width: 60, height: 60, borderRadius: "50%" }}
+                    src={require("../../assets/img/profile.jpg")}
+                    alt=""
+                  />
+                  <div style={{ marginLeft: 12 }}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        color: "#131313",
+                        fontSize: 17,
+                      }}
+                    >
+                      {user.username}
+                    </p>
+                    <p style={{ color: "#5e5e5e" }}>someting else</p>
+                  </div>
+
+                  <p
+                    style={{
+                      marginLeft: "auto",
+                      color: "#5e5e5e",
+                      fontSize: 14,
+                    }}
+                  >
+                    timestamp
+                  </p>
+                </div>
+
+                <p style={{ margin: "7px 20px", color: "#292929" }}>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 </p>
-              </div>
+              </NavLink>
+            ))}
 
-              <p style={{ margin: "7px 20px", color: "#292929" }}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              </p>
+            <div style={{ height: 20 }}>.</div>
+          </section>
 
-              <div className="chat_files_container">
-                <p className={`chat_file doc_file`}>document.docx</p>
-                <p className="chat_file img_file">image.jpg</p>
-                <p className="chat_file audio_file">music.mp3</p>
-                <p className="chat_file video_file">video.mp4</p>
-              </div>
-            </NavLink>
-          ))}
-
-          <div style={{ height: 20 }}>.</div>
-        </section>
-
-        <section
-          style={{
-            // flex: 1,
-            width: "55%",
-          }}
-        >
-          <Route
-            exact
-            path={`${this.props.match.url}/${this.state.name}`}
-            render={(props) => (
-              <Chats
-                {...props}
-                chatId={this.state.chatId}
-                name={this.state.name}
-              />
-            )}
-          />
-        </section>
+          <section id="chat_section" className="chat_section">
+            <Route
+              exact
+              path={`${this.props.computedMatch.url}/${this.state.name}`}
+              render={(props) => (
+                <Chats
+                  {...props}
+                  chatId={this.state.chatId}
+                  name={this.state.name}
+                />
+              )}
+            />
+          </section>
+        </div>
       </div>
     );
   }
