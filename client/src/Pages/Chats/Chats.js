@@ -3,6 +3,7 @@ import {
   IoIosAddCircleOutline,
   IoIosPaperPlane,
   IoIosMenu,
+  IoIosArrowBack,
 } from "react-icons/io";
 import "./messages.css";
 
@@ -49,17 +50,17 @@ export default class Chats extends Component {
             borderBottom: "0.3px solid #e1e1e1",
           }}
         >
-          <p
+          <IoIosArrowBack
             className="chat_back_btn"
             onClick={this.closeChat}
             style={{
               fontWeight: "bold",
-              padding: 6,
-              color: "red",
+              padding: 5,
+              color: "grey",
             }}
-          >
-            Back
-          </p>
+            // color="red"
+            size={40}
+          />
 
           <img
             style={{
@@ -114,8 +115,8 @@ export default class Chats extends Component {
             <span
               style={{
                 fontSize: 11,
-                marginLeft: message.userId === 1 ? "auto" : 6,
-                marginRight: message.userId === 1 ? 6 : "auto",
+                marginLeft: "auto",
+                marginRight: 6,
               }}
             >
               <i>05:06</i>
