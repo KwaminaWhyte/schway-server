@@ -84,6 +84,8 @@ export default class Chats extends Component {
           </div>
         </section>
 
+        <div style={{ height: 55 }}></div>
+
         {messages.map((message) => (
           <div
             key={message.id}
@@ -132,7 +134,7 @@ export default class Chats extends Component {
           />
 
           <IoIosPaperPlane
-            size={20}
+            size={25}
             style={{
               backgroundColor: "blue",
               padding: 4,
