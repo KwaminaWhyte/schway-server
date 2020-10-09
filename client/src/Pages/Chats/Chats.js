@@ -98,7 +98,6 @@ export default class Chats extends Component {
               <img
                 style={{
                   borderRadius: 12,
-                  marginBottom: 12,
                   width: "100%",
                 }}
                 src={require("../../assets/img/profile.jpg")}
@@ -106,7 +105,7 @@ export default class Chats extends Component {
               />
             ) : null}
 
-            <p>
+            <p style={{ margin: 8 }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni,
               at, asperiores soluta quam eos voluptatem magnam rerum! A
               distinctio laborum dolorem necessitatibus inventore placeat

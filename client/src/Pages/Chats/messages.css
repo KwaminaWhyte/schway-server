@@ -2,14 +2,15 @@
   height: calc(100vh - 55px);
   overflow-y: auto;
   overflow-x: hidden;
+  margin-top: 55px;
 }
 
 .chat_bubble {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 3px;
   width: 83%;
-  border-radius: 20px;
+  border-radius: 12px;
   margin-top: 9px;
   margin-bottom: 9px;
   margin-right: 6px;
