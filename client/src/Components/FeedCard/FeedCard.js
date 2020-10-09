@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { IoIosHeart, IoIosMenu } from "react-icons/io";
 import TimeAgo from "react-timeago";
@@ -106,7 +106,7 @@ class FeedCard extends Component {
     let { feed, comments } = this.props;
 
     return (
-      <div className="FeedCard">
+      <NavLink to={`/feeds/${feed._id}`} className="FeedCard">
         <section
           style={{
             display: "flex",
@@ -363,7 +363,7 @@ class FeedCard extends Component {
             </section>
           </Modal.Body>
         </Modal>
-      </div>
+      </NavLink>
     );
   }
 }

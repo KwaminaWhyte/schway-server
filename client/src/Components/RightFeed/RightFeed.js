@@ -38,12 +38,13 @@ export default class RightFeed extends Component {
               <p
                 style={{
                   backgroundColor: "blueviolet",
-                  borderRadius: 20,
+                  borderRadius: 12,
                   fontSize: 11,
                   padding: "5px 6px",
                   fontWeight: "bold",
                   color: "white",
                   marginLeft: "auto",
+                  cursor: "pointer",
                 }}
               >
                 FOLLOW
@@ -58,6 +59,7 @@ export default class RightFeed extends Component {
               borderRadius: 20,
               fontWeight: "bold",
               textAlign: "center",
+              cursor: "pointer",
             }}
           >
             Show More

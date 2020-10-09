@@ -9,6 +9,7 @@ import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
 import Messages from "./Pages/Messages";
+import FeedDetail from "./Pages/FeedDetail";
 import Notifications from "./Pages/Notifications";
 
 import RightFeed from "./Components/RightFeed";
@@ -37,6 +38,8 @@ class App extends Component {
                 path="/profile/:username"
                 component={Profile}
               />
+
+              <PrivateRoute exact path="/feeds/:id" component={FeedDetail} />
 
               <Route exact path="/login" component={Auth} />
 
