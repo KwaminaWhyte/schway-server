@@ -5,7 +5,7 @@ import {
   IoIosMenu,
   IoIosArrowBack,
 } from "react-icons/io";
-import "./messages.css";
+import "./style.css";
 
 import { messages } from "../../assets/data";
 
@@ -75,7 +75,9 @@ export default class Chats extends Component {
           <div
             style={{ display: "flex", flexDirection: "column", marginLeft: 12 }}
           >
-            <h6>{this.props.name}</h6>
+            <p style={{ fontWeight: "bold", fontSize: 16 }}>
+              {this.props.name}
+            </p>
             <p style={{ fontSize: 12, color: "grey" }}>Last seen 6 hours ago</p>
           </div>
 

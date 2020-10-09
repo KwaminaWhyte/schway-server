@@ -25,7 +25,7 @@ export default class BottomNavigation extends Component {
 
         <NavLink
           exact
-          to="/notifications"
+          to="/search"
           className="bottom_nav_icons"
           activeClassName="bottom_nav_icons_active"
         >

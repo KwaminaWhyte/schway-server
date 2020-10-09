@@ -24,6 +24,36 @@ class FeedCard extends Component {
     this.setState({ user });
   }
 
+  fileTypeChanger2 = (type, url) => {
+    if (type === "audio/mpeg")
+      return (
+        <audio
+          controls={true}
+          style={{
+            width: "100%",
+            zIndex: 120,
+            borderRadius: 20,
+          }}
+          name="my_awesome_audio"
+          src={url}
+        ></audio>
+      );
+    else if (type === "video/mp4")
+      return <ReactPlayer url={url} controls={true} width="100%" />;
+    else if (type === "image/png" || "image/jpeg")
+      return (
+        <img
+          style={{
+            width: "100%",
+            borderRadius: 20,
+            border: "0.3px solid #e1e1e1",
+          }}
+          src={url}
+          alt=""
+        />
+      );
+  };
+
   fileTypeChanger = (type, url) => {
     if (type === "audio/mpeg")
       return (
@@ -46,8 +76,8 @@ class FeedCard extends Component {
           style={{
             width: "100%",
             borderRadius: 20,
-            height: 290,
-            border: "0.5px solid #e1e1e1",
+            height: 240,
+            border: "0.3px solid #e1e1e1",
           }}
           src={url}
           alt=""
@@ -101,7 +131,7 @@ class FeedCard extends Component {
                 style={{
                   textDecoration: "none",
                   color: "black",
-                  fontSize: 16,
+                  fontSize: 15,
                   display: "flex",
                 }}
                 to={`/profile/${feed.user.username}`}
@@ -119,7 +149,9 @@ class FeedCard extends Component {
                 <TimeAgo date={feed.timestamp} />
               </p>
 
-              <p style={{ margin: "0", whiteSpace: "pre-wrap" }}>{feed.body}</p>
+              <p style={{ margin: "0", whiteSpace: "pre-wrap", fontSize: 15 }}>
+                {feed.body}
+              </p>
             </div>
           </div>
 
@@ -237,7 +269,7 @@ class FeedCard extends Component {
               <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
               {feed.mediaUrl ? (
-                this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
+                this.fileTypeChanger2(feed.mediaType, feed.mediaUrl)
               ) : (
                 <div
                   style={{

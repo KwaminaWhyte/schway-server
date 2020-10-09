@@ -5,15 +5,16 @@ import { loadUser } from "./redux/actions/authAction";
 
 import Auth from "./Pages/Auth";
 import Feeds from "./Pages/Feeds";
-import Messages from "./Pages/Messages";
+import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
+import Messages from "./Pages/Messages";
 import Notifications from "./Pages/Notifications";
 
-import PrivateRoute from "./Components/PrivateRoute";
-import SideNavigation from "./Components/SideNavigation";
 import RightFeed from "./Components/RightFeed";
 import SearchField from "./Components/SearchField";
+import PrivateRoute from "./Components/PrivateRoute";
+import SideNavigation from "./Components/SideNavigation";
 import BottomNavigation from "./Components/BottomNavigation";
 
 class App extends Component {
@@ -44,6 +45,8 @@ class App extends Component {
                 path="/notifications"
                 component={Notifications}
               />
+
+              <PrivateRoute exact path="/search" component={Search} />
 
               <PrivateRoute path="/messages" component={Messages} />
 

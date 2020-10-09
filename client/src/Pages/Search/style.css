@@ -1,0 +1,6 @@
+.Search {
+  min-height: calc(100vh - 55px);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
