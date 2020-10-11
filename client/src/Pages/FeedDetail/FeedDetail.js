@@ -50,9 +50,11 @@ class FeedDetail extends Component {
       return (
         <img
           style={{
-            width: "100%",
+            width: "98%",
             borderRadius: 20,
             border: "0.3px solid #e1e1e1",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
           src={url}
           alt=""
@@ -112,7 +114,7 @@ class FeedDetail extends Component {
             <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
             {feed.mediaUrl ? (
-              this.fileTypeChanger2(feed.mediaType, feed.mediaUrl)
+              this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
             ) : (
               <div
                 style={{
