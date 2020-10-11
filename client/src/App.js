@@ -22,8 +22,6 @@ import BottomNavigation from "./Components/BottomNavigation";
 class App extends Component {
   componentDidMount() {
     this.props.loadUser();
-
-    console.log(this.props);
   }
 
   render() {

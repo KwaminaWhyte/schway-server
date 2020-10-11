@@ -7,7 +7,7 @@ import { changeURL } from "../redux/actions/authAction";
 
 class PrivateRoute extends React.Component {
   componentDidMount() {
-    console.log(this.props.location);
+    // console.log(this.props.location);
 
     if (this.props.location.pathname !== "/") {
       let data = {

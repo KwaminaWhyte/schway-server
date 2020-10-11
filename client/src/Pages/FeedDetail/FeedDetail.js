@@ -110,7 +110,7 @@ class FeedDetail extends Component {
         <div className="nav-spacer"></div>
 
         <div style={{ width: "100%" }}>
-          <section>
+          <section style={{ display: "flex", flexDirection: "column" }}>
             <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
             {feed.mediaUrl ? (
