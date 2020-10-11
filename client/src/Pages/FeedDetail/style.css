@@ -3,4 +3,15 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  /* z-index: 1500; */
+}
+
+@media only screen and (max-width: 600px) {
+  .FeedDetail {
+    min-height: calc(100vh - 55px);
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    z-index: 1500;
+  }
 }

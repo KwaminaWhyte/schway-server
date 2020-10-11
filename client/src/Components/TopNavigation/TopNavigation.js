@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { FaBars } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
 
 import "./style.css";
 import { storage } from "../../firebase";
@@ -123,16 +123,20 @@ class TopNavigation extends Component {
     return (
       <>
         <nav className="TopNavigation">
-          <FaBars
+          {/* <img
             onClick={this.openSideMenu}
-            size={25}
-            color="blue"
             className="toggle_bars"
             style={{
-              margin: "0px 8px",
-              cursor: "pointer",
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              marginLeft: 8,
             }}
-          />
+            src={require("../../assets/img/profile.jpg")}
+            alt=""
+          /> */}
+
+          <div style={{ width: 15, height: 15 }}></div>
 
           <p style={{ fontSize: 23, fontWeight: "bold", marginLeft: 8 }}>
             {this.props.pageTitle}

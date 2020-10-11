@@ -5,6 +5,7 @@ import { loadUser } from "./redux/actions/authAction";
 
 import Auth from "./Pages/Auth";
 import Feeds from "./Pages/Feeds";
+import Chats from "./Pages/Chats";
 import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
@@ -39,6 +40,12 @@ class App extends Component {
                 component={Profile}
               />
 
+              <PrivateRoute
+                exact
+                path="/messages/:username"
+                component={Chats}
+              />
+
               <PrivateRoute exact path="/feeds/:id" component={FeedDetail} />
 
               <Route exact path="/login" component={Auth} />
@@ -51,7 +58,7 @@ class App extends Component {
 
               <PrivateRoute exact path="/search" component={Search} />
 
-              <PrivateRoute path="/messages" component={Messages} />
+              <PrivateRoute exact path="/messages" component={Messages} />
 
               <PrivateRoute exact path="/explore" component={Explore} />
 

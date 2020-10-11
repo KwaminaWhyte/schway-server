@@ -1,5 +1,9 @@
-.chat_container {
-  height: calc(100vh - 55px);
+.Chats {
+  min-height: calc(100vh - 55px);
+  width: 100%;
+}
+
+.chat_section {
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -30,7 +34,7 @@
   border-top: 0.5px solid #ebebeb;
   margin-left: auto;
   margin-right: auto;
-  z-index: 600;
+  z-index: 1300;
 }
 
 .message_input_field {
@@ -43,16 +47,9 @@
   background-color: #f1f1f1;
 }
 
-.chat_back_btn {
-  display: none;
-}
-
 @media only screen and (max-width: 600px) {
-  .chat_container {
-    height: 100vh;
-  }
-
-  .chat_back_btn {
-    display: block;
+  .Chats {
+    height: calc(100vh - 55px);
+    width: 100vw;
   }
 }

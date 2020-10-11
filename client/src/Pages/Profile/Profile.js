@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { IoIosArrowBack } from "react-icons/io";
 
 import "./profile.css";
 import { fetchUser } from "../../redux/actions/userAction";
@@ -12,7 +14,7 @@ class Profile extends Component {
     // let userID = this.props.match.params.username;
     // console.log(this.props.match);
     // this.setState({ userID });
-    // this.props.fetchUser(username);
+    this.props.fetchUser(this.props.computedMatch.params.username);
   }
 
   render() {
@@ -20,7 +22,35 @@ class Profile extends Component {
 
     return (
       <div className="Profile">
-        <TopNavigation pageTitle={user.username} />
+        <TopNavigation
+          pageTitle={
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <IoIosArrowBack
+                className="chat_back_btn"
+                onClick={() => this.props.history.goBack()}
+                style={{
+                  fontWeight: "bold",
+                  padding: 2,
+                  color: "grey",
+                }}
+                size={40}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginLeft: 12,
+                }}
+              >
+                <p style={{ fontWeight: "bold", fontSize: 16 }}>
+                  {user.username}
+                </p>
+                <p style={{ fontSize: 12, color: "grey" }}>12 Tweets</p>
+              </div>
+            </div>
+          }
+        />
+        <div className="nav-spacer"></div>
 
         <section
           className="cover_image"
@@ -30,19 +60,51 @@ class Profile extends Component {
         ></section>
 
         <section
-          style={{ marginTop: "-80px", marginLeft: 35, display: "flex" }}
+          style={{
+            marginTop: "-35px",
+            padding: 10,
+            display: "flex",
+            flexDirection: "column",
+            // backgroundColor: "red",
+          }}
         >
-          <img
-            style={{
-              width: 130,
-              height: 130,
-              borderRadius: 20,
-              boxShadow: "0px 1px 5px 1px black",
-            }}
-            src={require("../../assets/img/profile.jpg")}
-            alt=""
-          />
-          <div style={{ marginTop: "auto", marginLeft: 12 }}>
+          <div style={{ display: "flex" }}>
+            <img
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: "100%",
+                border: "2px solid white",
+              }}
+              src={require("../../assets/img/profile.jpg")}
+              alt=""
+            />
+
+            <div
+              style={{
+                marginLeft: "auto",
+                display: "flex",
+                marginTop: "auto",
+                alignItems: "center",
+              }}
+            >
+              <p>im</p>
+              <p>me</p>
+              <p
+                style={{
+                  backgroundColor: "blueviolet",
+                  borderRadius: 20,
+                  padding: "5px 15px",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginLeft: 8,
+                }}
+              >
+                Following
+              </p>
+            </div>
+          </div>
+          <div style={{}}>
             <p style={{ fontSize: 23, fontWeight: "bold" }}>
               {user.firstname} {user.lastname}
             </p>
@@ -71,9 +133,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // user: state.user.user,
-    user: state.auth.user,
+    user: state.users.user,
   };
 };
 
-export default connect(mapStateToProps, { fetchUser })(Profile);
+export default connect(mapStateToProps, { fetchUser })(withRouter(Profile));

@@ -1,77 +1,3 @@
-export let chats = [
-  {
-    id: 0,
-    name: "Luis Brown",
-    filetype: "mp3",
-  },
-  {
-    id: 1,
-    name: "John doe",
-  },
-  {
-    id: 2,
-    name: "Stome Smith",
-    filetype: "mp4",
-  },
-  {
-    id: 3,
-    name: "Alan Walker",
-  },
-  {
-    id: 4,
-    name: "John doe",
-  },
-  {
-    id: 5,
-    name: "John doe",
-  },
-  {
-    id: 6,
-    name: "John doe",
-  },
-  {
-    id: 7,
-    name: "John doe",
-  },
-
-  {
-    id: 8,
-    name: "John doe",
-  },
-  {
-    id: 9,
-    name: "John doe",
-  },
-  {
-    id: 10,
-    name: "John doe",
-  },
-  {
-    id: 11,
-    name: "John doe",
-  },
-  {
-    id: 12,
-    name: "John doe",
-  },
-  {
-    id: 13,
-    name: "John doe",
-  },
-  {
-    id: 14,
-    name: "John doe",
-  },
-  {
-    id: 15,
-    name: "John doe",
-  },
-  {
-    id: 16,
-    name: "John doe",
-  },
-];
-
 export let messages = [
   {
     id: 0,
@@ -113,97 +39,36 @@ export let messages = [
   },
 ];
 
-export let feeds = [
-  {
-    id: 0,
-    name: "Luis Brown",
-    filetype: "mp3",
-    file: true,
-  },
-  {
-    id: 1,
-    name: "John doe",
-  },
-  {
-    id: 2,
-    name: "Stome Smith",
-    filetype: "mp4",
-    file: true,
-  },
-  {
-    id: 3,
-    name: "Alan Walker",
-  },
-  {
-    id: 4,
-    name: "John doe",
-    filetype: "img",
-    file: true,
-  },
-  {
-    id: 5,
-    name: "John doe",
-  },
-  {
-    id: 6,
-    name: "John doe",
-    filetype: "img",
-    file: true,
-  },
-  {
-    id: 7,
-    name: "John doe",
-  },
-
-  {
-    id: 8,
-    name: "John doe",
-  },
-  {
-    id: 9,
-    name: "John doe",
-  },
-  {
-    id: 10,
-    name: "John doe",
-  },
-  {
-    id: 11,
-    name: "John doe",
-  },
-  {
-    id: 12,
-    name: "John doe",
-  },
-  {
-    id: 13,
-    name: "John doe",
-  },
-  {
-    id: 14,
-    name: "John doe",
-  },
-  {
-    id: 15,
-    name: "John doe",
-  },
-  {
-    id: 16,
-    name: "John doe",
-  },
-];
-
 export let follow = [
   {
     id: 0,
-    name: "Stomen",
+    name: "Grace",
   },
   {
     id: 1,
-    name: "Stomen",
+    name: "chat.man",
   },
   {
     id: 2,
-    name: "Stomen",
+    name: "Luiz",
+  },
+];
+
+export let trends = [
+  {
+    id: 0,
+    name: "#AttaPokuDay",
+  },
+  {
+    id: 1,
+    name: "Poch",
+  },
+  {
+    id: 2,
+    name: "#AccraFloods",
+  },
+  {
+    id: 3,
+    name: "#Naymer",
   },
 ];

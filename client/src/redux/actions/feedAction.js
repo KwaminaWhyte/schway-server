@@ -20,10 +20,10 @@ export const fetchFeeds = () => (dispatch) => {
 export const fetchFeed = (id) => (dispatch) => {
   axios
     .get(`/feeds/${id}`)
-    .then((project) => {
+    .then((res) => {
       dispatch({
         type: "FETCH_FEED",
-        payload: project,
+        payload: res.data,
       });
     })
     .catch((err) => {

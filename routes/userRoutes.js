@@ -7,6 +7,13 @@ const User = require("../modals/User");
 const auth = require("../middlewares/auth");
 
 // Get single user
+router.get("/:username", (req, res) => {
+  User.findOne({ username: req.params.username })
+    .then((user) => res.send(user))
+    .catch((err) => console.log({ msg: err }));
+});
+
+// Get all user
 router.get("", (req, res) => {
   User.find()
     .then((users) => res.send(users))

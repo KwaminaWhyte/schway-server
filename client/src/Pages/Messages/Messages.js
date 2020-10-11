@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./style.css";
-import Chats from "../Chats";
-import { chats } from "../../assets/data";
-import { fetchUser } from "../../redux/actions/userAction";
+import { fetchUsers } from "../../redux/actions/userAction";
 import TopNavigation from "../../Components/TopNavigation";
 
 class Messages extends Component {
   state = {
-    chats: chats,
+    // chats: chats,
     chatId: "",
     name: "",
 
@@ -18,7 +16,7 @@ class Messages extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchUsers();
   }
 
   handleTextInput = (e) => {
@@ -27,29 +25,29 @@ class Messages extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSearch = (e) => {
-    e.preventDefault();
-    let currentList = [];
-    let newList = [];
+  // handleSearch = (e) => {
+  //   e.preventDefault();
+  //   let currentList = [];
+  //   let newList = [];
 
-    if (e.target.value !== "") {
-      currentList = chats;
-      console.log(currentList);
-      newList = currentList.filter((chat) => {
-        const lc = chat.name.toLowerCase();
-        const filter = e.target.value.toLowerCase();
-        return lc.includes(filter);
-      });
-    } else {
-      newList = chats;
-    }
-    this.setState({ chats: newList });
-  };
+  //   if (e.target.value !== "") {
+  //     currentList = chats;
+  //     console.log(currentList);
+  //     newList = currentList.filter((chat) => {
+  //       const lc = chat.name.toLowerCase();
+  //       const filter = e.target.value.toLowerCase();
+  //       return lc.includes(filter);
+  //     });
+  //   } else {
+  //     newList = chats;
+  //   }
+  //   this.setState({ chats: newList });
+  // };
 
   openChat = () => {
     // document.getElementById("msg_section").style =
     //   "margin-left: -100%; width: 0";
-    document.getElementById("chat_section").style = "margin-left: 0;";
+    // document.getElementById("chat_section").style = "margin-left: 0;";
   };
 
   render() {
@@ -57,71 +55,63 @@ class Messages extends Component {
 
     return (
       <div className="Messages">
-        <TopNavigation pageTitle="Messages" />
+        <TopNavigation pageTitle=" Messages" />
+        <div className="nav-spacer"></div>
 
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
-          <section id="msg_section" className="msg_section">
-            {users.map((user) => (
-              <NavLink
-                key={user._id}
-                exact
-                onClick={() => {
-                  this.setState({ chatId: user._id, name: user.username });
-                  this.openChat();
+        <section className="msg_section">
+          {users.map((user) => (
+            <NavLink
+              key={user._id}
+              exact
+              // onClick={() => {
+              //   this.setState({ chatId: user._id, name: user.username });
+              //   this.openChat();
+              // }}
+              to={`${this.props.computedMatch.url}/${user.username}`}
+              className="msg_item_container"
+              activeClassName="msg_item_container_active"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
                 }}
-                to={`${this.props.computedMatch.url}/${user.username}`}
-                className="msg_item_container"
-                activeClassName="msg_item_container_active"
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <img
-                    style={{ width: 60, height: 60, borderRadius: "50%" }}
-                    src={require("../../assets/img/profile.jpg")}
-                    alt=""
-                  />
-                  <div style={{ marginLeft: 12 }}>
-                    <p
-                      style={{
-                        fontWeight: "bold",
-                        color: "#131313",
-                        fontSize: 17,
-                      }}
-                    >
-                      {user.username}
-                    </p>
-                    <p style={{ color: "#5e5e5e" }}>someting else</p>
-                  </div>
-
+                <img
+                  style={{ width: 60, height: 60, borderRadius: "50%" }}
+                  src={require("../../assets/img/profile.jpg")}
+                  alt=""
+                />
+                <div style={{ marginLeft: 12 }}>
                   <p
                     style={{
-                      marginLeft: "auto",
-                      color: "#5e5e5e",
-                      fontSize: 14,
+                      fontWeight: "bold",
+                      color: "#131313",
+                      fontSize: 17,
                     }}
                   >
-                    timestamp
+                    {user.username}
                   </p>
+                  <p style={{ color: "#5e5e5e" }}>someting else</p>
                 </div>
 
-                <p style={{ margin: "7px 20px", color: "#292929" }}>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                <p
+                  style={{
+                    marginLeft: "auto",
+                    color: "#5e5e5e",
+                    fontSize: 14,
+                  }}
+                >
+                  14:02
                 </p>
-              </NavLink>
-            ))}
+              </div>
+            </NavLink>
+          ))}
 
-            <div style={{ height: 20 }}>.</div>
-          </section>
+          <div style={{ height: 20 }}>.</div>
+        </section>
 
-          <section id="chat_section" className="chat_section">
+        {/* <section id="chat_section" className="chat_section">
             <Route
               exact
               path={`${this.props.computedMatch.url}/${this.state.name}`}
@@ -133,8 +123,7 @@ class Messages extends Component {
                 />
               )}
             />
-          </section>
-        </div>
+          </section> */}
       </div>
     );
   }
@@ -146,4 +135,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser })(Messages);
+export default connect(mapStateToProps, { fetchUsers })(Messages);

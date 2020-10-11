@@ -5,6 +5,15 @@ const Feed = require("../modals/Feed");
 const Comment = require("../modals/Comment");
 const auth = require("../middlewares/auth");
 
+router.get("/:id", (req, res) => {
+  Feed.findById(req.params.id)
+    .populate("user")
+    .populate("comments")
+    .sort("-timestamp")
+    .then((feed) => res.send(feed))
+    .catch((err) => res.send({ message: err }));
+});
+
 router.get("", (req, res) => {
   Feed.find({})
     .populate("user")

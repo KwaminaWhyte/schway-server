@@ -31,8 +31,10 @@ export default class RightFeed extends Component {
                 alt=""
               />
               <div style={{ fontSize: 15 }}>
-                <h6>Mark Zuk</h6>
-                <p>@markbhdhdfhj33</p>
+                <h6 style={{ margin: 0, padding: 0, fontWeight: "bold" }}>
+                  {item.name}
+                </h6>
+                <p style={{ margin: 0, padding: 0 }}>@markbhdhdfhj33</p>
               </div>
 
               <p
