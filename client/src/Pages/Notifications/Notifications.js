@@ -14,7 +14,7 @@ export default class Notifications extends Component {
           Nothing to see here -- yet
         </p>
 
-        <p style={{ color: "grey" }}>
+        <p style={{ color: "grey", textAlign: "center" }}>
           When someone mentions you, you'll find it here.
         </p>
       </div>

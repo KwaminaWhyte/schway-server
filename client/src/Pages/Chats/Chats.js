@@ -11,6 +11,17 @@ import { messages } from "../../assets/data";
 import TopNavigation from "../../Components/TopNavigation/TopNavigation";
 
 class Chats extends Component {
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
   render() {
     return (
       <div className="Chats">
@@ -119,6 +130,12 @@ class Chats extends Component {
             color="white"
           />
         </section>
+
+        <div
+          ref={(el) => {
+            this.messagesEnd = el;
+          }}
+        ></div>
       </div>
     );
   }

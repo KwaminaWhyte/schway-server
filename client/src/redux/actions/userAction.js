@@ -8,8 +8,6 @@ export const fetchUser = (username) => (dispatch) => {
         type: "FETCH_USER",
         payload: res.data,
       });
-
-      console.log(res.data);
     })
     .catch((err) => console.log(err));
 };
@@ -22,8 +20,6 @@ export const fetchUsers = () => (dispatch) => {
         type: "FETCH_USERS",
         payload: res.data,
       });
-
-      console.log(res.data);
     })
     .catch((err) => console.log(err));
 };

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let feedSchema = new Schema({
+let FeedSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -30,4 +30,4 @@ let feedSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Feed", feedSchema);
+module.exports = mongoose.model("Feed", FeedSchema);

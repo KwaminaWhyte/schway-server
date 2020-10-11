@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let commentSchema = new Schema({
+let CommentSchema = new Schema({
   feed_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Feed",
@@ -23,4 +23,4 @@ let commentSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Comment", commentSchema);
+module.exports = mongoose.model("Comment", CommentSchema);
