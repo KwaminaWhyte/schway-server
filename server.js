@@ -46,7 +46,7 @@ db.once("open", () => {
   const changeStream = feedCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
+    // console.log(change);
     if (change.operationType === "insert") {
       const feedData = change.fullDocument;
       pusher.trigger("feeds", "inserted", {

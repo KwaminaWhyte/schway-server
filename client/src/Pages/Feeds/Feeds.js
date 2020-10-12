@@ -8,23 +8,19 @@ import TopNavigation from "../../Components/TopNavigation";
 import { fetchFeeds } from "../../redux/actions/feedAction";
 
 class Feeds extends Component {
-  state = {
-    feeds: [],
-  };
+  state = {};
 
   componentDidMount() {
     this.props.fetchFeeds();
 
     let user = this.props.user.username;
-    this.setState({ user, feeds: this.props.feeds });
+    this.setState({ user });
 
     const pusher = new Pusher("aba59cc7ba83cc677c53", {
       cluster: "mt1",
     });
     const channel = pusher.subscribe("feeds");
     channel.bind("inserted", (newFeed) => {
-      // alert(JSON.stringify(newFeed));
-
       this.props.fetchFeeds();
     });
 
@@ -36,7 +32,6 @@ class Feeds extends Component {
 
   render() {
     let { feeds } = this.props;
-    console.log(this.state.feeds);
 
     return (
       <div className="Feeds">
