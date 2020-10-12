@@ -1,5 +1,5 @@
 .Feeds {
-  min-height: calc(100vh - 55px);
+  min-height: 100vh;
   display: flex;
   width: 100%;
   flex-direction: column;

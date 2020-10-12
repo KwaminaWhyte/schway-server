@@ -1,9 +1,8 @@
 .Messages {
   position: sticky;
-  min-height: calc(100vh - 55px);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
 }
 
 .msg_section {

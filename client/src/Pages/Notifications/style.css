@@ -1,14 +1,13 @@
 .Notifications {
-  min-height: calc(100vh - 55px);
+  min-height: 100vh;
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
   .Notifications {
     width: 100vw;
+    min-height: calc(100vh - 55px);
   }
 }
