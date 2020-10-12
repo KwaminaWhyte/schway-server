@@ -18,7 +18,7 @@ const feedReducer = (state = initState, action) => {
     case "NEW_FEED":
       return {
         ...state,
-        feed: action.payload,
+        feeds: [action.payload, ...state.feeds],
       };
     case "DELETE_FEED":
       return {

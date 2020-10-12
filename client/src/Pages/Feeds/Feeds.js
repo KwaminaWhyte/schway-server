@@ -5,10 +5,16 @@ import Pusher from "pusher-js";
 import "./feeds.css";
 import FeedCard from "../../Components/FeedCard";
 import TopNavigation from "../../Components/TopNavigation";
-import { fetchFeeds } from "../../redux/actions/feedAction";
+import { fetchFeeds, newFeed } from "../../redux/actions/feedAction";
 
 class Feeds extends Component {
-  state = {};
+  state = {
+    feeds: [],
+
+    user: "",
+    body: "",
+    mediaUrl: "",
+  };
 
   componentDidMount() {
     this.props.fetchFeeds();
@@ -20,14 +26,23 @@ class Feeds extends Component {
       cluster: "mt1",
     });
     const channel = pusher.subscribe("feeds");
-    channel.bind("inserted", (newFeed) => {
-      this.props.fetchFeeds();
+    channel.bind("inserted", function (newFeed) {
+      alert(JSON.stringify(newFeed));
+
+      this.setState((prevState) => {
+        return {
+          feeds: newFeed,
+        };
+      });
     });
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
   }
+
+  handleModalText = (e) => {
+    e.preventDefault();
+
+    let { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
     let { feeds } = this.props;
@@ -52,4 +67,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchFeeds,
+  newFeed,
 })(Feeds);

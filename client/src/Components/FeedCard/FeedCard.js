@@ -125,45 +125,33 @@ class FeedCard extends Component {
             </div>
           </div>
 
-          <Link
-            style={{
-              textDecoration: "none",
-              color: "black",
-              fontSize: 15,
-              display: "flex",
-              padding: "4px 0",
-              marginBottom: "auto",
-              marginTop: 8,
-            }}
-          >
-            <OverlayTrigger
-              trigger="click"
-              key="bottom"
-              placement="bottom"
-              overlay={
-                <Popover id={`popover-positioned-bottom`}>
-                  <Popover.Content
-                    style={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <p style={{ margin: 8, cursor: "pointer" }}>
-                      <strong>Report Feed</strong>
-                    </p>
+          <OverlayTrigger
+            trigger="click"
+            key="bottom"
+            placement="bottom"
+            overlay={
+              <Popover id={`popover-positioned-bottom`}>
+                <Popover.Content
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
+                  <p style={{ margin: 8, cursor: "pointer" }}>
+                    <strong>Report Feed</strong>
+                  </p>
 
-                    {feed.user._id === this.props.user._id ? (
-                      <p
-                        style={{ margin: 8, color: "red", cursor: "pointer" }}
-                        onClick={() => this.props.deleteFeed(feed._id)}
-                      >
-                        <strong>Delete Feed</strong>
-                      </p>
-                    ) : null}
-                  </Popover.Content>
-                </Popover>
-              }
-            >
-              <IoIosMenu className="mainmenubtn" size={20} />
-            </OverlayTrigger>
-          </Link>
+                  {feed.user._id === this.props.user._id ? (
+                    <p
+                      style={{ margin: 8, color: "red", cursor: "pointer" }}
+                      onClick={() => this.props.deleteFeed(feed._id)}
+                    >
+                      <strong>Delete Feed</strong>
+                    </p>
+                  ) : null}
+                </Popover.Content>
+              </Popover>
+            }
+          >
+            <IoIosMenu className="mainmenubtn" size={20} />
+          </OverlayTrigger>
         </section>
 
         <section
