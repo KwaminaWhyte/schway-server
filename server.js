@@ -45,18 +45,18 @@ db.once("open", () => {
   const feedCollection = db.collection("feeds");
   const changeStream = feedCollection.watch();
 
-  // changeStream.on("change", (change) => {
-  // console.log(change);
-  // if (change.operationType === "insert") {
-  //   const feedData = change.fullDocument;
-  //   pusher.trigger("feeds", "inserted", {
-  //     user: feedData.user,
-  //     body: feedData.body,
-  //   });
-  // } else {
-  //   console.log("Error triggering Pusher");
-  // }
-  // });
+  changeStream.on("change", (change) => {
+    console.log(change);
+    if (change.operationType === "insert") {
+      const feedData = change.fullDocument;
+      pusher.trigger("feeds", "inserted", {
+        user: feedData.user,
+        body: feedData.body,
+      });
+    } else {
+      console.log("Error triggering Pusher");
+    }
+  });
 });
 
 if (process.env.NODE_ENV == "production") {
