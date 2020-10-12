@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import TimeAgo from "react-timeago";
+import Pusher from "pusher-js";
 import ReactPlayer from "react-player";
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -31,6 +32,18 @@ class FeedDetail extends Component {
       feed_id: this.props.computedMatch.params.id,
       user,
     });
+
+    const pusher = new Pusher("aba59cc7ba83cc677c53", {
+      cluster: "mt1",
+    });
+    const channel = pusher.subscribe("comments");
+    channel.bind("inserted", (newFeed) => {
+      this.props.fetchComments(this.props.computedMatch.params.id);
+    });
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
   }
 
   fileTypeChanger = (type, url) => {

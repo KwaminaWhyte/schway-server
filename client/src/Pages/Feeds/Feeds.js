@@ -23,7 +23,6 @@ class Feeds extends Component {
     channel.bind("inserted", (newFeed) => {
       this.props.fetchFeeds();
     });
-
     return () => {
       channel.unbind_all();
       channel.unsubscribe();
