@@ -1,5 +1,6 @@
 const initState = {
   comments: [],
+  comment: {},
 };
 
 const commentReducer = (state = initState, action) => {
@@ -12,7 +13,7 @@ const commentReducer = (state = initState, action) => {
     case "NEW_COMMENT":
       return {
         ...state,
-        comments: [action.payload, ...state.comments],
+        comment: action.payload,
       };
     default:
       return state;

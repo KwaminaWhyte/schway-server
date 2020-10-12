@@ -26,15 +26,13 @@ class Feeds extends Component {
       cluster: "mt1",
     });
     const channel = pusher.subscribe("feeds");
-    channel.bind("inserted", function (newFeed) {
-      alert(JSON.stringify(newFeed));
-
-      this.setState((prevState) => {
-        return {
-          feeds: newFeed,
-        };
-      });
+    channel.bind("inserted", (newFeed) => {
+      this.props.fetchFeeds();
     });
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
   }
 
   handleModalText = (e) => {

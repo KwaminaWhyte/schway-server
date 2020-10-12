@@ -138,9 +138,9 @@ class TopNavigation extends Component {
 
           <div style={{ width: 15, height: 15 }}></div>
 
-          <p style={{ fontSize: 23, fontWeight: "bold", marginLeft: 8 }}>
+          <div style={{ fontSize: 23, fontWeight: "bold", marginLeft: 8 }}>
             {this.props.pageTitle}
-          </p>
+          </div>
 
           <div style={{ marginLeft: "auto", display: "flex" }}>
             {this.props.rightContents}

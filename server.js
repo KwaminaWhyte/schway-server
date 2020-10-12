@@ -46,17 +46,30 @@ const db = mongoose.connection;
 db.once("open", () => {
   console.log("DB connection");
 
+  // feed stream
   const feedCollection = db.collection("feeds");
-  const changeStream = feedCollection.watch();
-
-  changeStream.on("change", (change) => {
-    // console.log(change);
-
+  const feedChangeStream = feedCollection.watch();
+  feedChangeStream.on("change", (change) => {
     if (change.operationType === "insert") {
       const feedData = change.fullDocument;
       pusher.trigger("feeds", "inserted", {
         user: feedData.user,
         body: feedData.body,
+      });
+    } else {
+      console.log("Error triggering Pusher");
+    }
+  });
+
+  // comment stream
+  const commentCollection = db.collection("comments");
+  const commentChangeStream = commentCollection.watch();
+  commentChangeStream.on("comments", (change) => {
+    if (change.operationType === "insert") {
+      const commentData = change.fullDocument;
+      pusher.trigger("feeds", "inserted", {
+        user: commentData.user,
+        body: commentData.body,
       });
     } else {
       console.log("Error triggering Pusher");
@@ -74,3 +87,7 @@ if (process.env.NODE_ENV == "production") {
 
 const PORT = process.env.PORT || 1437;
 app.listen(PORT, () => console.log(`Server running`));
+
+// Famous10@stanleyotabil_fuckuall360_ilovecoding = JWT_SECRET
+
+// mongodb+srv://HueyWhyte:Famous10@whyte-wdm4x.mongodb.net/whyte?retryWrites=true&w=majority = MONGODB_URI

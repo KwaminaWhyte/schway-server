@@ -76,7 +76,7 @@ export default class Search extends Component {
             <h5 className="srh_cat_title">Trends for you</h5>
 
             {trends.map((trend) => (
-              <div className="tren_4_u">
+              <div key={trend.id} className="tren_4_u">
                 <p>{trend.name}</p>
               </div>
             ))}
@@ -87,6 +87,7 @@ export default class Search extends Component {
 
             {trends.map((trend) => (
               <div
+                key={trend.id}
                 style={{
                   display: "flex",
                   height: 120,
@@ -123,6 +124,7 @@ export default class Search extends Component {
 
             {trends.map((trend) => (
               <div
+                key={trend.id}
                 style={{
                   display: "flex",
                   height: "fit-contents",
