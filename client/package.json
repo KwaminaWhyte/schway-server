@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "firebase": "^7.22.1",
+    "pusher-js": "^7.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
@@ -29,7 +30,7 @@
     "eject": "react-scripts eject",
     "serve": "serve -s build"
   },
-  "proxy": "http://schwayserver.herokuapp.com",
+  "proxy": "http://schwayserver.herokuapp.com/api",
   "secure": false,
   "eslintConfig": {
     "extends": "react-app"
