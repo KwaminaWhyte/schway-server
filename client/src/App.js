@@ -55,7 +55,7 @@ class App extends Component {
                 component={Chats}
               />
 
-              <PrivateRoute exact path="/feeds/:id" component={FeedDetail} />
+              <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
 
               <Route exact path="/login" component={Auth} />
 

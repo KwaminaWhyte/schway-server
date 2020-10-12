@@ -71,7 +71,7 @@ class FeedCard extends Component {
     let { feed } = this.props;
 
     return (
-      <Link to={`/feeds/${feed._id}`} className="FeedCard">
+      <Link to={`/feeds/d/${feed._id}`} className="FeedCard">
         <section
           style={{
             display: "flex",
