@@ -12,7 +12,7 @@
     display: flex;
     width: 100vw;
     flex-direction: column;
-    z-index: 1500;
-    position: absolute;
+    /* z-index: 1500; */
+    /* position: absolute; */
   }
 }

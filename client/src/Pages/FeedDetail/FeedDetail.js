@@ -18,6 +18,8 @@ class FeedDetail extends Component {
     user: "",
     body: "",
     feed_id: "",
+
+    playing: true,
   };
 
   componentDidMount() {
@@ -45,7 +47,15 @@ class FeedDetail extends Component {
         ></audio>
       );
     else if (type === "video/mp4")
-      return <ReactPlayer url={url} controls={true} width="100%" />;
+      return (
+        <ReactPlayer
+          onClick={() => this.setState({ playing: !this.state.playing })}
+          volume={0.6}
+          url={url}
+          playing={this.state.playing}
+          width="100%"
+        />
+      );
     else if (type === "image/png" || "image/jpeg")
       return (
         <img
@@ -110,7 +120,9 @@ class FeedDetail extends Component {
         <div className="nav-spacer"></div>
 
         <div style={{ width: "100%" }}>
-          <section style={{ display: "flex", flexDirection: "column" }}>
+          <section
+            style={{ display: "flex", flexDirection: "column", padding: 8 }}
+          >
             <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
             {feed.mediaUrl ? (
@@ -134,6 +146,7 @@ class FeedDetail extends Component {
               alignItems: "center",
               marginTop: 10,
               marginBottom: 10,
+              padding: 8,
             }}
           >
             <textarea
@@ -167,18 +180,17 @@ class FeedDetail extends Component {
           </form>
 
           <section>
-            <h6>{comments.length} Comments</h6>
+            <h6 style={{ padding: 8 }}>{comments.length} Comments</h6>
 
             {comments &&
               comments.map((comment) => (
                 <div
                   key={comment._id}
                   style={{
-                    backgroundColor: "#e1e1e1",
-                    margin: 5,
                     display: "flex",
                     flexDirection: "column",
                     padding: 4,
+                    borderTop: "1px solid #e1e1e1",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center" }}>

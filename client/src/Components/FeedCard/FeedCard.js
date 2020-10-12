@@ -11,9 +11,22 @@ import { deleteFeed } from "../../redux/actions/feedAction";
 import { fetchComments } from "../../redux/actions/commentAction";
 
 class FeedCard extends Component {
-  state = {};
+  state = {
+    playing: false,
+  };
 
-  componentDidMount() {}
+  componentDidMount() {
+    // window.addEventListener("scroll", function () {
+    //   // Your code goes here
+    //   let scroll = window.scrollY;
+    //   let el = document.getElementById("video");
+    //   el = scroll;
+    //   console.log(el);
+    //   while (el >= 780 && el <= 1260) {
+    //     return this.setState({ playing: true });
+    //   }
+    // });
+  }
 
   fileTypeChanger = (type, url) => {
     if (type === "audio/mpeg")
@@ -30,7 +43,15 @@ class FeedCard extends Component {
         ></audio>
       );
     else if (type === "video/mp4")
-      return <ReactPlayer url={url} controls={true} width="100%" />;
+      return (
+        <ReactPlayer
+          onClick={() => this.setState({ playing: !this.state.playing })}
+          id="video"
+          url={url}
+          playing={this.state.playing}
+          width="100%"
+        />
+      );
     else if (type === "image/png" || "image/jpeg")
       return (
         <img
@@ -86,13 +107,15 @@ class FeedCard extends Component {
                 <p style={{ fontWeight: "bold", margin: 0, padding: 0 }}>
                   {feed.user.firstname} {feed.user.lastname}
                 </p>
-                <span style={{ color: "grey", marginLeft: 8 }}>
+                <span style={{ color: "grey", marginLeft: 8, padding: 0 }}>
                   @{feed.user.username}
                 </span>
               </Link>
               {/* <p style={{ fontSize: 12 }}>Winneba</p> */}
 
-              <p style={{ fontSize: 12, margin: "0 0 5px 0", padding: 0 }}>
+              <p
+                style={{ fontSize: 12, margin: "0px 0px 5px 0px", padding: 0 }}
+              >
                 <TimeAgo date={feed.timestamp} />
               </p>
 
