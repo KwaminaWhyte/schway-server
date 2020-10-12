@@ -29,15 +29,11 @@ pusher.trigger("my-channel", "my-event", {
 // "mongodb+srv://HueyWhyte:Famous10@whyte-wdm4x.mongodb.net/whyte?retryWrites=true&w=majority" ||
 // "mongodb://127.0.0.1:27017/schway";
 mongoose
-  .connect(
-    process.env.MONGODB_URI ||
-      "mongodb+srv://HueyWhyte:Famous10@whyte-wdm4x.mongodb.net/whyte?retryWrites=true&w=majority",
-    {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    }
-  )
+  .connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/schway", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  })
   .then(() => console.log("Successfully connected to MongoDB"))
   .catch((err) => console.log(err));
 
@@ -49,19 +45,18 @@ db.once("open", () => {
   const feedCollection = db.collection("feeds");
   const changeStream = feedCollection.watch();
 
-  changeStream.on("change", (change) => {
-    // console.log(change);
-
-    if (change.operationType === "insert") {
-      const feedData = change.fullDocument;
-      pusher.trigger("feeds", "inserted", {
-        user: feedData.user,
-        body: feedData.body,
-      });
-    } else {
-      console.log("Error triggering Pusher");
-    }
-  });
+  // changeStream.on("change", (change) => {
+  // console.log(change);
+  // if (change.operationType === "insert") {
+  //   const feedData = change.fullDocument;
+  //   pusher.trigger("feeds", "inserted", {
+  //     user: feedData.user,
+  //     body: feedData.body,
+  //   });
+  // } else {
+  //   console.log("Error triggering Pusher");
+  // }
+  // });
 });
 
 if (process.env.NODE_ENV == "production") {
