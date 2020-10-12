@@ -10,9 +10,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/feeds", require("./routes/feedRoutes"));
-app.use("/api/user", require("./routes/userRoutes"));
-app.use("/api/comment", require("./routes/commentRoutes"));
+app.use("/feeds", require("./routes/feedRoutes"));
+app.use("/user", require("./routes/userRoutes"));
+app.use("/comment", require("./routes/commentRoutes"));
 
 const pusher = new Pusher({
   appId: "1088593",

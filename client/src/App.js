@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Pusher from "pusher-js";
+// import Pusher from "pusher-js";
 
 import { loadUser } from "./redux/actions/authAction";
 
@@ -25,14 +25,14 @@ class App extends Component {
   componentDidMount() {
     this.props.loadUser();
 
-    const pusher = new Pusher("aba59cc7ba83cc677c53", {
-      cluster: "mt1",
-    });
+    // const pusher = new Pusher("aba59cc7ba83cc677c53", {
+    //   cluster: "mt1",
+    // });
 
-    const channel = pusher.subscribe("feeds");
-    channel.bind("inserted", function (data) {
-      alert(JSON.stringify(data));
-    });
+    // const channel = pusher.subscribe("feeds");
+    // channel.bind("inserted", function (data) {
+    //   alert(JSON.stringify(data));
+    // });
   }
 
   render() {
