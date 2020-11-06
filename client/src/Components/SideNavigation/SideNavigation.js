@@ -23,44 +23,24 @@ class SideNavigation extends Component {
     return (
       <nav id="side_menu" className="SideNavigation">
         <section
+          className="side_cover_img"
           style={{
-            marginBottom: 20,
             background: `url(${require("../../assets/img/profile3.jpg")}) center`,
-            backgroundSize: "cover",
-            width: "inherit",
-            color: "white",
-            height: 190,
-            display: "flex",
-            flexDirection: "column",
           }}
         >
           <FaTimesCircle
             className="close_side_btn"
-            style={{ margin: "8px 0 20px auto" }}
             onClick={this.closeSideMenu}
             size={30}
           />
           <img
             src={require("../../assets/img/profile2.jpg")}
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: 20,
-              marginTop: "auto",
-              marginLeft: 8,
-              marginBottom: 6,
-            }}
+            className="side_dp"
             alt=""
           />
 
           <NavLink
-            style={{
-              color: "white",
-              textDecoration: "none",
-              backgroundColor: "#00000071",
-              padding: 8,
-              width: "fit-contents",
-            }}
+            className="side_pro_link"
             exact={true}
             to={`/profile/${user.username}`}
           >
@@ -112,14 +92,7 @@ class SideNavigation extends Component {
 
         <IoIosLogOut
           onClick={() => this.props.logoutUser()}
-          className="icon_style"
-          style={{
-            backgroundColor: "red",
-            color: "white",
-            fontWeight: "bold",
-            marginTop: "auto",
-            marginBottom: 20,
-          }}
+          className="icon_style sign_out_btn"
           size={30}
         />
       </nav>

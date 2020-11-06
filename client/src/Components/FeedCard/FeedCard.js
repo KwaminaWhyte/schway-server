@@ -15,19 +15,6 @@ class FeedCard extends Component {
     playing: false,
   };
 
-  componentDidMount() {
-    // window.addEventListener("scroll", function () {
-    //   // Your code goes here
-    //   let scroll = window.scrollY;
-    //   let el = document.getElementById("video");
-    //   el = scroll;
-    //   console.log(el);
-    //   while (el >= 780 && el <= 1260) {
-    //     return this.setState({ playing: true });
-    //   }
-    // });
-  }
-
   fileTypeChanger = (type, url) => {
     if (type === "audio/mpeg")
       return (
@@ -35,7 +22,6 @@ class FeedCard extends Component {
           controls={true}
           style={{
             width: "100%",
-            // zIndex: 120,
             borderRadius: 20,
           }}
           name="my_awesome_audio"
@@ -72,14 +58,7 @@ class FeedCard extends Component {
 
     return (
       <Link to={`/feeds/d/${feed._id}`} className="FeedCard">
-        <section
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: 12,
-          }}
-        >
+        <section className="feed_card_top">
           <div className="feed_dp_container">
             <img
               className="feed_dp"
@@ -89,29 +68,16 @@ class FeedCard extends Component {
 
             <div>
               <Link
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontSize: 15,
-                  display: "flex",
-                  padding: "4px 0",
-                }}
+                className="feed_card_profile_link"
                 to={`/profile/${feed.user.username}`}
               >
-                <p style={{ fontWeight: "bold", margin: 0, padding: 0 }}>
+                <p>
                   {feed.user.firstname} {feed.user.lastname}
                 </p>
-                <span style={{ color: "grey", marginLeft: 8, padding: 0 }}>
-                  @{feed.user.username}
-                </span>
+                <span>@{feed.user.username}</span>
               </Link>
-              {/* <p style={{ fontSize: 12 }}>Winneba</p> */}
 
-              <p
-                style={{ fontSize: 12, margin: "0px 0px 5px 0px", padding: 0 }}
-              >
-                <TimeAgo date={feed.timestamp} />
-              </p>
+              <TimeAgo className="timestamp" date={feed.timestamp} />
 
               <p style={{ margin: "0", whiteSpace: "pre-wrap", fontSize: 15 }}>
                 {feed.body}
@@ -150,13 +116,7 @@ class FeedCard extends Component {
           </OverlayTrigger>
         </section>
 
-        <section
-          style={{
-            width: "87%",
-            marginLeft: "auto",
-            marginRight: 10,
-          }}
-        >
+        <section className="feed_media_container">
           {feed.mediaUrl ? (
             this.fileTypeChanger(feed.mediaType, feed.mediaUrl)
           ) : (
@@ -182,10 +142,7 @@ class FeedCard extends Component {
             <div className="feed_btm_icn">
               <IoIosHeart color="red" size={20} /> <p>344</p>
             </div>
-            <div
-              // onClick={() => {}}
-              className="feed_btm_icn"
-            >
+            <div className="feed_btm_icn">
               <svg
                 width="24px"
                 height="24px"

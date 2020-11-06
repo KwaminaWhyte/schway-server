@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 import "./style.css";
+// TODO perform searh on key up
 
 export default class SearchField extends Component {
   render() {

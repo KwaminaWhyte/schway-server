@@ -11,6 +11,13 @@
   color: black;
 }
 
+.feed_card_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
 .feed_dp_container {
   display: flex;
   align-items: center;
@@ -25,6 +32,38 @@
   border-radius: 50%;
   margin-right: 10px;
   margin-bottom: auto;
+}
+
+.feed_card_profile_link {
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  display: flex;
+  padding: 4px 0;
+}
+
+.feed_card_profile_link p {
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+
+.feed_card_profile_link span {
+  color: grey;
+  margin-left: 8px;
+  padding: 0px;
+}
+
+.timestamp {
+  font-size: 12px;
+  margin: 0px 0px 5px 0px;
+  padding: 0px;
+}
+
+.feed_media_container {
+  width: 87%;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .feed_btm_icn {
