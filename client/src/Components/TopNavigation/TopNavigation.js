@@ -73,7 +73,6 @@ class TopNavigation extends Component {
     let { user, body, mediaUrl, mediaType } = this.state;
 
     if (body !== "") {
-      console.log({ user, body, mediaUrl, mediaType });
       this.props.newFeed({
         user,
         body,

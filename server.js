@@ -19,7 +19,7 @@ const pusher = new Pusher({
   key: "aba59cc7ba83cc677c53",
   secret: "8f0686d11e2ef3bb0bf8",
   cluster: "mt1",
-  encrypted: true,
+  useTLS: true,
 });
 
 pusher.trigger("my-channel", "my-event", {

@@ -148,6 +148,47 @@ class FeedDetail extends Component {
             )}
           </section>
 
+          <section>
+            <h6 style={{ padding: 8 }}>{comments.length} Comments</h6>
+
+            {comments &&
+              comments.map((comment) => (
+                <div
+                  key={comment._id}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: 4,
+                    borderTop: "1px solid #e1e1e1",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src={require("../../assets/img/profile2.jpg")}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: 26,
+                        marginTop: "auto",
+                        marginLeft: 8,
+                        marginBottom: 6,
+                      }}
+                      alt=""
+                    />
+
+                    <div style={{ marginLeft: 12 }}>
+                      <h6>{comment.user.username}</h6>
+                      <p style={{ fontSize: 12, padding: 0, margin: 0 }}>
+                        <TimeAgo date={comment.timestamp} />
+                      </p>
+                    </div>
+                  </div>
+
+                  <p style={{ marginLeft: 50 }}>{comment.body}</p>
+                </div>
+              ))}
+          </section>
+
           <form
             className="new_feed_form_container"
             onSubmit={this.submitNewComment}
@@ -190,47 +231,6 @@ class FeedDetail extends Component {
               value=">"
             />
           </form>
-
-          <section>
-            <h6 style={{ padding: 8 }}>{comments.length} Comments</h6>
-
-            {comments &&
-              comments.map((comment) => (
-                <div
-                  key={comment._id}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: 4,
-                    borderTop: "1px solid #e1e1e1",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img
-                      src={require("../../assets/img/profile2.jpg")}
-                      style={{
-                        width: 50,
-                        height: 50,
-                        borderRadius: 26,
-                        marginTop: "auto",
-                        marginLeft: 8,
-                        marginBottom: 6,
-                      }}
-                      alt=""
-                    />
-
-                    <div style={{ marginLeft: 12 }}>
-                      <h6>{comment.user.username}</h6>
-                      <p style={{ fontSize: 12, padding: 0, margin: 0 }}>
-                        <TimeAgo date={comment.timestamp} />
-                      </p>
-                    </div>
-                  </div>
-
-                  <p style={{ marginLeft: 50 }}>{comment.body}</p>
-                </div>
-              ))}
-          </section>
         </div>
       </div>
     );

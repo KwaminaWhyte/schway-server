@@ -1,10 +1,8 @@
-const mongoose = require("mongoose");
-
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 let ChatSchema = new Schema({
   sender: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
   messages: [
@@ -13,7 +11,7 @@ let ChatSchema = new Schema({
       meta: [
         {
           user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "User",
           },
           delivered: Boolean,
@@ -26,7 +24,7 @@ let ChatSchema = new Schema({
   participants: [
     {
       user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
       },
       delivered: Boolean,
@@ -36,7 +34,7 @@ let ChatSchema = new Schema({
   ],
 });
 
-module.exports = mongoose.model("Chat", ChatSchema);
+module.exports = model("Chat", ChatSchema);
 
 // const MessageSchema = mongoose.Schema({
 //     message:{

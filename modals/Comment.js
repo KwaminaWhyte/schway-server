@@ -1,14 +1,13 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 let CommentSchema = new Schema({
   feed_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Feed",
     required: true,
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
@@ -23,4 +22,4 @@ let CommentSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Comment", CommentSchema);
+module.exports = model("Comment", CommentSchema);

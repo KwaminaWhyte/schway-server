@@ -87,13 +87,7 @@ class FeedCard extends Component {
               alt=""
             />
 
-            <div
-              style={
-                {
-                  // zIndex: 12,
-                }
-              }
-            >
+            <div>
               <Link
                 style={{
                   textDecoration: "none",
@@ -150,7 +144,9 @@ class FeedCard extends Component {
               </Popover>
             }
           >
-            <IoIosMenu className="mainmenubtn" size={20} />
+            <Link className="mainmenubtn">
+              <IoIosMenu size={20} />
+            </Link>
           </OverlayTrigger>
         </section>
 

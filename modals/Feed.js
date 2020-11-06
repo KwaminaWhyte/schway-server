@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 let FeedSchema = new Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
@@ -16,10 +15,15 @@ let FeedSchema = new Schema({
   mediaType: {
     type: String,
   },
-  likes: [],
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   comments: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
@@ -30,4 +34,4 @@ let FeedSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Feed", FeedSchema);
+module.exports = model("Feed", FeedSchema);
