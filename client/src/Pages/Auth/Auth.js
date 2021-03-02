@@ -62,7 +62,7 @@ class Auth extends Component {
         >
           {this.state.showSignIn ? (
             <>
-              <h1>Creae an account</h1>
+              <h1>Create an account</h1>
               <h2
                 onClick={() => this.setState({ showSignIn: false })}
                 style={{
