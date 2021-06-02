@@ -1,10 +1,3 @@
-{
-  /* <img src="https://i.ibb.co/sKnvmmz/yogendra-singh-j-WGNA5-VIMRg-unsplash.jpg" alt="yogendra-singh-j-WGNA5-VIMRg-unsplash" border="0">
-<img src="https://i.ibb.co/m087B7H/isaac-quesada-Xh-VJQbz-YIt8-unsplash.jpg" alt="isaac-quesada-Xh-VJQbz-YIt8-unsplash" border="0">
-<img src="https://i.ibb.co/VJRsCvm/mateus-campos-felipe-Jo-M-l-C1-WAn-E-unsplash.jpg" alt="mateus-campos-felipe-Jo-M-l-C1-WAn-E-unsplash" border="0">
- */
-}
-
 export let messages = [
   {
     id: 0,
@@ -87,17 +80,24 @@ export let trends = [
   {
     id: 0,
     name: "#AttaPokuDay",
+    imgUrl:
+      "https://i.ibb.co/VJRsCvm/mateus-campos-felipe-Jo-M-l-C1-WAn-E-unsplash.jpg",
   },
   {
     id: 1,
     name: "Poch",
+    imgUrl:
+      "https://i.ibb.co/c8dg5yF/maxim-mushnikov-XJPj-1e4-L78-unsplash.jpg",
   },
   {
     id: 2,
     name: "#AccraFloods",
+    imgUrl: "https://i.ibb.co/m087B7H/isaac-quesada-Xh-VJQbz-YIt8-unsplash.jpg",
   },
   {
     id: 3,
     name: "#Naymer",
+    imgUrl:
+      "https://i.ibb.co/sKnvmmz/yogendra-singh-j-WGNA5-VIMRg-unsplash.jpg",
   },
 ];

@@ -66,7 +66,7 @@ class FeedCard extends Component {
               alt="yogendra-singh-j-WGNA5-VIMRg-unsplash"
             />
 
-            <div>
+            <Link to={`/feeds/d/${feed._id}`}>
               <Link
                 className="feed_card_profile_link"
                 to={`/profile/${feed.user.username}`}
@@ -82,7 +82,7 @@ class FeedCard extends Component {
               <p style={{ margin: "0", whiteSpace: "pre-wrap", fontSize: 15 }}>
                 {feed.body}
               </p>
-            </div>
+            </Link>
           </div>
 
           <OverlayTrigger

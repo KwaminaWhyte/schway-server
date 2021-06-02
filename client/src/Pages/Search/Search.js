@@ -13,13 +13,11 @@ export default class Search extends Component {
         <TopNavigation pageTitle={<SearchField />} rightContents />
         <div className="nav-spacer"></div>
 
-        <section
-          className="search_banner"
-          style={{
-            background: `url(${require("../../assets/img/planet_extinction.jpg")}) center`,
-          }}
-        ></section>
-
+        <img
+          className="cover_image"
+          src="https://i.ibb.co/WDp45B1/diana-simumpande-GSPFj-HIx2t-E-unsplash.jpg"
+          alt="banner"
+        />
         <section>
           <div className="ig_img_sty">
             <img
@@ -98,7 +96,7 @@ export default class Search extends Component {
                 <div style={{ flex: 1 }}>
                   <p style={{ color: "grey" }}>{trend.name}</p>
                   <h5 style={{ fontWeight: "bold" }}>
-                    some name, asj aisgf asygfas fas u agsd ug
+                    Doloribus maiores officia earum harum sit
                   </h5>
                 </div>
 
@@ -112,7 +110,7 @@ export default class Search extends Component {
                     border: "1px solid white",
                     borderRadius: 12,
                   }}
-                  src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                  src={trend.imgUrl}
                   alt="profile"
                 />
               </div>
@@ -159,7 +157,7 @@ export default class Search extends Component {
                       height: 200,
                       borderRadius: 12,
                     }}
-                    src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                    src={trend.imgUrl}
                     alt="profile"
                   />
                 </div>
