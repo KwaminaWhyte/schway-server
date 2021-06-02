@@ -10,19 +10,18 @@ export default class RightFeed extends Component {
       <section style={{ position: "sticky", top: 60 }}>
         <div className="sm_info_container">
           <h6 style={{ margin: 10, fontWeight: "bold" }}>Who to follow</h6>
-
+          {/* <img src="https://i.ibb.co/xYsXbgV/profile3.jpg" alt="profile3" border="0">
+<img src="https://i.ibb.co/mctW4PR/planet-extinction.jpg" alt="planet-extinction" border="0">
+<img src="https://i.ibb.co/PQ3rWhH/profile.jpg" alt="profile" border="0">
+<img src="https://i.ibb.co/ZxWh6dj/profile2.jpg" alt="profile2" border="0"> */}
           {follow.map((item) => (
             <div key={item.id} className="follow_sug_item">
-              <img
-                className="sug_pr_img"
-                src={require("../../assets/img/profile3.jpg")}
-                alt=""
-              />
+              <img className="sug_pr_img" src={item.imgUrl} alt="profile3" />
               <div style={{ fontSize: 15 }}>
                 <h6 style={{ margin: 0, padding: 0, fontWeight: "bold" }}>
                   {item.name}
                 </h6>
-                <p style={{ margin: 0, padding: 0 }}>@markbhdhdfhj33</p>
+                <p style={{ margin: 0, padding: 0 }}>@{item.name}</p>
               </div>
 
               <p className="follow_btn">FOLLOW</p>
@@ -38,13 +37,14 @@ export default class RightFeed extends Component {
           <div
             className="event_item"
             style={{
-              background: `url(${require("../../assets/img/profile.jpg")}) center`,
+              background: `url('https://i.ibb.co/PQ3rWhH/profile.jpg') center`,
             }}
           >
             <div className="event_details_con">
               <p>
-                some events detals asufga yasgfi asfiga ufguai fiagfi iygas
-                ayisg
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+                nostrum iusto voluptates modi sequi corporis earum praesentium
+                odit!
               </p>
 
               <div className="event_icons_con">

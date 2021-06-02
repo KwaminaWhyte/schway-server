@@ -35,6 +35,7 @@ class Chats extends Component {
                   fontWeight: "bold",
                   padding: 2,
                   color: "grey",
+                  cursor: 'pointer'
                 }}
                 size={40}
               />
@@ -46,8 +47,8 @@ class Chats extends Component {
                   borderRadius: "50%",
                   marginLeft: 8,
                 }}
-                src={require("../../assets/img/profile.jpg")}
-                alt=""
+                src="https://i.ibb.co/WH1qmRS/grahame-jenkins-ua9b-UXz-UUpw-unsplash.jpg"
+                alt="profile"
               />
               <div
                 style={{
@@ -79,23 +80,18 @@ class Chats extends Component {
                 color: message.userId === 1 ? "#1a1a1a" : "white",
               }}
             >
-              {message.imgUrl ? (
+              {message.imgUrl !== "" ? (
                 <img
                   style={{
                     borderRadius: 12,
                     width: "100%",
                   }}
-                  src={require("../../assets/img/profile.jpg")}
-                  alt=""
+                  src={message.imgUrl}
+                  alt="profile"
                 />
               ) : null}
 
-              <p style={{ margin: 8 }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni,
-                at, asperiores soluta quam eos voluptatem magnam rerum! A
-                distinctio laborum dolorem necessitatibus inventore placeat
-                ducimus!
-              </p>
+              <p style={{ margin: 8 }}>{message.text}</p>
               <span
                 style={{
                   fontSize: 11,

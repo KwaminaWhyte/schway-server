@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { IoIosMail, IoIosLock } from "react-icons/io";
+import { IoIosMail, IoIosLock, IoIosPerson } from "react-icons/io";
 
 import "./style.css";
 import { registerUser, loginUser } from "../../redux/actions/authAction";
@@ -47,6 +47,9 @@ class Auth extends Component {
 
   render() {
     let { isAuthenticated } = this.props.auth;
+    let { msg } = this.props.error;
+
+    console.log(msg);
 
     if (isAuthenticated) {
       return <Redirect to={{ pathname: "/" }} />;
@@ -116,6 +119,7 @@ class Auth extends Component {
             method="post"
           >
             <div className="form_field_container">
+              <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.firstname}
@@ -126,6 +130,7 @@ class Auth extends Component {
             </div>
 
             <div className="form_field_container">
+              <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.lastname}
@@ -136,6 +141,7 @@ class Auth extends Component {
             </div>
 
             <div className="form_field_container">
+              <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
                 value={this.state.username}
@@ -144,6 +150,7 @@ class Auth extends Component {
                 placeholder="Username"
               />
             </div>
+            {/* <p>{msg != "" ? msg : null}</p> */}
 
             <div className="form_field_container">
               <IoIosMail size={23} color="grey" />
@@ -187,7 +194,6 @@ class Auth extends Component {
             }}
           >
             <h1 style={{ fontWeight: "bolder", fontSize: 33 }}>Login</h1>
-            <p>Please sign in to continue</p>
           </div>
 
           <form
@@ -234,6 +240,7 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    error: state.error,
   };
 };
 

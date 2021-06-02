@@ -25,7 +25,7 @@ class SideNavigation extends Component {
         <section
           className="side_cover_img"
           style={{
-            background: `url(${require("../../assets/img/profile3.jpg")}) center`,
+            background: `url('https://i.ibb.co/xYsXbgV/profile3.jpg') center`,
           }}
         >
           <FaTimesCircle
@@ -34,9 +34,9 @@ class SideNavigation extends Component {
             size={30}
           />
           <img
-            src={require("../../assets/img/profile2.jpg")}
+            src="https://i.ibb.co/ZxWh6dj/profile2.jpg"
+            alt="profile2"
             className="side_dp"
-            alt=""
           />
 
           <NavLink

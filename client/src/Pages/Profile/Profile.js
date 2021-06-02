@@ -52,13 +52,11 @@ class Profile extends Component {
         />
         <div className="nav-spacer"></div>
 
-        <section
+        <img
           className="cover_image"
-          style={{
-            background: `url(${require("../../assets/img/profile.jpg")}) center`,
-          }}
-        ></section>
-
+          src="https://i.ibb.co/WDp45B1/diana-simumpande-GSPFj-HIx2t-E-unsplash.jpg"
+          alt="banner"
+        />
         <section
           style={{
             marginTop: "-35px",
@@ -76,8 +74,8 @@ class Profile extends Component {
                 borderRadius: "100%",
                 border: "2px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/WH1qmRS/grahame-jenkins-ua9b-UXz-UUpw-unsplash.jpg"
+              alt="profile"
             />
 
             <div
@@ -88,8 +86,8 @@ class Profile extends Component {
                 alignItems: "center",
               }}
             >
-              <p>im</p>
-              <p>me</p>
+              {/* <p>im</p>
+              <p>me</p> */}
               <p
                 style={{
                   backgroundColor: "blueviolet",
@@ -114,7 +112,6 @@ class Profile extends Component {
             {/* <p style={{ fontSize: 14 }}>UI/UX Developer @app_deity</p> */}
           </div>
         </section>
-
         <section
           style={{
             display: "flex",

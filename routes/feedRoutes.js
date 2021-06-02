@@ -15,7 +15,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("", (req, res) => {
-  Feed.find({})
+  Feed.find()
     .populate("user")
     .populate("comments")
     .sort("-timestamp")

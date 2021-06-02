@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Pusher from "pusher-js";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import TimeAgo from "react-timeago";
@@ -32,18 +31,6 @@ class FeedDetail extends Component {
       feed_id: this.props.computedMatch.params.id,
       user,
     });
-
-    const pusher = new Pusher("aba59cc7ba83cc677c53", {
-      cluster: "mt1",
-    });
-    const channel = pusher.subscribe("comments");
-    channel.bind("inserted", (newFeed) => {
-      this.props.fetchComments(this.props.computedMatch.params.id);
-    });
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
   }
 
   fileTypeChanger = (type, url) => {
@@ -164,7 +151,8 @@ class FeedDetail extends Component {
                 >
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
-                      src={require("../../assets/img/profile2.jpg")}
+                      src="https://i.ibb.co/ZxWh6dj/profile2.jpg"
+                      alt="profile2"
                       style={{
                         width: 50,
                         height: 50,
@@ -173,7 +161,6 @@ class FeedDetail extends Component {
                         marginLeft: 8,
                         marginBottom: 6,
                       }}
-                      alt=""
                     />
 
                     <div style={{ marginLeft: 12 }}>

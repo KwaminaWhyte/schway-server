@@ -6,7 +6,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 import "./style.css";
 import { storage } from "../../firebase";
-import { newFeed } from "../../redux/actions/feedAction";
+import { newFeed, fetchFeeds } from "../../redux/actions/feedAction";
 
 class TopNavigation extends Component {
   state = {
@@ -85,6 +85,7 @@ class TopNavigation extends Component {
         mediaUrl: "",
         mediaType: "",
       });
+      this.props.fetchFeeds();
     } else {
       alert("Type something");
     }
@@ -131,8 +132,8 @@ class TopNavigation extends Component {
               borderRadius: "50%",
               marginLeft: 8,
             }}
-            src={require("../../assets/img/profile.jpg")}
-            alt=""
+                    src="https://i.ibb.co/PQ3rWhH/profile.jpg" alt="profile"
+
           /> */}
 
           <div style={{ width: 15, height: 15 }}></div>
@@ -209,4 +210,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { newFeed })(TopNavigation);
+export default connect(mapStateToProps, { newFeed, fetchFeeds })(TopNavigation);

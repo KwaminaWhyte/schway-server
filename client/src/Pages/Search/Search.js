@@ -27,48 +27,48 @@ export default class Search extends Component {
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
             <img
               style={{
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
             <img
               style={{
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
             <img
               style={{
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
             <img
               style={{
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
             <img
               style={{
                 width: "100%",
                 border: "1px solid white",
               }}
-              src={require("../../assets/img/profile.jpg")}
-              alt=""
+              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+              alt="profile"
             />
           </div>
 
@@ -112,8 +112,8 @@ export default class Search extends Component {
                     border: "1px solid white",
                     borderRadius: 12,
                   }}
-                  src={require("../../assets/img/profile.jpg")}
-                  alt=""
+                  src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                  alt="profile"
                 />
               </div>
             ))}
@@ -142,8 +142,8 @@ export default class Search extends Component {
                     marginRight: 8,
                     borderRadius: 50,
                   }}
-                  src={require("../../assets/img/profile.jpg")}
-                  alt=""
+                  src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                  alt="profile"
                 />
 
                 <div>
@@ -159,8 +159,8 @@ export default class Search extends Component {
                       height: 200,
                       borderRadius: 12,
                     }}
-                    src={require("../../assets/img/profile.jpg")}
-                    alt=""
+                    src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                    alt="profile"
                   />
                 </div>
               </div>

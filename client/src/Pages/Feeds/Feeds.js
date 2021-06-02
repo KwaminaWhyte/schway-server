@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Pusher from "pusher-js";
 
 import "./feeds.css";
 import FeedCard from "../../Components/FeedCard";
@@ -10,7 +9,6 @@ import { fetchFeeds, newFeed } from "../../redux/actions/feedAction";
 class Feeds extends Component {
   state = {
     feeds: [],
-
     user: "",
     body: "",
     mediaUrl: "",
@@ -21,18 +19,6 @@ class Feeds extends Component {
 
     let user = this.props.user.username;
     this.setState({ user });
-
-    const pusher = new Pusher("aba59cc7ba83cc677c53", {
-      cluster: "mt1",
-    });
-    const channel = pusher.subscribe("feeds");
-    channel.bind("inserted", (newFeed) => {
-      this.props.fetchFeeds();
-    });
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
   }
 
   handleModalText = (e) => {

@@ -79,8 +79,8 @@ class Messages extends Component {
               >
                 <img
                   style={{ width: 60, height: 60, borderRadius: "50%" }}
-                  src={require("../../assets/img/profile.jpg")}
-                  alt=""
+                  src="https://i.ibb.co/PQ3rWhH/profile.jpg"
+                  alt="profile"
                 />
                 <div style={{ marginLeft: 12 }}>
                   <p
