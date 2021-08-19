@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const auth = require("../middlewares/auth");
 const Comment = require("../modals/Comment");
 
 router.get("/feed/:id", (req, res) => {
@@ -11,10 +11,10 @@ router.get("/feed/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-router.post("/new", (req, res) => {
-  let { feed_id, user, body } = req.body;
+router.post("/new", auth, (req, res) => {
+  let { feed_id, body } = req.body;
 
-  Comment.create({ feed_id, user, body })
+  Comment.create({ feed_id, user: req.user.id, body })
     .then((comment) => res.send(comment))
     .catch((err) => res.send({ msg: err }));
 });

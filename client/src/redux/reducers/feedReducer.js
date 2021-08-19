@@ -1,5 +1,6 @@
 const initState = {
   feeds: [],
+  userFeeds: [],
   feed: {},
 };
 
@@ -9,6 +10,11 @@ const feedReducer = (state = initState, action) => {
       return {
         ...state,
         feeds: action.payload,
+      };
+    case "FETCH_USER_FEEDS":
+      return {
+        ...state,
+        userFeeds: action.payload,
       };
     case "FETCH_FEED":
       return {

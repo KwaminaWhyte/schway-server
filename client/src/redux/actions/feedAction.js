@@ -17,6 +17,20 @@ export const fetchFeeds = () => (dispatch) => {
     });
 };
 
+export const fetchUserFeeds = () => (dispatch, getState) => {
+  axios
+    .get("/feeds/me/all", tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: "FETCH_USER_FEEDS",
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnError(err.response.data, err.response.status));
+    });
+};
+
 export const fetchFeed = (id) => (dispatch) => {
   axios
     .get(`/feeds/${id}`)

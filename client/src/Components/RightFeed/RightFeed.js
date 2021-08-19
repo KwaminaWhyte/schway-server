@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import { IoIosEye, IoIosChatboxes } from "react-icons/io";
+import styled from "styled-components";
 
 import "./style.css";
 import { follow } from "../../assets/data";
+import SearchField from "../SearchField";
+
+const RightComponent = styled.aside`
+  width: 400px;
+  border-left: 0.5px solid #ebebeb;
+  position: sticky;
+  top: 0;
+`;
 
 export default class RightFeed extends Component {
   render() {
     return (
-      <section style={{ position: "sticky", top: 60 }}>
+      <RightComponent style={{}}>
+        <SearchField />
+
         <div className="sm_info_container">
           <h6 style={{ margin: 10, fontWeight: "bold" }}>Who to follow</h6>
           {/* <img src="https://i.ibb.co/xYsXbgV/profile3.jpg" alt="profile3" border="0">
@@ -16,7 +27,7 @@ export default class RightFeed extends Component {
 <img src="https://i.ibb.co/ZxWh6dj/profile2.jpg" alt="profile2" border="0"> */}
           {follow.map((item) => (
             <div key={item.id} className="follow_sug_item">
-              <img className="sug_pr_img" src={item.imgUrl} alt="profile3" />
+              <img className="sug_pr_img" src={item.imgUrl} alt="." />
               <div style={{ fontSize: 15 }}>
                 <h6 style={{ margin: 0, padding: 0, fontWeight: "bold" }}>
                   {item.name}
@@ -70,7 +81,7 @@ export default class RightFeed extends Component {
             accusantium quia, accusamus nisi laboriosam!
           </p>
         </div> */}
-      </section>
+      </RightComponent>
     );
   }
 }

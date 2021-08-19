@@ -10,12 +10,10 @@ import TopNavigation from "../../Components/TopNavigation";
 import "./style.css";
 import { deleteFeed, fetchFeed } from "../../redux/actions/feedAction";
 import { fetchComments, newComment } from "../../redux/actions/commentAction";
+import { FormContainer } from "../../Components/BaseComponents";
 
 class FeedDetail extends Component {
   state = {
-    feedDetailsModal: false,
-
-    user: "",
     body: "",
     feed_id: "",
 
@@ -26,10 +24,8 @@ class FeedDetail extends Component {
     this.props.fetchFeed(this.props.computedMatch.params.id);
     this.props.fetchComments(this.props.computedMatch.params.id);
 
-    let user = this.props.user._id;
     this.setState({
       feed_id: this.props.computedMatch.params.id,
-      user,
     });
   }
 
@@ -80,8 +76,8 @@ class FeedDetail extends Component {
 
   submitNewComment = (e) => {
     e.preventDefault();
-    let { feed_id, user, body } = this.state;
-    this.props.newComment({ feed_id, user, body });
+    let { feed_id, body } = this.state;
+    this.props.newComment({ feed_id, body });
     this.setState({ body: "" });
     this.props.fetchComments(feed_id);
   };
@@ -152,7 +148,7 @@ class FeedDetail extends Component {
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
                       src="https://i.ibb.co/ZxWh6dj/profile2.jpg"
-                      alt="profile2"
+                      alt="."
                       style={{
                         width: 50,
                         height: 50,
@@ -176,8 +172,7 @@ class FeedDetail extends Component {
               ))}
           </section>
 
-          <form
-            className="new_feed_form_container"
+          <FormContainer
             onSubmit={this.submitNewComment}
             style={{
               display: "flex",
@@ -217,7 +212,7 @@ class FeedDetail extends Component {
               type="submit"
               value=">"
             />
-          </form>
+          </FormContainer>
         </div>
       </div>
     );

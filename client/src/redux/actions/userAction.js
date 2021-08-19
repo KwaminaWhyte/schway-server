@@ -1,4 +1,5 @@
 import axios from "axios";
+import { tokenConfig } from "./authAction";
 
 export const fetchUser = (username) => (dispatch) => {
   axios
@@ -12,9 +13,9 @@ export const fetchUser = (username) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const fetchUsers = () => (dispatch) => {
+export const fetchUsers = () => (dispatch, getState) => {
   axios
-    .get(`/user`)
+    .get("/user", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: "FETCH_USERS",

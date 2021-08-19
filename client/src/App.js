@@ -5,14 +5,15 @@ import { connect } from "react-redux";
 
 import { loadUser } from "./redux/actions/authAction";
 
-import Auth from "./Pages/Auth";
 import Feeds from "./Pages/Feeds";
 import Chats from "./Pages/Chats";
 import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
+import Login from "./Pages/Auth/Login";
 import Messages from "./Pages/Messages";
 import FeedDetail from "./Pages/FeedDetail";
+import Register from "./Pages/Auth/Register";
 import Notifications from "./Pages/Notifications";
 
 import RightFeed from "./Components/RightFeed";
@@ -36,6 +37,7 @@ class App extends Component {
   }
 
   render() {
+    let { isAuthenticated } = this.props.auth;
     return (
       <div style={{ display: "flex" }}>
         <Router>
@@ -57,7 +59,9 @@ class App extends Component {
 
               <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
 
-              <Route exact path="/login" component={Auth} />
+              <Route exact path="/login" component={Login} />
+
+              <Route exact path="/register" component={Register} />
 
               <PrivateRoute
                 exact
@@ -75,7 +79,7 @@ class App extends Component {
             </Switch>
           </div>
 
-          {this.props.auth.isAuthenticated ? (
+          {isAuthenticated ? (
             <section className="right_bar_container">
               <SearchField />
 
@@ -83,7 +87,7 @@ class App extends Component {
             </section>
           ) : null}
 
-          {this.props.auth.isAuthenticated ? <BottomNavigation /> : null}
+          {isAuthenticated ? <BottomNavigation /> : null}
         </Router>
       </div>
     );

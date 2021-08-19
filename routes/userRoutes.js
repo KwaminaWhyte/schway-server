@@ -13,9 +13,11 @@ router.get("/:username", (req, res) => {
     .catch((err) => console.log({ msg: err }));
 });
 
-// Get all user
-router.get("", (req, res) => {
+// Get all users
+router.get("/", auth, (req, res) => {
   User.find()
+    .where("_id")
+    .ne(req.user.id)
     .then((users) => res.send(users))
     .catch((err) => console.log({ msg: err }));
 });

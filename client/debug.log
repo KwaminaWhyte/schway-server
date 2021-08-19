@@ -1,5 +1,0 @@
-[1012/181910.193:ERROR:settings.cc(430)] Settings version is not 5
-[1012/182911.215:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\stanl\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\1475d22c-3cc5-429e-8024-3c74d206381a: The system cannot find the path specified. (0x3)
-[1012/182911.408:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\stanl\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\6eabe332-ce92-4892-aa49-93f35619fe83: The system cannot find the path specified. (0x3)
-[1012/182911.408:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1013/184133.399:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

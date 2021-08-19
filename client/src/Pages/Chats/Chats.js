@@ -8,7 +8,7 @@ import {
 
 import "./style.css";
 import { messages } from "../../assets/data";
-import TopNavigation from "../../Components/TopNavigation/TopNavigation";
+import TopNavigation from "../../Components/TopNavigation";
 
 class Chats extends Component {
   scrollToBottom = () => {
@@ -35,7 +35,7 @@ class Chats extends Component {
                   fontWeight: "bold",
                   padding: 2,
                   color: "grey",
-                  cursor: 'pointer'
+                  cursor: "pointer",
                 }}
                 size={40}
               />
@@ -48,7 +48,7 @@ class Chats extends Component {
                   marginLeft: 8,
                 }}
                 src="https://i.ibb.co/WH1qmRS/grahame-jenkins-ua9b-UXz-UUpw-unsplash.jpg"
-                alt="profile"
+                alt="."
               />
               <div
                 style={{
@@ -67,6 +67,7 @@ class Chats extends Component {
             </div>
           }
         />
+
         <div className="nav-spacer"></div>
 
         <section className="chat_section">

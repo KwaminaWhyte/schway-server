@@ -3,13 +3,13 @@ import TopNavigation from "../../Components/TopNavigation";
 import "./style.css";
 
 import SearchField from "../../Components/SearchField";
-
+import { Container } from "../../Components/BaseComponents";
 import { trends } from "../../assets/data";
 
 export default class Search extends Component {
   render() {
     return (
-      <div className="Search">
+      <Container>
         <TopNavigation pageTitle={<SearchField />} rightContents />
         <div className="nav-spacer"></div>
 
@@ -165,7 +165,7 @@ export default class Search extends Component {
             ))}
           </div>
         </section>
-      </div>
+      </Container>
     );
   }
 }

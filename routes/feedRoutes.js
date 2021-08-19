@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.send({ message: err }));
 });
 
-router.get("", (req, res) => {
+router.get("/", (req, res) => {
   Feed.find()
     .populate("user")
     .populate("comments")
@@ -23,10 +23,19 @@ router.get("", (req, res) => {
     .catch((err) => res.send({ message: err }));
 });
 
-router.post("/new", auth, (req, res) => {
-  let { user, body, mediaUrl, mediaType } = req.body;
+router.get("/me/all", auth, (req, res) => {
+  Feed.find({ user: req.user.id })
+    .populate("user")
+    .populate("comments")
+    .sort("-timestamp")
+    .then((feeds) => res.send(feeds))
+    .catch((err) => res.status(401).send({ message: err }));
+});
 
-  Feed.create({ user, body, mediaUrl, mediaType })
+router.post("/new", auth, (req, res) => {
+  let { body, mediaUrl, mediaType } = req.body;
+
+  Feed.create({ user: req.user.id, body, mediaUrl, mediaType })
     .then((feed) => res.send(feed))
     .catch((err) => res.send({ message: err }));
 });
@@ -46,20 +55,16 @@ router.put("/:id/update", auth, (req, res) => {
 });
 
 router.delete("/:id/delete", auth, (req, res) => {
-  // console.log(req.params.id);
-
   Feed.findById(req.params.id)
     .then((data) => {
       if (req.user.id == data.user) {
-        console.log("Good to delete this feed");
-
         Comment.deleteMany({ feed_id: req.params.id })
           .then((comments) => console.log("comments deleted", comments))
           .catch((err) => console.log(err));
 
         Feed.deleteOne({ _id: req.params.id })
-          .then((feed) => {
-            res.send(feed);
+          .then(() => {
+            res.send({ msg: "Feed Deleted!" });
           })
           .catch((err) => res.send({ message: err }));
       } else {
