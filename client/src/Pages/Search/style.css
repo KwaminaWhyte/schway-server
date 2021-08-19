@@ -8,7 +8,7 @@
 .ig_img_sty {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
 }
 
 .srh_cat_title {

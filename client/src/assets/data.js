@@ -78,18 +78,6 @@ export let follow = [
 
 export let trends = [
   {
-    id: 0,
-    name: "#AttaPokuDay",
-    imgUrl:
-      "https://i.ibb.co/VJRsCvm/mateus-campos-felipe-Jo-M-l-C1-WAn-E-unsplash.jpg",
-  },
-  {
-    id: 1,
-    name: "Poch",
-    imgUrl:
-      "https://i.ibb.co/c8dg5yF/maxim-mushnikov-XJPj-1e4-L78-unsplash.jpg",
-  },
-  {
     id: 2,
     name: "#AccraFloods",
     imgUrl: "https://i.ibb.co/m087B7H/isaac-quesada-Xh-VJQbz-YIt8-unsplash.jpg",

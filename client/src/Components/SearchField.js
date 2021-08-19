@@ -17,6 +17,10 @@ const SearchFieldContainer = styled.div`
   height: 55px;
   background-color: white;
 
+  @media (max-width: 600px) {
+    height: 45px;
+  }
+
   .SearchField {
     flex: 1;
     margin: 0 12px;
@@ -27,6 +31,25 @@ const SearchFieldContainer = styled.div`
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
+  }
+`;
+
+const ResultContainer = styled.div`
+  max-height: 70vh;
+  min-height: 50px;
+  width: 375px;
+  background-color: white;
+  border-radius: 12px;
+  right: 10px;
+  top: 48px;
+  position: absolute;
+  padding: 5px;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 class SearchField extends Component {
@@ -86,22 +109,7 @@ class SearchField extends Component {
         </div>
 
         {this.state.searchBox ? (
-          <div
-            style={{
-              maxHeight: "70vh",
-              minHeight: 50,
-              width: 375,
-              backgroundColor: "white",
-              borderRadius: 12,
-              right: 10,
-              top: 48,
-              position: "absolute",
-              padding: 5,
-              boxShadow: "0px 3px 20px rgba(0, 0, 0, 0.2)",
-              overflowY: "auto",
-              overscrollBehavior: "contain",
-            }}
-          >
+          <ResultContainer>
             {this.state.feeds.map((feed) => (
               <Link
                 // onClick={this.openSearchBox}
@@ -125,7 +133,7 @@ class SearchField extends Component {
                 </div>
               </Link>
             ))}
-          </div>
+          </ResultContainer>
         ) : null}
       </SearchFieldContainer>
     );

@@ -1,23 +1,75 @@
 import React, { Component } from "react";
 import TopNavigation from "../../Components/TopNavigation";
+import { connect } from "react-redux";
 import "./style.css";
 
 import SearchField from "../../Components/SearchField";
-import { Container } from "../../Components/BaseComponents";
+import { Container, Spacer } from "../../Components/BaseComponents";
 import { trends } from "../../assets/data";
+import { fetchFeeds } from "../../redux/actions/feedAction";
+import { Link } from "react-router-dom";
 
-export default class Search extends Component {
+class Search extends Component {
+  state = {
+    feeds: [],
+  };
+
+  handleSearch = (e) => {
+    e.preventDefault();
+    let currentList = [];
+    let newList = [];
+
+    if (e.target.value !== "") {
+      currentList = this.props.feeds;
+
+      newList = currentList.filter((feed) => {
+        let lc = feed.body.toLowerCase();
+        let filter = e.target.value.toLowerCase();
+        return lc.includes(filter);
+      });
+    } else {
+      newList = this.props.feeds;
+    }
+    this.setState({ feeds: newList });
+  };
   render() {
     return (
       <Container>
         <TopNavigation pageTitle={<SearchField />} rightContents />
-        <div className="nav-spacer"></div>
+        <Spacer />
+
+        <section>
+          {this.state.feeds.map((feed) => (
+            <Link
+              // onClick={this.openSearchBox}
+              key={feed._d}
+              exact="true"
+              to={`/feeds/d/${feed._id}`}
+              style={{
+                borderBottom: "1px solid grey",
+              }}
+            >
+              <div
+                style={{
+                  borderBottom: "1px solid #e1e1e1",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  padding: "2px 10px",
+                }}
+              >
+                <p>{feed.user.username}</p>
+                <p>{feed.body}</p>
+              </div>
+            </Link>
+          ))}
+        </section>
 
         <img
           className="cover_image"
           src="https://i.ibb.co/WDp45B1/diana-simumpande-GSPFj-HIx2t-E-unsplash.jpg"
           alt="banner"
         />
+
         <section>
           <div className="ig_img_sty">
             <img
@@ -28,30 +80,7 @@ export default class Search extends Component {
               src="https://i.ibb.co/PQ3rWhH/profile.jpg"
               alt="profile"
             />
-            <img
-              style={{
-                width: "100%",
-                border: "1px solid white",
-              }}
-              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
-              alt="profile"
-            />
-            <img
-              style={{
-                width: "100%",
-                border: "1px solid white",
-              }}
-              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
-              alt="profile"
-            />
-            <img
-              style={{
-                width: "100%",
-                border: "1px solid white",
-              }}
-              src="https://i.ibb.co/PQ3rWhH/profile.jpg"
-              alt="profile"
-            />
+
             <img
               style={{
                 width: "100%",
@@ -169,3 +198,11 @@ export default class Search extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    feeds: state.feeds.feeds,
+  };
+};
+
+export default connect(mapStateToProps, { fetchFeeds })(Search);
