@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import FeedCard from "../Components/FeedCard";
 import TopNavigation from "../Components/TopNavigation";
 import { fetchFeeds, newFeed } from "../redux/actions/feedAction";
-import { Container } from "../Components/BaseComponents";
+import { Container, Spacer } from "../Components/BaseComponents";
 
 class Feeds extends Component {
   state = {
@@ -34,7 +34,7 @@ class Feeds extends Component {
     return (
       <Container>
         <TopNavigation pageTitle="Home" rightContents />
-        <div style={{ height: 60 }}></div>
+        <Spacer className="nav-spacer" />
 
         {feeds && feeds.map((feed) => <FeedCard key={feed._id} feed={feed} />)}
       </Container>

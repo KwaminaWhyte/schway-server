@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "serve": "serve -s build"
   },
-  "proxy": "https://schway.herokuapp.com",
+  "proxy": "http://localhost:1437",
   "secure": false,
   "eslintConfig": {
     "extends": "react-app"

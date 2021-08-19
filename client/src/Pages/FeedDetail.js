@@ -5,12 +5,11 @@ import TimeAgo from "react-timeago";
 import ReactPlayer from "react-player";
 import { IoIosArrowBack } from "react-icons/io";
 
-import TopNavigation from "../../Components/TopNavigation";
+import TopNavigation from "../Components/TopNavigation";
 
-import "./style.css";
-import { deleteFeed, fetchFeed } from "../../redux/actions/feedAction";
-import { fetchComments, newComment } from "../../redux/actions/commentAction";
-import { FormContainer } from "../../Components/BaseComponents";
+import { deleteFeed, fetchFeed } from "../redux/actions/feedAction";
+import { fetchComments, newComment } from "../redux/actions/commentAction";
+import { FormContainer, Container, Spacer } from "../Components/BaseComponents";
 
 class FeedDetail extends Component {
   state = {
@@ -86,7 +85,7 @@ class FeedDetail extends Component {
     let { feed, comments } = this.props;
 
     return (
-      <div className="FeedDetail">
+      <Container className="FeedDetail">
         <TopNavigation
           pageTitle={
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -112,7 +111,7 @@ class FeedDetail extends Component {
             </div>
           }
         />
-        <div className="nav-spacer"></div>
+        <Spacer className="nav-spacer" />
 
         <div style={{ width: "100%" }}>
           <section
@@ -214,7 +213,7 @@ class FeedDetail extends Component {
             />
           </FormContainer>
         </div>
-      </div>
+      </Container>
     );
   }
 }

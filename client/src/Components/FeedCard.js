@@ -144,17 +144,18 @@ class FeedCard extends Component {
 
         <section
           style={{
-            padding: 12,
+            padding: "3px 12px",
+            marginTop: 10,
           }}
         >
           <div
             style={{
               display: "flex",
-              margin: "5px 0",
             }}
           >
             <div className="feed_btm_icn">
-              <IoIosHeart color="red" size={20} /> <p>344</p>
+              <IoIosHeart color="red" size={20} />
+              <p> {feed?.likes?.length}</p>
             </div>
             <div className="feed_btm_icn">
               <svg

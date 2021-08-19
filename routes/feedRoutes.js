@@ -59,7 +59,7 @@ router.delete("/:id/delete", auth, (req, res) => {
     .then((data) => {
       if (req.user.id == data.user) {
         Comment.deleteMany({ feed_id: req.params.id })
-          .then((comments) => console.log("comments deleted", comments))
+          .then(() => res.send({ msg: "comment Deleted!" }))
           .catch((err) => console.log(err));
 
         Feed.deleteOne({ _id: req.params.id })

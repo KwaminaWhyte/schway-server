@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { fetchUsers } from "../redux/actions/userAction";
 import TopNavigation from "../Components/TopNavigation";
-import { Container } from "../Components/BaseComponents";
+import { Container, Spacer } from "../Components/BaseComponents";
 
 const MessageSection = styled.section`
   width: 100%;
@@ -83,9 +83,9 @@ class Messages extends Component {
     let { users } = this.props;
 
     return (
-      <Container style={{ position: "sticky" }}>
+      <Container>
         <TopNavigation pageTitle=" Messages" />
-        <div className="nav-spacer"></div>
+        <Spacer className="nav-spacer" />
 
         <MessageSection>
           {users.map((user) => (

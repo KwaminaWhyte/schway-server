@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import "./style.css";
 import { follow } from "../../assets/data";
-import SearchField from "../SearchField";
 
 const RightComponent = styled.aside`
   width: 400px;
@@ -17,8 +16,6 @@ export default class RightFeed extends Component {
   render() {
     return (
       <RightComponent style={{}}>
-        <SearchField />
-
         <div className="sm_info_container">
           <h6 style={{ margin: 10, fontWeight: "bold" }}>Who to follow</h6>
           {/* <img src="https://i.ibb.co/xYsXbgV/profile3.jpg" alt="profile3" border="0">

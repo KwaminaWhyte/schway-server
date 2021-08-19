@@ -48,10 +48,6 @@ export const TopNavigationContainer = styled.nav`
     display: none;
   }
 
-  .nav-spacer {
-    display: none;
-  }
-
   @media (max-width: 600px) {
     width: 100vw;
     position: fixed;
@@ -59,11 +55,16 @@ export const TopNavigationContainer = styled.nav`
     .toggle_bars {
       display: block;
     }
+  }
+`;
 
-    .nav-spacer {
-      display: block;
-      height: 55px;
-    }
+export const Spacer = styled.div`
+  display: none;
+  margin: 0;
+
+  @media (max-width: 600px) {
+    display: flex;
+    margin-top: 55px;
   }
 `;
 
@@ -120,6 +121,11 @@ export const FeedCardContainer = styled.div`
     font-size: 15px;
     display: flex;
     padding: 4px 0;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      padding: 0;
+    }
   }
 
   .feed_card_profile_link p {
@@ -132,6 +138,10 @@ export const FeedCardContainer = styled.div`
     color: grey;
     margin-left: 8px;
     padding: 0px;
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
   }
 
   .timestamp {
@@ -166,37 +176,6 @@ export const FeedCardContainer = styled.div`
     font-size: 15px;
     display: flex;
     padding: 4px 0;
-  }
-
-  .feed_card_profile_link p {
-    font-weight: bold;
-    margin: 0px;
-    padding: 0px;
-  }
-
-  .feed_card_profile_link span {
-    color: grey;
-    margin-left: 8px;
-    padding: 0px;
-  }
-
-  .timestamp {
-    font-size: 12px;
-    margin: 0px 0px 5px 0px;
-    padding: 0px;
-  }
-
-  .feed_media_container {
-    margin-left: auto;
-    margin-right: 10px;
-  }
-
-  .feed_btm_icn {
-    display: flex;
-    padding: 5px 12px;
-    border-radius: 30px;
-    margin: 0 12px;
-    cursor: pointer;
   }
 
   .mainmenubtn {
