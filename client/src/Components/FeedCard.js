@@ -63,7 +63,7 @@ class FeedCard extends Component {
             <img
               className="feed_dp"
               src="https://i.ibb.co/sKnvmmz/yogendra-singh-j-WGNA5-VIMRg-unsplash.jpg"
-              alt="."
+              alt=""
             />
             <Link
               className="feed_card_profile_link"
