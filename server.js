@@ -17,7 +17,7 @@ app.use("/comment", require("./routes/commentRoutes"));
 // "mongodb://127.0.0.1:27017/schway";
 // process.env.MONGODB_URL
 mongoose
-  .connect(rocess.env.MONGODB_URL, {
+  .connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
