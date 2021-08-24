@@ -41,6 +41,7 @@ class FeedCard extends Component {
     else if (type === "image/png" || "image/jpeg")
       return (
         <img
+          loading="lazy"
           style={{
             width: "100%",
             borderRadius: 20,
