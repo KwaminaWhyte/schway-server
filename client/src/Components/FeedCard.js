@@ -46,6 +46,7 @@ class FeedCard extends Component {
             borderRadius: 20,
             height: 240,
             border: "0.3px solid #e1e1e1",
+            objectFit: "cover",
           }}
           src={url}
           alt=""

@@ -15,6 +15,7 @@ const CoverImage = styled.img`
   background-size: cover;
   height: 230px;
   width: 100%;
+  object-fit: cover;
   /* border-radius: 25px; */
   /* margin: 10px auto 10px auto; */
   /* box-shadow: 0px 3px 4px 1px #727272; */
@@ -137,8 +138,7 @@ class Profile extends Component {
             display: "flex",
             flexDirection: "column",
             width: "100%",
-            margin: "30px auto 10px auto",
-            padding: 15,
+            margin: "30px auto",
           }}
         >
           {feeds &&

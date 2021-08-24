@@ -46,6 +46,7 @@ export default class RightFeed extends Component {
             className="event_item"
             style={{
               background: `url('https://i.ibb.co/PQ3rWhH/profile.jpg') center`,
+              objectFit: "cover",
             }}
           >
             <div className="event_details_con">
