@@ -56,7 +56,7 @@ class FeedDetail extends Component {
         <img
           style={{
             width: "98%",
-            borderRadius: 20,
+            borderRadius: 12,
             border: "0.3px solid #e1e1e1",
             marginLeft: "auto",
             marginRight: "auto",
@@ -146,7 +146,7 @@ class FeedDetail extends Component {
                 >
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
-                      src="https://i.ibb.co/ZxWh6dj/profile2.jpg"
+                      src={comment.user?.profile_img}
                       alt="."
                       style={{
                         width: 50,
@@ -159,7 +159,7 @@ class FeedDetail extends Component {
                     />
 
                     <div style={{ marginLeft: 12 }}>
-                      <h6>{comment.user.username}</h6>
+                      <h6>{comment.user?.username}</h6>
                       <p style={{ fontSize: 12, padding: 0, margin: 0 }}>
                         <TimeAgo date={comment.timestamp} />
                       </p>

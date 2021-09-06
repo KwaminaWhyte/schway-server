@@ -12,7 +12,7 @@ const SearchFieldContainer = styled.div`
   align-items: center;
   top: 0px;
   padding: 5px 0;
-  z-index: 1000;
+  z-index: 100;
   width: 100%;
   height: 55px;
   background-color: white;

@@ -90,4 +90,27 @@ router.get("/auth/user", auth, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// update
+router.post("/me/update", auth, async (req, res) => {
+  let { profile_img, firstname, lastname, username, email } = req.body;
+
+  let isUser = await User.findById(req.user.id);
+
+  if (!isUser) return res.status(401).send("User does not exist!");
+
+  await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      profile_img,
+      lastname,
+      firstname,
+      email,
+      username,
+    },
+    (data) => {
+      res.send(data);
+    }
+  );
+});
+
 module.exports = router;

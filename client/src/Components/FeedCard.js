@@ -46,6 +46,7 @@ class FeedCard extends Component {
             borderRadius: 20,
             height: 240,
             border: "0.3px solid #e1e1e1",
+            objectFit: "cover",
           }}
           src={url}
           alt=""
@@ -60,11 +61,7 @@ class FeedCard extends Component {
       <FeedCardContainer>
         <section className="feed_card_top">
           <div className="feed_dp_container">
-            <img
-              className="feed_dp"
-              src="https://i.ibb.co/sKnvmmz/yogendra-singh-j-WGNA5-VIMRg-unsplash.jpg"
-              alt=""
-            />
+            <img className="feed_dp" src={feed?.user?.profile_img} alt="" />
             <Link
               className="feed_card_profile_link"
               to={`/profile/${feed?.user?.username}`}

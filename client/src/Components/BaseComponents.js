@@ -31,7 +31,7 @@ export const TopNavigationContainer = styled.nav`
   top: 0px;
   background-color: white;
   padding: 5px 0;
-  z-index: 1000;
+  z-index: 100;
   width: 100%;
   height: 55px;
   border-bottom: 0.5px solid #ebebeb;
@@ -187,5 +187,21 @@ export const FeedCardContainer = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
     width: 100%;
+  }
+`;
+
+// button
+export const Button = styled.p`
+  border: 1px solid blue;
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: blue;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background-color: blue;
+    color: white;
+    transition-duration: 0.5s;
   }
 `;

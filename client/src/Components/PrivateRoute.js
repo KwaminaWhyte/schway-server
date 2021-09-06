@@ -10,7 +10,7 @@ class PrivateRoute extends React.Component {
     if (this.props.location.pathname !== "/") {
       let data = {
         slug: this.props.location.pathname,
-        queryParams: this.props.location.search,
+        // queryParams: this.props.location.search,
       };
 
       this.props.changeURL(data);

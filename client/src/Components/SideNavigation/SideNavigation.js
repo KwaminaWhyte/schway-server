@@ -33,11 +33,7 @@ class SideNavigation extends Component {
             onClick={this.closeSideMenu}
             size={30}
           />
-          <img
-            src="https://i.ibb.co/ZxWh6dj/profile2.jpg"
-            alt="profile2"
-            className="side_dp"
-          />
+          <img src={user?.profile_img} alt="profile2" className="side_dp" />
 
           <NavLink
             className="side_pro_link"

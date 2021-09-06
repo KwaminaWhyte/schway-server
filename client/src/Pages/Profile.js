@@ -5,22 +5,29 @@ import { connect } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
 
 import { fetchUser } from "../redux/actions/userAction";
+import { updateUser } from "../redux/actions/authAction";
 import { fetchUserFeeds } from "../redux/actions/feedAction";
 import TopNavigation from "../Components/TopNavigation";
 import FeedCard from "../Components/FeedCard";
 import { Container } from "../Components/BaseComponents";
+import Modal from "../Components/Modal";
 
 const CoverImage = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
   height: 230px;
   width: 100%;
-  /* border-radius: 25px; */
-  /* margin: 10px auto 10px auto; */
-  /* box-shadow: 0px 3px 4px 1px #727272; */
+  object-fit: cover;
 `;
 class Profile extends Component {
-  state = {};
+  state = {
+    feedModal: false,
+
+    body: "",
+    mediaType: "",
+
+    showModal: false,
+  };
 
   componentDidMount() {
     // let userID = this.props.match.params.username;
@@ -87,9 +94,22 @@ class Profile extends Component {
                 borderRadius: "100%",
                 border: "2px solid white",
               }}
-              src="https://i.ibb.co/WH1qmRS/grahame-jenkins-ua9b-UXz-UUpw-unsplash.jpg"
-              alt="."
+              src={user.profile_img}
+              alt=""
             />
+
+            <p
+              onClick={() => this.setState({ showModal: true })}
+              style={{
+                color: "white",
+                backgroundColor: "purple",
+                padding: "4px 12px",
+                borderRadius: 12,
+                marginTop: "auto",
+              }}
+            >
+              Edit Profile
+            </p>
 
             <div
               style={{
@@ -144,6 +164,17 @@ class Profile extends Component {
           {feeds &&
             feeds.map((feed) => <FeedCard key={feed._id} feed={feed} />)}
         </section>
+
+        <Modal
+          display={this.state.showModal}
+          title="UPDATE ACCOUNT DETAILS"
+          // user={this.props.user}
+          onUserUpdate={(data) => {
+            this.props.updateUser(data);
+            this.setState({ showModal: false });
+          }}
+          closeModal={() => this.setState({ showModal: false })}
+        />
       </Container>
     );
   }
@@ -156,6 +187,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser, fetchUserFeeds })(
-  withRouter(Profile)
-);
+export default connect(mapStateToProps, {
+  fetchUser,
+  fetchUserFeeds,
+  updateUser,
+})(withRouter(Profile));

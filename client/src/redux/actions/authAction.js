@@ -110,6 +110,29 @@ export const changeURL = (data) => (dispatch) => {
   dispatch({
     type: GO_TO_URL,
     slug: data.slug,
-    queryParams: data.queryParams,
+    // queryParams: data.queryParams,
   });
+  console.log(data);
+};
+
+export const updateUser = (data) => (dispatch, getState) => {
+  let body = JSON.stringify(data);
+
+  console.log(body);
+
+  axios
+    .post("/user/me/update/", body, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: "",
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnError(err.response.data, err.response.status, LOGIN_FAIL));
+      dispatch({
+        type: "",
+      });
+      console.log(err.response.data, err.response.status);
+    });
 };

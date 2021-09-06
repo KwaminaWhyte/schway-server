@@ -7,6 +7,7 @@ import { loadUser } from "./redux/actions/authAction";
 
 import Feeds from "./Pages/Feeds";
 import Chats from "./Pages/Chats";
+// import Upload from "./Pages/Upload";
 import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
@@ -60,6 +61,8 @@ class App extends Component {
               <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
 
               <Route exact path="/login" component={Login} />
+
+              {/* <Route exact path="/upload" component={Upload} /> */}
 
               <Route exact path="/register" component={Register} />
 

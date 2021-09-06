@@ -44,3 +44,11 @@ input {
     margin-bottom: 55px;
   }
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}

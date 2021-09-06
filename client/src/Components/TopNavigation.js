@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import { IoIosAddCircleOutline } from "react-icons/io";
-// import { FaBars } from "react-icons/fa";
 
-import { storage } from "../firebase";
 import { newFeed, fetchFeeds } from "../redux/actions/feedAction";
 import { FormContainer, TopNavigationContainer } from "./BaseComponents";
 
@@ -13,37 +11,56 @@ class TopNavigation extends Component {
     feedModal: false,
 
     body: "",
-    mediaUrl: "",
     mediaType: "",
-    uploadProgress: 0,
+
+    file: null,
+    base64URL: "",
   };
 
-  uploadImage = (image) => {
-    // check every file type and direct all media to their respective folders
+  getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let fileInfo;
+      let baseURL = "";
+      // Make new FileReader
+      let reader = new FileReader();
 
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const uploadProgress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        this.setState({ uploadProgress });
-      },
-      (error) => {
-        console.log("error", error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            this.setState({ mediaUrl: url });
-            console.log(url);
-          });
-      }
-    );
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        console.log("Called", reader);
+        baseURL = reader.result;
+        console.log(baseURL);
+        resolve(baseURL);
+      };
+      console.log(fileInfo);
+    });
+  };
+
+  handleFileInputChange = (e) => {
+    console.log(e.target.files[0]);
+    let { file } = this.state;
+
+    file = e.target.files[0];
+
+    this.getBase64(file)
+      .then((result) => {
+        file["base64"] = result;
+        console.log("File Is", file);
+        this.setState({
+          base64URL: result,
+          file,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    this.setState({
+      file: e.target.files[0],
+    });
   };
 
   handleFeedModalFile = (e) => {
@@ -64,20 +81,22 @@ class TopNavigation extends Component {
 
   submitNewFeed = (e) => {
     e.preventDefault();
-    let { body, mediaUrl, mediaType } = this.state;
+    let { body, base64URL, mediaType } = this.state;
 
     if (body !== "") {
       this.props.newFeed({
         body,
-        mediaUrl,
+        mediaUrl: base64URL,
         mediaType,
       });
+
       this.setState({
         feedModal: false,
         body: "",
         mediaUrl: "",
         mediaType: "",
       });
+
       this.props.fetchFeeds();
     } else {
       alert("Type something");
@@ -138,15 +157,16 @@ class TopNavigation extends Component {
                 name="body"
                 value={this.state.body}
                 cols="30"
-                rows="10"
+                rows="4"
                 placeholder="What's on your mind?"
                 style={{ resize: "none", fontSize: 19 }}
               ></textarea>
 
-              <progress
-                style={{ color: "blueviolet", width: "100%" }}
-                value={this.state.uploadProgress}
-                max="100"
+              <img
+                style={{ width: "100%", marginTop: 20 }}
+                src={this.state.base64URL}
+                alt=""
+                srcset=""
               />
 
               <input
@@ -154,7 +174,7 @@ class TopNavigation extends Component {
                   border: "none",
                   marginBottom: 12,
                 }}
-                onChange={this.handleFeedModalFile}
+                onChange={this.handleFileInputChange}
                 type="file"
               />
             </FormContainer>

@@ -1,14 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const UserSchema = new Schema({
-  firstname: {
-    type: String,
-    min: 2,
-  },
-  lastname: {
-    type: String,
-    min: 2,
-  },
   username: {
     type: String,
     required: true,
@@ -26,6 +18,17 @@ const UserSchema = new Schema({
     required: true,
     min: 10,
   },
+  firstname: {
+    type: String,
+    min: 2,
+  },
+  lastname: {
+    type: String,
+    min: 2,
+  },
+  profile_img: {
+    type: String,
+  },
   loaction: {
     type: String,
   },
@@ -34,6 +37,26 @@ const UserSchema = new Schema({
     default: Date.now,
     required: true,
   },
+  followers: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      timestamp: { type: Date, default: Date.now },
+    },
+  ],
+  following: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      timestamp: { type: Date, default: Date.now },
+    },
+  ],
 });
 
 module.exports = model("User", UserSchema);
