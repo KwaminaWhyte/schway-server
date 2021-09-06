@@ -18,6 +18,12 @@ const CoverImage = styled.img`
   height: 230px;
   width: 100%;
   object-fit: cover;
+<<<<<<< HEAD
+=======
+  /* border-radius: 25px; */
+  /* margin: 10px auto 10px auto; */
+  /* box-shadow: 0px 3px 4px 1px #727272; */
+>>>>>>> 1a546bbd6ea17e215d4f271c2db6cc3bdcd047a9
 `;
 class Profile extends Component {
   state = {
@@ -157,8 +163,7 @@ class Profile extends Component {
             display: "flex",
             flexDirection: "column",
             width: "100%",
-            margin: "30px auto 10px auto",
-            padding: 15,
+            margin: "30px auto",
           }}
         >
           {feeds &&
