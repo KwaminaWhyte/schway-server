@@ -29,6 +29,9 @@ const UserSchema = new Schema({
   profile_img: {
     type: String,
   },
+  cover_img: {
+    type: String,
+  },
   loaction: {
     type: String,
   },

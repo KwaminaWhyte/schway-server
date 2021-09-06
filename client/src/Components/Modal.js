@@ -20,7 +20,7 @@ const ModalContainer = styled.section`
 
 const ModalContent = styled.div`
   background-color: #fefefe;
-  margin: 6% auto; /* 15% from the top and centered */
+  margin: 4% auto; /* 15% from the top and centered */
   border: 1px solid #888;
   width: 45%; /* Could be more or less, depending on screen size */
   position: relative;
@@ -179,7 +179,17 @@ class Modal extends Component {
                 <b>{this.props.username}</b> ?
               </p>
             ) : (
-              <>
+              <div style={{ display: "flex" }}>
+                <img
+                  src={this.state.base64URL}
+                  style={{
+                    width: 80,
+                    height: 80,
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                  alt=""
+                />
                 <div>
                   <label htmlFor="firstname">Firstname</label>
                   <input
@@ -240,7 +250,7 @@ class Modal extends Component {
                   onChange={this.handleFileInputChange}
                   type="file"
                 />
-              </>
+              </div>
             )}
           </ModalBody>
 
