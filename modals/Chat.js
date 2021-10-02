@@ -1,35 +1,31 @@
 const { Schema, model } = require("mongoose");
 
 let ChatSchema = new Schema({
-  sender: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  ],
+  message_type: {
+    type: String,
+    required: true,
   },
   messages: [
     {
-      message: String,
-      meta: [
-        {
-          user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-          },
-          delivered: Boolean,
-          read: Boolean,
-        },
-      ],
-    },
-  ],
-  is_group_message: { type: Boolean, default: false },
-  participants: [
-    {
-      user: {
+      text: String,
+      from: {
         type: Schema.Types.ObjectId,
         ref: "User",
+        required: true,
       },
-      delivered: Boolean,
-      read: Boolean,
-      last_seen: Date,
+      file: String,
+      photo: String,
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
 });

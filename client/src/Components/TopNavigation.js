@@ -60,16 +60,8 @@ class TopNavigation extends Component {
 
     this.setState({
       file: e.target.files[0],
-    });
-  };
-
-  handleFeedModalFile = (e) => {
-    e.preventDefault();
-    this.setState({
       mediaType: e.target.files[0].type,
     });
-
-    this.uploadImage(e.target.files[0]);
   };
 
   handleFeedModalText = (e) => {
@@ -166,7 +158,6 @@ class TopNavigation extends Component {
                 style={{ width: "100%", marginTop: 20 }}
                 src={this.state.base64URL}
                 alt=""
-                srcset=""
               />
 
               <input

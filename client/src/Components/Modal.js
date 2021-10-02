@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { IoCloseCircle } from "react-icons/io5";
 import { Button } from "./BaseComponents";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 
 const ModalContainer = styled.section`
   display: ${(props) => (props.display ? "block" : "none")};
@@ -86,7 +84,7 @@ const ModalFooter = styled.div`
   padding: 5px 20px;
 `;
 
-class Modal extends Component {
+export default class Modal extends Component {
   state = {
     firstname: "",
     lastname: "",
@@ -100,8 +98,9 @@ class Modal extends Component {
   getUserData = async () => {};
 
   componentDidMount() {
-    let { username, email, firstname, lastname } = this.props.user;
-    this.setState({ username, email, firstname, lastname });
+    let { username, email, firstname, lastname, profile_img } =
+      this.props?.user;
+    this.setState({ username, email, firstname, lastname, profile_img });
   }
 
   onTextChange = (e) => {
@@ -157,7 +156,8 @@ class Modal extends Component {
   };
 
   render() {
-    let { firstname, lastname, username, email, base64URL } = this.state;
+    let { firstname, lastname, username, email, base64URL, profile_img } =
+      this.state;
 
     return (
       <ModalContainer display={this.props.display}>
@@ -181,7 +181,7 @@ class Modal extends Component {
             ) : (
               <div style={{ display: "flex" }}>
                 <img
-                  src={this.state.base64URL}
+                  src={profile_img !== "" ? profile_img : this.state.base64URL}
                   style={{
                     width: 80,
                     height: 80,
@@ -190,6 +190,7 @@ class Modal extends Component {
                   }}
                   alt=""
                 />
+
                 <div>
                   <label htmlFor="firstname">Firstname</label>
                   <input
@@ -275,11 +276,3 @@ class Modal extends Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.users.user,
-  };
-};
-
-export default connect(mapStateToProps, null)(withRouter(Modal));

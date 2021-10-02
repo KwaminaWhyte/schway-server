@@ -7,12 +7,13 @@ export default class Loading extends Component {
         style={{
           display: "flex",
           justifyContent: "center",
-          alignContent: "center",
+          alignItems: "center",
           width: "100%",
-          height: "calc(100vh)",
+          height: "100%",
+          flex: 1,
         }}
       >
-        <h1>Loading</h1>
+        <h1>Loading...</h1>
       </div>
     );
   }

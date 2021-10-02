@@ -4,7 +4,6 @@ import {
   LOGIN_SUCCESS,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  AUTH_ERROR,
   USER_LOADING,
   USER_LOADED,
   LOGOUT_SUCCESS,
@@ -43,18 +42,11 @@ export const loadUser = () => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(returnError(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR,
-      });
-
-      console.log(err.response.data, err.response.status);
+      // dispatch(returnError(err.response.data, err.response.status));
     });
 };
 
-export const registerUser = (data) => (dispatch, getState) => {
-  const body = JSON.stringify(data);
-
+export const registerUser = (body) => (dispatch, getState) => {
   axios
     .post("/user/register/", body, tokenConfig(getState))
     .then((res) => {
@@ -67,16 +59,10 @@ export const registerUser = (data) => (dispatch, getState) => {
       dispatch(
         returnError(err.response.data, err.response.status, REGISTER_FAIL)
       );
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-      console.log(err.response.data, err.response.status);
     });
 };
 
-export const loginUser = (data) => (dispatch) => {
-  let body = JSON.stringify(data);
-
+export const loginUser = (body) => (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -93,10 +79,6 @@ export const loginUser = (data) => (dispatch) => {
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status, LOGIN_FAIL));
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-      console.log(err.response.data, err.response.status);
     });
 };
 
@@ -110,16 +92,11 @@ export const changeURL = (data) => (dispatch) => {
   dispatch({
     type: GO_TO_URL,
     slug: data.slug,
-    // queryParams: data.queryParams,
+    queryParams: data.queryParams,
   });
-  console.log(data);
 };
 
-export const updateUser = (data) => (dispatch, getState) => {
-  let body = JSON.stringify(data);
-
-  console.log(body);
-
+export const updateUser = (body) => (dispatch, getState) => {
   axios
     .post("/user/me/update/", body, tokenConfig(getState))
     .then((res) => {
@@ -129,10 +106,8 @@ export const updateUser = (data) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(returnError(err.response.data, err.response.status, LOGIN_FAIL));
-      dispatch({
-        type: "",
-      });
-      console.log(err.response.data, err.response.status);
+      dispatch(
+        returnError(err.response.data, err.response.status, "UPDATE_FAIL")
+      );
     });
 };

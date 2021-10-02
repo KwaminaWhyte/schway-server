@@ -1,48 +1,6 @@
-.SideNavigation {
-  display: flex;
-  position: sticky;
-  top: 0;
-  flex-direction: column;
-  height: 100vh;
-  width: 280px;
-  background-color: #ffffff;
-  align-items: center;
-  bottom: 0;
-  border-right: 0.5px solid #ebebeb;
-  /* box-shadow: 0px 2px 4px 3px #55555557; */
-}
-
 .close_side_btn {
   display: none;
   margin: 8px 0px 20px auto;
-}
-
-.side_btn {
-  display: flex;
-  text-decoration: none;
-  margin: 6px 0;
-  padding: 5px 20px;
-  border-radius: 20px;
-  transition-duration: 0.5s;
-  color: grey;
-  font-weight: bold;
-  align-items: center;
-  cursor: pointer;
-  width: 70%;
-}
-
-.side_btn_active {
-  transition-duration: 0.5s;
-  transform: translateX(10px);
-  border-radius: 20px 0px 0px 20px;
-  color: blueviolet;
-}
-
-.icon_style {
-  margin-right: 12px;
-  background-color: #e1e1e1;
-  padding: 5px;
-  border-radius: 8px;
 }
 
 .side_cover_img {
@@ -78,34 +36,12 @@
   font-weight: bold;
   margin-top: auto;
   margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 600px) {
-  #side_menu {
-    width: 0;
-    position: fixed;
-    transition-duration: 1s;
-    z-index: 1200;
-    margin-left: -80vw;
-  }
-
   .close_side_btn {
     display: block;
   }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
 }

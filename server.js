@@ -14,6 +14,7 @@ app.use(cors());
 app.use("/feeds", require("./routes/feedRoutes"));
 app.use("/user", require("./routes/userRoutes"));
 app.use("/comment", require("./routes/commentRoutes"));
+app.use("/chat", require("./routes/chatRoutes"));
 
 // "mongodb://127.0.0.1:27017/schway";
 // process.env.MONGODB_URL

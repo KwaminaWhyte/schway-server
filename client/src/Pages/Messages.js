@@ -37,7 +37,6 @@ const MessageSection = styled.section`
 
 class Messages extends Component {
   state = {
-    // chats: chats,
     chatId: "",
     name: "",
 
@@ -96,7 +95,7 @@ class Messages extends Component {
               //   this.setState({ chatId: user._id, name: user.username });
               //   this.openChat();
               // }}
-              to={`${this.props.computedMatch.url}/${user.username}`}
+              to={`${this.props.match.url}/${user.username}`}
               className="msg_item_container"
               activeClassName="msg_item_container_active"
             >

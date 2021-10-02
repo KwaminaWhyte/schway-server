@@ -4,7 +4,7 @@
 }
 
 .reg_log_container {
-  width: 45%;
+  width: 50%;
   margin: auto;
 }
 
@@ -45,8 +45,8 @@ input[type="submit"] {
   border: none;
   background-color: blueviolet;
   color: white;
-  border-radius: 20px;
-  padding: 7px 15px;
+  border-radius: 12px;
+  padding: 5px 20px;
   font-size: 18px;
   margin: 30px 0px 50px auto;
 }
@@ -72,7 +72,11 @@ input[type="submit"] {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
+  .reg_log_container {
+    width: 100%;
+    margin: auto 20px;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

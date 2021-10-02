@@ -9,6 +9,8 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
+    emailEmpty: false,
+    passwordEmpty: false,
   };
 
   handleText = (e) => {
@@ -20,15 +22,27 @@ class Login extends Component {
   loginUser = (e) => {
     e.preventDefault();
     let { email, password } = this.state;
-    this.props.loginUser({ email, password });
+
+    if (email !== "") {
+      if (password !== "") {
+        this.props.loginUser({ email, password });
+      } else {
+        this.setState({ passwordEmpty: true });
+      }
+    } else {
+      this.setState({ emailEmpty: true });
+    }
   };
 
   render() {
-    let { isAuthenticated } = this.props.auth;
-    // let { msg } = this.props.error;
+    let { isAuthenticated, isLoading } = this.props.auth;
 
     if (isAuthenticated) {
       return <Redirect to={{ pathname: "/" }} />;
+    }
+
+    if (isLoading) {
+      return <p>Loading...</p>;
     }
 
     return (
@@ -50,7 +64,10 @@ class Login extends Component {
             onSubmit={this.loginUser}
             method="POST"
           >
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{ border: this.state.emailEmpty ? "1px solid red" : null }}
+            >
               <IoIosMail size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -61,7 +78,12 @@ class Login extends Component {
               />
             </div>
 
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{
+                border: this.state.passwordEmpty ? "1px solid red" : null,
+              }}
+            >
               <IoIosLock size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -87,7 +109,6 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    error: state.error,
   };
 };
 

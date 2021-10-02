@@ -6,7 +6,7 @@ import "./style.css";
 import { follow } from "../../assets/data";
 
 const RightComponent = styled.aside`
-  width: 400px;
+  width: 350px;
   border-left: 0.5px solid #ebebeb;
   position: sticky;
   top: 0;

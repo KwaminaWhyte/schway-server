@@ -22,65 +22,55 @@ import SearchField from "./Components/SearchField";
 import PrivateRoute from "./Components/PrivateRoute";
 import SideNavigation from "./Components/SideNavigation";
 import BottomNavigation from "./Components/BottomNavigation";
+import MessageBox from "./Components/MessageBox";
+import Loading from "./Components/Loading";
 
 class App extends Component {
   componentDidMount() {
     this.props.loadUser();
-
-    // const pusher = new Pusher("aba59cc7ba83cc677c53", {
-    //   cluster: "mt1",
-    // });
-
-    // const channel = pusher.subscribe("feeds");
-    // channel.bind("inserted", function (data) {
-    //   alert(JSON.stringify(data));
-    // });
   }
 
   render() {
-    let { isAuthenticated } = this.props.auth;
+    let { isAuthenticated, isLoading } = this.props.auth;
+    let { msg, code } = this.props.msg;
+
     return (
       <div style={{ display: "flex" }}>
         <Router>
-          {this.props.auth.isAuthenticated ? <SideNavigation /> : null}
+          {isAuthenticated ? <SideNavigation /> : null}
 
-          <div className="SwitchContainer">
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/profile/:username"
-                component={Profile}
-              />
-
-              <PrivateRoute
-                exact
-                path="/messages/:username"
-                component={Chats}
-              />
-
-              <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
-
-              <Route exact path="/login" component={Login} />
-
-              {/* <Route exact path="/upload" component={Upload} /> */}
-
+          {!isAuthenticated ? (
+            <>
+              <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Register} />
+            </>
+          ) : (
+            <div className="SwitchContainer">
+              <Switch>
+                <Route exact path="/profile/:username" component={Profile} />
 
-              <PrivateRoute
-                exact
-                path="/notifications"
-                component={Notifications}
-              />
+                <PrivateRoute
+                  exact
+                  path="/messages/:username"
+                  component={Chats}
+                />
 
-              <PrivateRoute exact path="/search" component={Search} />
+                <Route exact path="/feeds/d/:id" component={FeedDetail} />
 
-              <PrivateRoute exact path="/messages" component={Messages} />
+                {/* <Route exact path="/upload" component={Upload} /> */}
 
-              <PrivateRoute exact path="/explore" component={Explore} />
+                <PrivateRoute exact path="/search" component={Search} />
 
-              <PrivateRoute path="/" component={Feeds} />
-            </Switch>
-          </div>
+                <Route exact path="/messages" component={Messages} />
+
+                <Route exact path="/notifications" component={Notifications} />
+
+                <Route exact path="/explore" component={Explore} />
+
+                <Route path="/" component={Feeds} />
+              </Switch>
+            </div>
+          )}
 
           {isAuthenticated ? (
             <section className="right_bar_container">
@@ -91,6 +81,10 @@ class App extends Component {
           ) : null}
 
           {isAuthenticated ? <BottomNavigation /> : null}
+
+          {msg !== null ? (
+            <MessageBox show={true} code={code} message={msg} />
+          ) : null}
         </Router>
       </div>
     );
@@ -100,6 +94,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    msg: state.error,
   };
 };
 

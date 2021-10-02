@@ -13,6 +13,12 @@ class Register extends Component {
     username: "",
     email: "",
     password: "",
+
+    firstnameEmpty: false,
+    lastnameEmpty: false,
+    usernameEmpty: false,
+    emailEmpty: false,
+    passwordEmpty: false,
   };
 
   handleText = (e) => {
@@ -24,12 +30,38 @@ class Register extends Component {
   registerUser = (e) => {
     e.preventDefault();
     let { firstname, lastname, username, email, password } = this.state;
-    this.props.registerUser({ firstname, lastname, username, email, password });
+
+    if (firstname !== "") {
+      if (lastname !== "") {
+        if (username !== "") {
+          if (email !== "") {
+            if (password !== "") {
+              this.props.registerUser({
+                firstname,
+                lastname,
+                username,
+                email,
+                password,
+              });
+            } else {
+              this.setState({ passwordEmpty: true });
+            }
+          } else {
+            this.setState({ emailEmpty: true });
+          }
+        } else {
+          this.setState({ usernameEmpty: true });
+        }
+      } else {
+        this.setState({ lastnameEmpty: true });
+      }
+    } else {
+      this.setState({ firstnameEmpty: true });
+    }
   };
 
   render() {
     let { isAuthenticated } = this.props.auth;
-    // let { msg } = this.props.error;
 
     if (isAuthenticated) {
       return <Redirect to={{ pathname: "/" }} />;
@@ -49,7 +81,12 @@ class Register extends Component {
             onSubmit={this.registerUser}
             method="post"
           >
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{
+                border: this.state.firstnameEmpty ? "1px solid red" : null,
+              }}
+            >
               <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -60,7 +97,12 @@ class Register extends Component {
               />
             </div>
 
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{
+                border: this.state.lastnameEmpty ? "1px solid red" : null,
+              }}
+            >
               <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -71,7 +113,12 @@ class Register extends Component {
               />
             </div>
 
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{
+                border: this.state.usernameEmpty ? "1px solid red" : null,
+              }}
+            >
               <IoIosPerson size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -83,7 +130,10 @@ class Register extends Component {
             </div>
             {/* <p>{msg != "" ? msg : null}</p> */}
 
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{ border: this.state.emailEmpty ? "1px solid red" : null }}
+            >
               <IoIosMail size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -94,7 +144,12 @@ class Register extends Component {
               />
             </div>
 
-            <div className="form_field_container">
+            <div
+              className="form_field_container"
+              style={{
+                border: this.state.passwordEmpty ? "1px solid red" : null,
+              }}
+            >
               <IoIosLock size={23} color="grey" />
               <input
                 onChange={this.handleText}
@@ -108,7 +163,7 @@ class Register extends Component {
             <input type="submit" value="SIGN UP" />
           </form>
           <p className="">
-            Already have an account? <Link to="/login">Sing in</Link>
+            Already have an account? <Link to="/">Sing in</Link>
           </p>
         </section>
       </div>
@@ -119,7 +174,6 @@ class Register extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    error: state.error,
   };
 };
 

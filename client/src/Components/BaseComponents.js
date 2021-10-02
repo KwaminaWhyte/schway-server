@@ -6,7 +6,7 @@ export const Container = styled.section`
   width: 100%;
   flex-direction: column;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1000px) {
     height: calc(100vh - 55px);
     width: 100vw;
   }

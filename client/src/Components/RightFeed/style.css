@@ -68,7 +68,7 @@
   justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   .right_bar_container {
     display: none;
   }

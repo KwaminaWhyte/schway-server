@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
+import { withRouter } from "react-router-dom";
 
 import { fetchUser } from "../redux/actions/userAction";
 import { updateUser } from "../redux/actions/authAction";
@@ -27,13 +27,11 @@ class Profile extends Component {
     mediaType: "",
 
     showModal: false,
+    user: null,
   };
 
   componentDidMount() {
-    // let userID = this.props.match.params.username;
-    // console.log(this.props.match);
-    // this.setState({ userID });
-    this.props.fetchUser(this.props.computedMatch.params.username);
+    this.props.fetchUser(this.props.match.params.username);
     this.props.fetchUserFeeds();
   }
 
@@ -74,7 +72,7 @@ class Profile extends Component {
 
         <CoverImage
           src="https://i.ibb.co/WDp45B1/diana-simumpande-GSPFj-HIx2t-E-unsplash.jpg"
-          alt="."
+          alt=""
         />
 
         <section
@@ -99,13 +97,17 @@ class Profile extends Component {
             />
 
             <p
-              onClick={() => this.setState({ showModal: true })}
+              onClick={() => {
+                this.setState({ showModal: true });
+                this.setState({ user });
+              }}
               style={{
                 color: "white",
                 backgroundColor: "purple",
                 padding: "4px 12px",
                 borderRadius: 12,
                 marginTop: "auto",
+                fontSize: 12,
               }}
             >
               Edit Profile
@@ -167,7 +169,7 @@ class Profile extends Component {
         <Modal
           display={this.state.showModal}
           title="UPDATE ACCOUNT DETAILS"
-          // user={this.props.user}
+          user={user}
           onUserUpdate={(data) => {
             this.props.updateUser(data);
             this.setState({ showModal: false });
