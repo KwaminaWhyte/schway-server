@@ -42,6 +42,9 @@ export const loadUser = () => (dispatch, getState) => {
       });
     })
     .catch((err) => {
+      dispatch({
+        type: LOGIN_FAIL,
+      });
       // dispatch(returnError(err.response.data, err.response.status));
     });
 };

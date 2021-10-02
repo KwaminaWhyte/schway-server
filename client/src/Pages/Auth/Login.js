@@ -35,14 +35,10 @@ class Login extends Component {
   };
 
   render() {
-    let { isAuthenticated, isLoading } = this.props.auth;
-
-    if (isAuthenticated) {
-      return <Redirect to={{ pathname: "/" }} />;
-    }
+    let { isLoading } = this.props.auth;
 
     if (isLoading) {
-      return <p>Loading...</p>;
+      return null;
     }
 
     return (
