@@ -21,7 +21,7 @@ app.use("/notification", require("./routes/notificationRoutes"));
 // "mongodb://127.0.0.1:27017/schway";
 // process.env.MONGODB_URL
 mongoose
-  .connect("mongodb://127.0.0.1:27017/schway", {
+  .connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
