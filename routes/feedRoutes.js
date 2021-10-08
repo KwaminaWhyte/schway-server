@@ -3,7 +3,8 @@ const router = express.Router();
 
 const Feed = require("../modals/Feed");
 const Comment = require("../modals/Comment");
-const auth = require("../middlewares/auth");
+const auth = require("../utils/auth");
+const cloudinary = require("../utils/cloudinary");
 
 router.get("/:id", (req, res) => {
   Feed.findById(req.params.id)
@@ -23,21 +24,39 @@ router.get("/", (req, res) => {
     .catch((err) => res.send({ message: err }));
 });
 
-router.get("/me/all", auth, (req, res) => {
-  Feed.find({ user: req.user.id })
+router.get("/me/:id", async (req, res) => {
+  console.log(req.params.id);
+  await Feed.find({ user: req.params.id })
     .populate("user")
     .populate("comments")
     .sort("-timestamp")
-    .then((feeds) => res.send(feeds))
+    .then((feeds) => {
+      res.send(feeds);
+    })
     .catch((err) => res.status(401).send({ message: err }));
 });
 
-router.post("/new", auth, (req, res) => {
+router.post("/new", auth, async (req, res) => {
   let { body, mediaUrl, mediaType } = req.body;
 
-  Feed.create({ user: req.user.id, body, mediaUrl, mediaType })
-    .then((feed) => res.send(feed))
-    .catch((err) => res.send({ message: err }));
+  try {
+    let uploadRes = await cloudinary.uploader.upload(mediaUrl, {
+      upload_preset: "dev",
+      resource_type: mediaType == "video/mp4" ? "video" : "image",
+    });
+
+    await Feed.create({
+      user: req.user.id,
+      body,
+      mediaUrl: uploadRes.secure_url,
+      mediaType: uploadRes.resource_type,
+      mediaId: uploadRes.public_id, //use to delete the file after
+    })
+      .then((feed) => res.send(feed))
+      .catch((err) => res.send({ message: err }));
+  } catch (error) {
+    console.log("something went wrong", error);
+  }
 });
 
 router.put("/:id/update", auth, (req, res) => {
@@ -72,6 +91,23 @@ router.delete("/:id/delete", auth, (req, res) => {
       }
     })
     .catch((err) => res.send(err));
+});
+
+// like feed
+router.post("/:id/like", auth, async (req, res) => {
+  await Feed.findByIdAndUpdate(req.params.id, {
+    $push: { likes: req.user.id },
+  });
+
+  res.send(`Done!, You liked ${req.params.id}`);
+});
+
+router.post("/:id/unlike", auth, async (req, res) => {
+  await Feed.findByIdAndUpdate(req.params.id, {
+    $push: { likes: req.user.id },
+  });
+
+  res.send(`Done!, You unliked ${req.params.id}`);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middlewares/auth");
+const auth = require("../utils/auth");
 const Comment = require("../modals/Comment");
 
 router.get("/feed/:id", (req, res) => {

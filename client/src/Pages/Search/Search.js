@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import TopNavigation from "../../Components/TopNavigation";
+import styled from "styled-components";
+
 import { connect } from "react-redux";
+// import TopNavigation from "../../Components/TopNavigation";
 import "./style.css";
 
-import SearchField from "../../Components/SearchField";
+// import SearchField from "../../Components/SearchField";
 import { Container, Spacer } from "../../Components/BaseComponents";
 import { trends } from "../../assets/data";
 import { fetchFeeds } from "../../redux/actions/feedAction";
@@ -13,6 +15,10 @@ class Search extends Component {
   state = {
     feeds: [],
   };
+
+  componentDidMount() {
+    this.props.fetchFeeds();
+  }
 
   handleSearch = (e) => {
     e.preventDefault();
@@ -32,10 +38,26 @@ class Search extends Component {
     }
     this.setState({ feeds: newList });
   };
+
   render() {
     return (
       <Container>
-        <TopNavigation pageTitle={<SearchField />} rightContents />
+        {/* <TopNavigation pageTitle={<SearchField />} rightContents /> */}
+
+        <input
+          style={{
+            border: "none",
+            flex: 1,
+            fontSize: 17,
+            backgroundColor: "#f1f1f1",
+            padding: "0 8px",
+          }}
+          placeholder="Search Schway"
+          type="text"
+          name="search"
+          id="search"
+          onKeyUp={this.handleSearch}
+        />
         <Spacer />
 
         <section>

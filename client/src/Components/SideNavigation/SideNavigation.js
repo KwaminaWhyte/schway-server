@@ -94,12 +94,12 @@ class SideNavigation extends Component {
           <NavLink
             className="side_pro_link"
             exact={true}
-            to={`/profile/${user.username}`}
+            to={`/profile/${user?.username}/${user?._id}`}
           >
             <h6>
-              {user.firstname} {user.lastname}
+              {user?.firstname} {user?.lastname}
             </h6>
-            @{user.username}
+            @{user?.username}
           </NavLink>
         </section>
 

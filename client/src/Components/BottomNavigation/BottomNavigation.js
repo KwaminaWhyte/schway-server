@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import {
-  IoIosSearch,
-  IoIosNotificationsOutline,
+  IoMdHome,
+  IoIosNotifications,
   IoIosChatbubbles,
+  IoIosPerson,
 } from "react-icons/io";
-import { FiHome } from "react-icons/fi";
-
+import { FiSearch } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 
 import "./style.css";
+import { connect } from "react-redux";
 
-export default class BottomNavigation extends Component {
+class BottomNavigation extends Component {
   render() {
+    let { user } = this.props.auth;
+
     return (
       <div className="BottomNavigation">
         <NavLink
@@ -20,7 +23,7 @@ export default class BottomNavigation extends Component {
           className="bottom_nav_icons"
           activeClassName="bottom_nav_icons_active"
         >
-          <FiHome size={30} />
+          <IoMdHome size={30} />
         </NavLink>
 
         <NavLink
@@ -29,7 +32,7 @@ export default class BottomNavigation extends Component {
           className="bottom_nav_icons"
           activeClassName="bottom_nav_icons_active"
         >
-          <IoIosSearch size={30} />
+          <FiSearch size={30} />
         </NavLink>
 
         <NavLink
@@ -38,7 +41,7 @@ export default class BottomNavigation extends Component {
           className="bottom_nav_icons"
           activeClassName="bottom_nav_icons_active"
         >
-          <IoIosNotificationsOutline size={30} />
+          <IoIosNotifications size={30} />
         </NavLink>
 
         <NavLink
@@ -49,7 +52,24 @@ export default class BottomNavigation extends Component {
         >
           <IoIosChatbubbles size={30} />
         </NavLink>
+
+        <NavLink
+          exact
+          to={`/profile/${user?.username}/${user?._id}`}
+          className="bottom_nav_icons"
+          activeClassName="bottom_nav_icons_active"
+        >
+          <IoIosPerson size={30} />
+        </NavLink>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default connect(mapStateToProps, {})(BottomNavigation);

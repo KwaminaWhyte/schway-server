@@ -3,6 +3,8 @@ import { FETCH_FEEDS, NEW_FEED, DELETE_FEED } from "./types";
 import { tokenConfig } from "./authAction";
 import { returnError } from "./errorAction";
 
+// import { newNotification } from "./notificationAction";
+
 export const fetchFeeds = () => (dispatch) => {
   axios
     .get("/feeds")
@@ -17,9 +19,9 @@ export const fetchFeeds = () => (dispatch) => {
     });
 };
 
-export const fetchUserFeeds = () => (dispatch, getState) => {
+export const fetchUserFeeds = (id) => (dispatch, getState) => {
   axios
-    .get("/feeds/me/all", tokenConfig(getState))
+    .get(`/feeds/me/${id}`)
     .then((res) => {
       dispatch({
         type: "FETCH_USER_FEEDS",
@@ -55,6 +57,16 @@ export const newFeed = (data) => (dispatch, getState) => {
         type: NEW_FEED,
         payload: res.data,
       });
+
+      axios.post(
+        "/notification/new/",
+        {
+          message: "added a new feed",
+          receiver: "6158580196cbcb09bc92ab2d",
+          link: `/feeds/d/${res.data._id}`,
+        },
+        tokenConfig(getState)
+      );
     })
     .catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));

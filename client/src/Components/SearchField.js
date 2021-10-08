@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import { fetchFeeds } from "../redux/actions/feedAction";
-
 const SearchFieldContainer = styled.div`
   display: flex;
   position: sticky;
@@ -16,13 +14,13 @@ const SearchFieldContainer = styled.div`
   width: 100%;
   height: 55px;
   background-color: white;
+  border-bottom: 0.5px solid #ebebeb;
 
   @media (max-width: 600px) {
     height: 45px;
   }
 
   .SearchField {
-    flex: 1;
     margin: 0 12px;
     border-radius: 20px;
     height: 36px;
@@ -31,6 +29,7 @@ const SearchFieldContainer = styled.div`
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
+    width: 75%;
   }
 `;
 
@@ -122,14 +121,38 @@ class SearchField extends Component {
               >
                 <div
                   style={{
+                    display: "flex",
                     borderBottom: "1px solid #e1e1e1",
                     marginTop: 5,
                     marginBottom: 5,
                     padding: "2px 10px",
+                    flexDirection: "row",
                   }}
                 >
-                  <p>{feed.user.username}</p>
-                  <p>{feed.body}</p>
+                  {feed?.mediaUrl ? (
+                    <img
+                      src={feed?.mediaUrl}
+                      alt=""
+                      srcset=""
+                      style={{
+                        width: 50,
+                        height: 50,
+                        objectFit: "cover",
+                        borderRadius: 4,
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        height: 1,
+                      }}
+                    />
+                  )}
+
+                  <div>
+                    <p>{feed.user.username}</p>
+                    <p>{feed.body}</p>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -146,4 +169,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchFeeds })(SearchField);
+export default connect(mapStateToProps, {})(SearchField);

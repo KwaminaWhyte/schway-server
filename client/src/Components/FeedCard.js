@@ -21,7 +21,7 @@ class FeedCard extends Component {
   };
 
   fileTypeChanger = (type, url) => {
-    if (type === "audio/mpeg")
+    if (type === "audio")
       return (
         <audio
           controls={true}
@@ -33,7 +33,7 @@ class FeedCard extends Component {
           src={url}
         ></audio>
       );
-    else if (type === "video/mp4")
+    else if (type === "video")
       return (
         <ReactPlayer
           onClick={() => this.setState({ playing: !this.state.playing })}
@@ -43,7 +43,7 @@ class FeedCard extends Component {
           width="100%"
         />
       );
-    else if (type === "image/png" || "image/jpeg")
+    else if (type === "image")
       return (
         <img
           loading="lazy"
@@ -70,7 +70,7 @@ class FeedCard extends Component {
             <img className="feed_dp" src={feed?.user?.profile_img} alt="" />
             <Link
               className="feed_card_profile_link"
-              to={`/profile/${feed?.user?.username}`}
+              to={`/profile/${feed?.user?.username}/${feed?.user?._id}`}
             >
               <p>
                 {feed?.user?.firstname} {feed.user?.lastname}
@@ -118,7 +118,7 @@ class FeedCard extends Component {
           style={{
             margin: "0",
             flex: 1,
-            marginLeft: 60,
+            marginLeft: 30,
           }}
           to={`/feeds/d/${feed?._id}`}
         >
@@ -157,15 +157,15 @@ class FeedCard extends Component {
             }}
           >
             <div className="feed_btm_icn">
-              <IoIosHeart color="red" size={25} />
+              <IoIosHeart color="pink" size={25} />
               <p> {feed?.likes?.length}</p>
             </div>
             <div className="feed_btm_icn">
-              <IoIosChatbubbles size={25} />
+              <IoIosChatbubbles color="grey" size={25} />
               {feed?.comments?.length}
             </div>
 
-            <IoIosShare style={{ marginLeft: "auto" }} size={25} />
+            <IoIosShare style={{ marginLeft: "auto" }} color="grey" size={25} />
           </div>
         </section>
       </FeedCardContainer>

@@ -49,9 +49,9 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-export const registerUser = (body) => (dispatch, getState) => {
+export const registerUser = (body) => (dispatch) => {
   axios
-    .post("/user/register/", body, tokenConfig(getState))
+    .post("/user/register/", body)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -66,14 +66,8 @@ export const registerUser = (body) => (dispatch, getState) => {
 };
 
 export const loginUser = (body) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   axios
-    .post("/user/login/", body, config)
+    .post("/user/login/", body)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -91,14 +85,6 @@ export const logoutUser = () => (dispatch) => {
   });
 };
 
-export const changeURL = (data) => (dispatch) => {
-  dispatch({
-    type: GO_TO_URL,
-    slug: data.slug,
-    queryParams: data.queryParams,
-  });
-};
-
 export const updateUser = (body) => (dispatch, getState) => {
   axios
     .post("/user/me/update/", body, tokenConfig(getState))
@@ -113,4 +99,12 @@ export const updateUser = (body) => (dispatch, getState) => {
         returnError(err.response.data, err.response.status, "UPDATE_FAIL")
       );
     });
+};
+
+export const changeURL = (data) => (dispatch) => {
+  dispatch({
+    type: GO_TO_URL,
+    slug: data.slug,
+    queryParams: data.queryParams,
+  });
 };

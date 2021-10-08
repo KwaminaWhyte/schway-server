@@ -4,6 +4,8 @@ import feedReducer from "./feedReducer";
 import userReducer from "./userReducer";
 import errorReducer from "./errorReducer";
 import commentReducer from "./commentReducer";
+import notificationReducer from "./notificationReducer";
+import followingsReducer from "./followingsReducer";
 
 const rootReducer = combineReducers({
   feeds: feedReducer,
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
   error: errorReducer,
   auth: authReducer,
   comments: commentReducer,
+  notifications: notificationReducer,
+  followings: followingsReducer,
 });
 
 export default rootReducer;

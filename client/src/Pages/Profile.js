@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { fetchUser } from "../redux/actions/userAction";
 import { updateUser } from "../redux/actions/authAction";
 import { fetchUserFeeds } from "../redux/actions/feedAction";
+import { follow, unfollow } from "../redux/actions/followingsAction";
 import TopNavigation from "../Components/TopNavigation";
 import FeedCard from "../Components/FeedCard";
 import { Container } from "../Components/BaseComponents";
@@ -31,12 +32,13 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+    document.title = "Schway | Profile";
     this.props.fetchUser(this.props.match.params.username);
-    this.props.fetchUserFeeds();
+    this.props.fetchUserFeeds(this.props.match.params.id);
   }
 
   render() {
-    let { user, feeds } = this.props;
+    let { user, feeds, currentUser } = this.props;
 
     return (
       <Container>
@@ -63,7 +65,9 @@ class Profile extends Component {
                 <p style={{ fontWeight: "bold", fontSize: 16 }}>
                   {user.username}
                 </p>
-                <p style={{ fontSize: 12, color: "grey" }}>12 Posts</p>
+                <p style={{ fontSize: 12, color: "grey" }}>
+                  {feeds.length} Posts
+                </p>
               </div>
             </div>
           }
@@ -96,22 +100,29 @@ class Profile extends Component {
               alt=""
             />
 
-            <p
-              onClick={() => {
-                this.setState({ showModal: true });
-                this.setState({ user });
-              }}
-              style={{
-                color: "white",
-                backgroundColor: "purple",
-                padding: "4px 12px",
-                borderRadius: 12,
-                marginTop: "auto",
-                fontSize: 12,
-              }}
-            >
-              Edit Profile
-            </p>
+            {currentUser?._id === user?._id ? (
+              <p
+                onClick={() => {
+                  this.setState({ showModal: true });
+                  this.setState({ user });
+                }}
+                style={{
+                  color: "white",
+                  backgroundColor: "purple",
+                  padding: "4px 12px",
+                  borderRadius: 12,
+                  marginTop: "auto",
+                  fontSize: 12,
+                }}
+              >
+                Edit Profile
+              </p>
+            ) : null}
+
+            <div style={{ marginTop: 30, marginLeft: 30 }}>
+              <p>{user?.followers?.length} followers</p>
+              <p>{user?.following?.length} Following</p>
+            </div>
 
             <div
               style={{
@@ -123,18 +134,21 @@ class Profile extends Component {
             >
               {/* <p>im</p>
               <p>me</p> */}
-              <p
-                style={{
-                  backgroundColor: "blueviolet",
-                  borderRadius: 20,
-                  padding: "5px 15px",
-                  color: "white",
-                  fontWeight: "bold",
-                  marginLeft: 8,
-                }}
-              >
-                Following
-              </p>
+              {currentUser?._id === user?._id ? null : (
+                <p
+                  onClick={() => this.props.follow({ userId: user?._id })}
+                  style={{
+                    backgroundColor: "blueviolet",
+                    borderRadius: 20,
+                    padding: "5px 15px",
+                    color: "white",
+                    fontWeight: "bold",
+                    marginLeft: 8,
+                  }}
+                >
+                  Follow
+                </p>
+              )}
             </div>
           </div>
           <div style={{}}>
@@ -167,7 +181,7 @@ class Profile extends Component {
         </section>
 
         <Modal
-          display={this.state.showModal}
+          display={this.state.showModal ? "block" : "none"}
           title="UPDATE ACCOUNT DETAILS"
           user={user}
           onUserUpdate={(data) => {
@@ -183,6 +197,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: state.auth.user,
     user: state.users.user,
     feeds: state.feeds.userFeeds,
   };
@@ -192,4 +207,6 @@ export default connect(mapStateToProps, {
   fetchUser,
   fetchUserFeeds,
   updateUser,
+  follow,
+  unfollow,
 })(withRouter(Profile));

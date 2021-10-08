@@ -87,14 +87,10 @@ class Messages extends Component {
         <Spacer className="nav-spacer" />
 
         <MessageSection>
-          {users.map((user) => (
+          {/* {users.map((user) => (
             <NavLink
               key={user._id}
               exact
-              // onClick={() => {
-              //   this.setState({ chatId: user._id, name: user.username });
-              //   this.openChat();
-              // }}
               to={`${this.props.match.url}/${user.username}`}
               className="msg_item_container"
               activeClassName="msg_item_container_active"
@@ -134,7 +130,7 @@ class Messages extends Component {
                 </p>
               </div>
             </NavLink>
-          ))}
+          ))} */}
 
           <div style={{ height: 20 }}></div>
         </MessageSection>

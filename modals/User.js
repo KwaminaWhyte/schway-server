@@ -42,22 +42,16 @@ const UserSchema = new Schema({
   },
   followers: [
     {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      timestamp: { type: Date, default: Date.now },
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   ],
   following: [
     {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      timestamp: { type: Date, default: Date.now },
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   ],
 });

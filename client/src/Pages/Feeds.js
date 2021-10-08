@@ -5,7 +5,7 @@ import FeedCard from "../Components/FeedCard";
 import TopNavigation from "../Components/TopNavigation";
 import { fetchFeeds } from "../redux/actions/feedAction";
 import { Container, Spacer } from "../Components/BaseComponents";
-import Loading from "../Components/Loading";
+// import Loading from "../Components/Loading";
 
 class Feeds extends Component {
   state = {};
@@ -17,9 +17,9 @@ class Feeds extends Component {
   render() {
     let { feeds } = this.props;
 
-    if (feeds == []) {
-      return <Loading />;
-    }
+    // if (feeds === []) {
+    //   return <Loading />;
+    // }
 
     return (
       <Container>

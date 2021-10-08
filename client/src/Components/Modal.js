@@ -4,7 +4,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { Button } from "./BaseComponents";
 
 const ModalContainer = styled.section`
-  display: ${(props) => (props.display ? "block" : "none")};
+  display: ${(props) => props.display};
   position: fixed; /* Stay in place */
   z-index: 200; /* Sit on top */
   left: 0;
