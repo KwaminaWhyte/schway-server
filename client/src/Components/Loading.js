@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
 
 export default class Loading extends Component {
+  componentDidMount() {}
+
   render() {
     return (
       <div
@@ -8,8 +11,8 @@ export default class Loading extends Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",
-          height: "100%",
+          width: "100vw",
+          height: "100vh",
           flex: 1,
         }}
       >

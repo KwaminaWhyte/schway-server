@@ -10,9 +10,8 @@ class PrivateRoute extends React.Component {
     if (this.props.location.pathname !== "/") {
       let data = {
         slug: this.props.location.pathname,
-        // queryParams: this.props.location.search,
+        queryParams: this.props.location.search,
       };
-
       this.props.changeURL(data);
     }
   }
@@ -26,10 +25,10 @@ class PrivateRoute extends React.Component {
         render={() => {
           if (isLoading) {
             return <Loading />;
-          } else if (isAuthenticated) {
-            return <Component {...this.props} />;
-          } else {
+          } else if (!isAuthenticated) {
             return <Redirect to="/login" {...this.props} />;
+          } else {
+            return <Component {...this.props} />;
           }
         }}
       />
@@ -44,3 +43,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { changeURL })(PrivateRoute);
+// withRouter

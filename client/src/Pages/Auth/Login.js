@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { IoIosMail, IoIosLock } from "react-icons/io";
 
 import { loginUser } from "../../redux/actions/authAction";
@@ -35,10 +35,10 @@ class Login extends Component {
   };
 
   render() {
-    let { isLoading } = this.props.auth;
+    let { isAuthenticated } = this.props.auth;
 
-    if (isLoading) {
-      return null;
+    if (isAuthenticated) {
+      return <Redirect to="/" />;
     }
 
     return (

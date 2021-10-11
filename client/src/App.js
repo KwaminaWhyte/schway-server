@@ -28,7 +28,7 @@ import {
 
 import RightFeed from "./Components/RightFeed";
 import SearchField from "./Components/SearchField";
-// import PrivateRoute from "./Components/PrivateRoute";
+import PrivateRoute from "./Components/PrivateRoute";
 import SideNavigation from "./Components/SideNavigation";
 import BottomNavigation from "./Components/BottomNavigation";
 import MessageBox from "./Components/MessageBox";
@@ -50,41 +50,52 @@ class App extends Component {
 
         <div className="SwitchContainer">
           <Switch>
-            {!isAuthenticated ? (
-              <>
-                <Route exact path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
 
-                <Route exact path="/register" component={Register} />
-              </>
-            ) : (
-              <>
-                <Route path="/profile/:username/:id" component={Profile} />
-                <Route exact path="/messages/:username" component={Chats} />
-                <Route exact path="/feeds/d/:id" component={FeedDetail} />
-                {/* <Route exact path="/upload" component={Upload} /> */}
-                <Route exact path="/search" component={Search} />
-                <Route exact path="/messages" component={Messages} />
-                <Route
-                  exact
-                  path="/followings/:username"
-                  component={Followings}
-                />
+            <Route exact path="/register" component={Register} />
 
-                <Route exact path="/groups/:id" component={Group} />
+            <PrivateRoute path="/profile/:username/:id" component={Profile} />
 
-                <Route exact path="/create_group" component={CreateGroup} />
+            <PrivateRoute exact path="/messages/:username" component={Chats} />
 
-                <Route exact path="/create_channel" component={CreateChannel} />
+            <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
 
-                <Route exact path="/groups" component={Groups} />
-                <Route exact path="/channels/:id" component={Channel} />
-                <Route exact path="/channels" component={Channels} />
-                <Route exact path="/notifications" component={Notifications} />
-                <Route exact path="/update" component={Update} />
-                <Route exact path="/explore" component={Explore} />
-                <Route exact path="/" component={Feeds} />
-              </>
-            )}
+            <PrivateRoute exact path="/search" component={Search} />
+
+            <PrivateRoute exact path="/messages" component={Messages} />
+
+            <PrivateRoute
+              exact
+              path="/followings/:username"
+              component={Followings}
+            />
+
+            <PrivateRoute exact path="/groups/:id" component={Group} />
+
+            <PrivateRoute exact path="/create_group" component={CreateGroup} />
+
+            <PrivateRoute
+              exact
+              path="/create_channel"
+              component={CreateChannel}
+            />
+
+            <PrivateRoute exact path="/groups" component={Groups} />
+
+            <PrivateRoute exact path="/channels/:id" component={Channel} />
+
+            <PrivateRoute exact path="/channels" component={Channels} />
+
+            <PrivateRoute
+              exact
+              path="/notifications"
+              component={Notifications}
+            />
+            <PrivateRoute exact path="/update" component={Update} />
+
+            <PrivateRoute exact path="/explore" component={Explore} />
+
+            <PrivateRoute exact path="/" component={Feeds} />
           </Switch>
         </div>
 
