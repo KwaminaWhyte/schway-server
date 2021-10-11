@@ -30,6 +30,7 @@ class Profile extends Component {
     this.props.fetchUser(this.props.computedMatch.params.username);
     this.props.fetchUserFeeds(this.props.computedMatch.params.id);
     document.title = "Schway | Profile";
+    console.log(this.props);
   }
 
   render() {
