@@ -45,7 +45,7 @@ class Group extends Component {
   };
 
   componentDidMount() {
-    this.props.getGroup(this.props.match.params.id);
+    this.props.getGroup(this.props.computedMatch.params.id);
 
     setTimeout(() => {
       document.title = "Schway |g " + this.props.group.name;
@@ -64,7 +64,7 @@ class Group extends Component {
 
   broadcastMessage = () => {
     let body = this.state.message;
-    this.props.newChat(this.props.match.params.id, body);
+    this.props.newChat(this.props.computedMatch.params.id, body);
     this.setState({ message: "" });
   };
 
