@@ -133,7 +133,7 @@ class Messages extends Component {
             </NavLink>
           ))} */}
 
-          <div style={{ height: 20 }}></div>
+          <div style={{ height: 20 }}>Start a Conversation</div>
         </MessageSection>
 
         {/* <section id="chat_section" className="chat_section">

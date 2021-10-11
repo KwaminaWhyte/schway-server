@@ -20,10 +20,10 @@ class FeedDetail extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchFeed(this.props.match.params.id);
+    this.props.fetchFeed(this.props.computedMatch.params.id);
 
     this.setState({
-      feed_id: this.props.match.params.id,
+      feed_id: this.props.computedMatch.params.id,
     });
   }
 

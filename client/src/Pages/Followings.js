@@ -9,7 +9,7 @@ import { fetchUser } from "../redux/actions/userAction";
 class Followings extends Component {
   componentDidMount() {
     document.title = "Schway | Profile";
-    this.props.fetchUser(this.props.match.params.username);
+    this.props.fetchUser(this.props.computedMatch.params.username);
   }
 
   render() {
