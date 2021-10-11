@@ -15,6 +15,11 @@ const commentReducer = (state = initState, action) => {
         ...state,
         comment: action.payload,
       };
+    case "FAIL_COMMENTS":
+    case "FAIL_COMMENT":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

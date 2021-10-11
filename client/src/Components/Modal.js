@@ -95,7 +95,6 @@ export default class Modal extends Component {
     file: null,
     base64URL: "",
   };
-  getUserData = async () => {};
 
   componentDidMount() {
     let { username, email, firstname, lastname, profile_img } =

@@ -68,7 +68,7 @@ class Chats extends Component {
           }
         />
 
-        <div className="nav-spacer"></div>
+        <div></div>
 
         <section className="chat_section">
           {messages.map((message) => (

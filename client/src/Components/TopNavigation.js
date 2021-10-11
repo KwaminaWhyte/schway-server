@@ -66,14 +66,13 @@ class TopNavigation extends Component {
     if (body !== "") {
       this.props.newFeed({
         body,
-        mediaUrl: base64URL,
+        media: base64URL,
         mediaType,
       });
 
       this.setState({
         feedModal: false,
         body: "",
-        mediaUrl: "",
         mediaType: "",
       });
 

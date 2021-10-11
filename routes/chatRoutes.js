@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../utils/auth");
 
-const Chat = require("../modals/Chat");
+const Chat = require("../models/Chat");
 
 router.get("/current/:id", (req, res) => {
   // Chat.find({ users: { "$in" : [#user1#,#user2#]} })

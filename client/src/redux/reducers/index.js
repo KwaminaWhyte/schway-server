@@ -1,20 +1,24 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import feedReducer from "./feedReducer";
-import userReducer from "./userReducer";
+import feeds from "./feedReducer";
+import user from "./userReducer";
 import errorReducer from "./errorReducer";
 import commentReducer from "./commentReducer";
 import notificationReducer from "./notificationReducer";
-import followingsReducer from "./followingsReducer";
+import followings from "./followings";
+import channels from "./channel";
+import groups from "./group";
 
 const rootReducer = combineReducers({
-  feeds: feedReducer,
-  users: userReducer,
+  feeds,
+  user,
   error: errorReducer,
   auth: authReducer,
   comments: commentReducer,
   notifications: notificationReducer,
-  followings: followingsReducer,
+  followings,
+  channels,
+  groups,
 });
 
 export default rootReducer;

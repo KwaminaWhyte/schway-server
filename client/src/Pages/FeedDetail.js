@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TimeAgo from "react-timeago";
 import ReactPlayer from "react-player";
@@ -8,7 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import TopNavigation from "../Components/TopNavigation";
 
 import { deleteFeed, fetchFeed } from "../redux/actions/feedAction";
-import { fetchComments, newComment } from "../redux/actions/commentAction";
+import { newComment } from "../redux/actions/commentAction";
 import { FormContainer, Container, Spacer } from "../Components/BaseComponents";
 
 class FeedDetail extends Component {
@@ -21,7 +21,6 @@ class FeedDetail extends Component {
 
   componentDidMount() {
     this.props.fetchFeed(this.props.match.params.id);
-    this.props.fetchComments(this.props.match.params.id);
 
     this.setState({
       feed_id: this.props.match.params.id,
@@ -29,7 +28,7 @@ class FeedDetail extends Component {
   }
 
   fileTypeChanger = (type, url) => {
-    if (type === "audio/mpeg")
+    if (type === "audio")
       return (
         <audio
           controls={true}
@@ -41,7 +40,7 @@ class FeedDetail extends Component {
           src={url}
         ></audio>
       );
-    else if (type === "video/mp4")
+    else if (type === "video")
       return (
         <ReactPlayer
           onClick={() => this.setState({ playing: !this.state.playing })}
@@ -51,7 +50,7 @@ class FeedDetail extends Component {
           width="100%"
         />
       );
-    else if (type === "image/png" || "image/jpeg")
+    else if (type === "image")
       return (
         <img
           style={{
@@ -78,7 +77,7 @@ class FeedDetail extends Component {
     let { feed_id, body } = this.state;
     this.props.newComment({ feed_id, body });
     this.setState({ body: "" });
-    this.props.fetchComments(feed_id);
+    this.props.fetchFeed(this.props.match.params.id);
   };
 
   render() {
@@ -100,23 +99,41 @@ class FeedDetail extends Component {
                 size={40}
               />
 
-              <p
+              <h1
                 style={{
                   fontWeight: "bold",
                   fontSize: 23,
                 }}
               >
                 Feed
-              </p>
+              </h1>
             </div>
           }
         />
-        <Spacer className="nav-spacer" />
+        <Spacer />
 
-        <div style={{ width: "100%" }}>
-          <section
-            style={{ display: "flex", flexDirection: "column", padding: 8 }}
+        <Link
+          to={`/profile/${feed?.user?.username}/${feed?.user?._id}`}
+          style={{ display: "flex", alignItems: "center", margin: 5 }}
+        >
+          <img
+            style={{ height: 60, width: 60, borderRadius: 30 }}
+            src={feed?.user?.profile_img}
+            alt=""
+          />
+
+          <div
+            style={{ display: "flex", flexDirection: "column", marginLeft: 10 }}
           >
+            <p style={{ fontWeight: "bold" }}>
+              {feed?.user?.firstname} {feed.user?.lastname}
+            </p>
+            <p>@{feed?.user?.username}</p>
+          </div>
+        </Link>
+
+        <section style={{ width: "100%" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: 8 }}>
             <p style={{ margin: "5px 20px" }}>{feed.body}</p>
 
             {feed.mediaUrl ? (
@@ -128,7 +145,7 @@ class FeedDetail extends Component {
                 }}
               />
             )}
-          </section>
+          </div>
 
           <FormContainer
             onSubmit={this.submitNewComment}
@@ -147,16 +164,24 @@ class FeedDetail extends Component {
               name="body"
               value={this.state.body}
               cols="30"
-              rows="1"
+              rows="2"
+              aria-multiline
               placeholder="Add a comment"
               style={{
                 resize: "none",
                 fontSize: 16,
                 flex: 1,
                 margin: "0 5px 0 0",
+                padding: "3px 10px",
+                borderRadius: 12,
               }}
             ></textarea>
-
+            {/*    <IoIosPaperPlane
+              type="submit"
+              size={25}
+              color="purple"
+              onClick={() => this.submitNewComment}
+            /> */}
             <input
               style={{
                 display: "flex",
@@ -184,6 +209,7 @@ class FeedDetail extends Component {
                     flexDirection: "column",
                     padding: 4,
                     borderTop: "1px solid #e1e1e1",
+                    margin: 4,
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center" }}>
@@ -208,11 +234,13 @@ class FeedDetail extends Component {
                     </div>
                   </div>
 
-                  <p style={{ marginLeft: 50 }}>{comment.body}</p>
+                  <p style={{ marginLeft: 50, whiteSpace: "pre-wrap" }}>
+                    {comment.body}
+                  </p>
                 </div>
               ))}
           </section>
-        </div>
+        </section>
       </Container>
     );
   }
@@ -220,15 +248,14 @@ class FeedDetail extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    comments: state.comments.comments,
     user: state.auth.user,
     feed: state.feeds.feed,
+    comments: state.feeds.comments,
   };
 };
 
 export default connect(mapStateToProps, {
   deleteFeed,
-  fetchComments,
   newComment,
   fetchFeed,
-})(withRouter(FeedDetail));
+})(FeedDetail);

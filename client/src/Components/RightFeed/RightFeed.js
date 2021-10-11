@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IoIosEye, IoIosChatboxes } from "react-icons/io";
+// import { IoIosEye, IoIosChatboxes } from "react-icons/io";
 import styled from "styled-components";
 
 import "./style.css";
@@ -16,12 +16,8 @@ export default class RightFeed extends Component {
   render() {
     return (
       <RightComponent style={{}}>
-        <div className="sm_info_container">
+        <section className="sm_info_container">
           <h6 style={{ margin: 10, fontWeight: "bold" }}>Who to follow</h6>
-          {/* <img src="https://i.ibb.co/xYsXbgV/profile3.jpg" alt="profile3" border="0">
-<img src="https://i.ibb.co/mctW4PR/planet-extinction.jpg" alt="planet-extinction" border="0">
-<img src="https://i.ibb.co/PQ3rWhH/profile.jpg" alt="profile" border="0">
-<img src="https://i.ibb.co/ZxWh6dj/profile2.jpg" alt="profile2" border="0"> */}
           {follow.map((item) => (
             <div key={item.id} className="follow_sug_item">
               <img className="sug_pr_img" src={item.imgUrl} alt="." />
@@ -37,9 +33,9 @@ export default class RightFeed extends Component {
           ))}
 
           <p className="show_more_btn">Show More</p>
-        </div>
-
-        <div className="sm_info_container">
+        </section>
+        {/* 
+        <section className="sm_info_container">
           <h6 style={{ margin: 10 }}>Events taoday</h6>
 
           <div
@@ -67,7 +63,7 @@ export default class RightFeed extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </section> */}
 
         {/* <div className="sm_info_container">
           <h6>some other event</h6>

@@ -12,6 +12,7 @@ import {
 
 class Notifications extends Component {
   componentDidMount() {
+    document.title = "Schway | Notificatons";
     this.props.getNotifications();
   }
 
@@ -21,7 +22,7 @@ class Notifications extends Component {
     return (
       <Container>
         <TopNavigation pageTitle="Notifications" />
-        <div className="nav-spacer"></div>
+        <div></div>
 
         {!notifications ? (
           <section

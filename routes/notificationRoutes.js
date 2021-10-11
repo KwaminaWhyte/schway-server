@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../utils/auth");
 
-const Notification = require("../modals/Notification");
+const Notification = require("../models/Notification");
 
 router.post("/new", auth, async (req, res) => {
   let { message, receiver, link } = req.body;
@@ -24,8 +24,8 @@ router.post("/new", auth, async (req, res) => {
 // get notifications for a user
 router.get("/", auth, async (req, res) => {
   await Notification.find({ receiver: req.user.id })
-    .populate("sender")
-    .populate("receiver")
+    .populate("sender", "_id username")
+    .populate("receiver", "_id username profile_img")
     .sort("-timestamp")
     .then((notifications) => res.send(notifications))
     .catch((err) => res.status(400).send(err));

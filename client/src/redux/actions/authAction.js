@@ -12,15 +12,14 @@ import {
 import { returnError } from "./errorAction";
 
 export const tokenConfig = (getState) => {
-  // get token from local storage
   const token = getState().auth.token;
-  // set headers
+
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  // if token, add to headers
+
   if (token) {
     config.headers["x-auth-token"] = token;
   }
@@ -90,7 +89,7 @@ export const updateUser = (body) => (dispatch, getState) => {
     .post("/user/me/update/", body, tokenConfig(getState))
     .then((res) => {
       dispatch({
-        type: "",
+        type: "UPDATE_USER",
         payload: res.data,
       });
     })

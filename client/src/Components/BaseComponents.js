@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   width: 100%;
   flex-direction: column;
+
+  @media (max-width: 1290px) {
+    height: calc(100vh - 55px);
+    width: 70vw;
+  }
 
   @media (max-width: 1000px) {
     height: calc(100vh - 55px);

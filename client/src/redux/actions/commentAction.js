@@ -1,7 +1,7 @@
 import axios from "axios";
-import {} from "./types";
 
 import { tokenConfig } from "./authAction";
+import { returnError } from "./errorAction";
 
 export const fetchComments = (id) => (dispatch) => {
   axios
@@ -12,7 +12,11 @@ export const fetchComments = (id) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(
+        returnError(err.response.data, err.response.status, "FAIL_COMMENTS")
+      );
+    });
 };
 
 export const newComment = (data) => (dispatch, getState) => {
@@ -26,5 +30,9 @@ export const newComment = (data) => (dispatch, getState) => {
         payload: res.data,
       })
     )
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(
+        returnError(err.response.data, err.response.status, "FAIL_COMMENT")
+      );
+    });
 };

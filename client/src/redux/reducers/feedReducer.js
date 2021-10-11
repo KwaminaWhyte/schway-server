@@ -2,6 +2,7 @@ const initState = {
   feeds: [],
   userFeeds: [],
   feed: {},
+  comments: [],
 };
 
 const feedReducer = (state = initState, action) => {
@@ -19,7 +20,8 @@ const feedReducer = (state = initState, action) => {
     case "FETCH_FEED":
       return {
         ...state,
-        feed: action.payload,
+        feed: action.payload.feed,
+        comments: action.payload.comments,
       };
     case "NEW_FEED":
       return {

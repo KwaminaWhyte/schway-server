@@ -24,7 +24,7 @@ class Feeds extends Component {
     return (
       <Container>
         <TopNavigation pageTitle="Home" rightContents />
-        <Spacer className="nav-spacer" />
+        <Spacer />
 
         {feeds?.map((feed) => (
           <FeedCard key={feed._id} feed={feed} />

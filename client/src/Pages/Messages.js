@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -44,6 +44,7 @@ class Messages extends Component {
   };
 
   componentDidMount() {
+    document.title = "Schway | Messages";
     this.props.fetchUsers();
   }
 
@@ -79,12 +80,12 @@ class Messages extends Component {
   };
 
   render() {
-    let { users } = this.props;
+    // let { users } = this.props;
 
     return (
       <Container>
         <TopNavigation pageTitle=" Messages" />
-        <Spacer className="nav-spacer" />
+        <Spacer />
 
         <MessageSection>
           {/* {users.map((user) => (
@@ -155,7 +156,7 @@ class Messages extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users,
+    users: state.user.users,
   };
 };
 

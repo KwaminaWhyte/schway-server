@@ -26,6 +26,7 @@ const authReducer = (state = initState, action) => {
         ...state,
         isLoading: true,
       };
+    case "UPDATE_USER":
     case USER_LOADED:
       return {
         ...state,

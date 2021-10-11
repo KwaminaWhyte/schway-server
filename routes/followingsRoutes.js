@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const router = Router();
-const User = require("../modals/User");
+const User = require("../models/User");
 const auth = require("../utils/auth");
 
 // follow

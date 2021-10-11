@@ -133,7 +133,7 @@ class SearchField extends Component {
                     <img
                       src={feed?.mediaUrl}
                       alt=""
-                      srcset=""
+                      srcSet=""
                       style={{
                         width: 50,
                         height: 50,

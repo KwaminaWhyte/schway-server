@@ -43,7 +43,7 @@ export const fetchFeed = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      dispatch(returnError(err.response.data, err.response.status));
+      returnError(err.response.data, err.response.status, "FEED_FAIL");
     });
 };
 

@@ -3,13 +3,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
-const User = require("../modals/User");
+const User = require("../models/User");
 const auth = require("../utils/auth");
+const cloudinary = require("../utils/cloudinary");
 
 // Get single user
 router.get("/:username", (req, res) => {
   User.findOne({ username: req.params.username })
-    .populate("followers")
+    .populate("followers", "_id username firstname lastname profile_img")
+    .populate("following", "_id username firstname lastname profile_img")
+    .select("_id username firstname lastname profile_img cover_img")
     .then((user) => res.send(user))
     .catch((err) => console.log({ msg: err }));
 });
@@ -19,6 +22,7 @@ router.get("/", auth, (req, res) => {
   User.find()
     .where("_id")
     .populate("followers")
+    .populate("following")
     .ne(req.user.id)
     .then((users) => res.send(users))
     .catch((err) => console.log({ msg: err }));
@@ -68,8 +72,8 @@ router.post("/login", async (req, res) => {
 
   // CHeck if email exists in database
   const user = await User.findOne({ email: email })
-    .populate("followers")
-    .populate("following");
+    .populate("followers", "-password -following -followers -__v")
+    .populate("following", "-password -following -followers -__v");
 
   if (!user) return res.status(400).send("User does not exists");
 
@@ -90,33 +94,47 @@ router.post("/login", async (req, res) => {
 
 router.get("/auth/user", auth, (req, res) => {
   User.findById(req.user.id)
-    .populate("followers")
-    .select("-password")
+    .select("_id username firstname lastname profile_img email cover_img")
     .then((user) => res.send(user))
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(400).send(err));
 });
 
 // update
 router.post("/me/update", auth, async (req, res) => {
-  let { profile_img, firstname, lastname, username, email } = req.body;
+  let { profile_img, cover_img, firstname, lastname, username, email } =
+    req.body;
 
   let isUser = await User.findById(req.user.id);
-
   if (!isUser) return res.status(401).send("User does not exist!");
 
-  await User.findByIdAndUpdate(
-    req.user.id,
-    {
-      profile_img,
-      lastname,
-      firstname,
-      email,
-      username,
-    },
-    (data) => {
-      res.send(data);
-    }
-  );
+  try {
+    let profileImgRes = await cloudinary.uploader.upload(profile_img, {
+      upload_preset: "dev",
+      resource_type: "image",
+    });
+
+    let coverImgRes = await cloudinary.uploader.upload(cover_img, {
+      upload_preset: "dev",
+      resource_type: "image",
+    });
+
+    await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        profile_img: profileImgRes.secure_url,
+        cover_img: coverImgRes.secure_url,
+        lastname,
+        firstname,
+        email,
+        username,
+      },
+      (data) => {
+        res.send(data);
+      }
+    );
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 module.exports = router;

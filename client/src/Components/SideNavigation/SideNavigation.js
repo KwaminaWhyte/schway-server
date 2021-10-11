@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   IoIosChatbubbles,
-  IoIosNotificationsOutline,
+  IoIosNotifications,
   IoIosLogOut,
+  IoIosPeople,
+  IoIosMegaphone,
 } from "react-icons/io";
 import { FaTimesCircle } from "react-icons/fa";
 import { FiHome } from "react-icons/fi";
@@ -81,7 +83,7 @@ class SideNavigation extends Component {
         <section
           className="side_cover_img"
           style={{
-            background: `url('https://i.ibb.co/xYsXbgV/profile3.jpg') center`,
+            background: `url('${user?.cover_img}') center`,
           }}
         >
           <FaTimesCircle
@@ -113,8 +115,18 @@ class SideNavigation extends Component {
           Messages
         </SideNavButton>
 
+        <SideNavButton exact to="/groups">
+          <IoIosPeople className="icon_style" size={30} />
+          Groups
+        </SideNavButton>
+
+        <SideNavButton exact to="/channels">
+          <IoIosMegaphone className="icon_style" size={30} />
+          Channels
+        </SideNavButton>
+
         <SideNavButton exact to="/notifications">
-          <IoIosNotificationsOutline className="icon_style" size={30} />
+          <IoIosNotifications className="icon_style" size={30} />
           Notifications
         </SideNavButton>
 

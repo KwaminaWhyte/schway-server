@@ -8,22 +8,31 @@ import { loadUser } from "./redux/actions/authAction";
 import {
   Feeds,
   Chats,
+  Login,
+  Update,
   Search,
   Profile,
+  Channel,
   Explore,
-  Login,
   Register,
-  FeedDetail,
+  Channels,
   Messages,
+  FeedDetail,
+  Followings,
   Notifications,
+  Group,
+  Groups,
+  CreateGroup,
+  CreateChannel,
 } from "./Pages";
 
 import RightFeed from "./Components/RightFeed";
 import SearchField from "./Components/SearchField";
-import PrivateRoute from "./Components/PrivateRoute";
+// import PrivateRoute from "./Components/PrivateRoute";
 import SideNavigation from "./Components/SideNavigation";
 import BottomNavigation from "./Components/BottomNavigation";
 import MessageBox from "./Components/MessageBox";
+
 // import Loading from "./Components/Loading";
 
 class App extends Component {
@@ -39,38 +48,45 @@ class App extends Component {
       <div style={{ display: "flex" }}>
         {isAuthenticated ? <SideNavigation /> : null}
 
-        {!isAuthenticated ? (
-          <>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={Register} />
-          </>
-        ) : (
-          <div className="SwitchContainer">
-            <Switch>
-              <Route path="/profile/:username/:id" component={Profile} />
+        <div className="SwitchContainer">
+          <Switch>
+            {!isAuthenticated ? (
+              <>
+                <Route exact path="/" component={Login} />
 
-              <PrivateRoute
-                exact
-                path="/messages/:username"
-                component={Chats}
-              />
+                <Route exact path="/register" component={Register} />
+              </>
+            ) : (
+              <>
+                <Route path="/profile/:username/:id" component={Profile} />
+                <Route exact path="/messages/:username" component={Chats} />
+                <Route exact path="/feeds/d/:id" component={FeedDetail} />
+                {/* <Route exact path="/upload" component={Upload} /> */}
+                <Route exact path="/search" component={Search} />
+                <Route exact path="/messages" component={Messages} />
+                <Route
+                  exact
+                  path="/followings/:username"
+                  component={Followings}
+                />
 
-              <Route exact path="/feeds/d/:id" component={FeedDetail} />
+                <Route exact path="/groups/:id" component={Group} />
 
-              {/* <Route exact path="/upload" component={Upload} /> */}
+                <Route exact path="/create_group" component={CreateGroup} />
 
-              <PrivateRoute exact path="/search" component={Search} />
+                <Route exact path="/create_channel" component={CreateChannel} />
 
-              <Route exact path="/messages" component={Messages} />
-
-              <Route exact path="/notifications" component={Notifications} />
-
-              <Route exact path="/explore" component={Explore} />
-
-              <Route path="/" component={Feeds} />
-            </Switch>
-          </div>
-        )}
+                <Route exact path="/groups" component={Groups} />
+                <Route exact path="/channels/:id" component={Channel} />
+                <Route exact path="/channels" component={Channels} />
+                <Route exact path="/notifications" component={Notifications} />
+                <Route exact path="/update" component={Update} />
+                <Route exact path="/explore" component={Explore} />
+                <Route exact path="/" component={Feeds} />
+              </>
+            )}
+          </Switch>
+        </div>
 
         {isAuthenticated ? (
           <section className="right_bar_container">
