@@ -110,7 +110,7 @@ class SideNavigation extends Component {
           Home
         </SideNavButton>
 
-        <SideNavButton to="/messages">
+        <SideNavButton to={`/messages/${user?.username}/${user?._id}`}>
           <IoIosChatbubbles className="icon_style" size={30} />
           Messages
         </SideNavButton>

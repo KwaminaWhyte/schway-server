@@ -8,6 +8,7 @@ import notificationReducer from "./notificationReducer";
 import followings from "./followings";
 import channels from "./channel";
 import groups from "./group";
+import chats from "./chat";
 
 const rootReducer = combineReducers({
   feeds,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   followings,
   channels,
   groups,
+  chats,
 });
 
 export default rootReducer;

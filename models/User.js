@@ -40,6 +40,12 @@ const UserSchema = new Schema(
       type: String,
       default: "Your bio here",
     },
+    conversations: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Conversation",
+      },
+    ],
     followers: [
       {
         type: Schema.Types.ObjectId,

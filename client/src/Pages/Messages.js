@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-// import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import TimeAgo from "react-timeago";
 
-import { fetchUsers } from "../redux/actions/userAction";
+import { fetchUser } from "../redux/actions/userAction";
 import TopNavigation from "../Components/TopNavigation";
 import { Container, Spacer } from "../Components/BaseComponents";
 
@@ -41,11 +42,12 @@ class Messages extends Component {
     name: "",
 
     search: "",
+    showPannel: false,
   };
 
   componentDidMount() {
+    this.props.fetchUser(this.props.computedMatch.params.username);
     document.title = "Schway | Messages";
-    this.props.fetchUsers();
   }
 
   handleTextInput = (e) => {
@@ -79,8 +81,14 @@ class Messages extends Component {
     // document.getElementById("chat_section").style = "margin-left: 0;";
   };
 
+  someUser = (users, cUser) => {
+    let user = users.filter((uto) => uto._id !== cUser);
+    return user;
+  };
+
   render() {
-    // let { users } = this.props;
+    let { user } = this.props;
+    console.log(user);
 
     return (
       <Container>
@@ -88,11 +96,11 @@ class Messages extends Component {
         <Spacer />
 
         <MessageSection>
-          {/* {users.map((user) => (
+          {user?.conversations?.map((message) => (
             <NavLink
-              key={user._id}
+              key={message?._id}
               exact
-              to={`${this.props.match.url}/${user.username}`}
+              to={`/messages/${message?._id}`}
               className="msg_item_container"
               activeClassName="msg_item_container_active"
             >
@@ -102,21 +110,31 @@ class Messages extends Component {
                   alignItems: "center",
                 }}
               >
-                <img
-                  style={{ width: 60, height: 60, borderRadius: "50%" }}
-                  src="https://i.ibb.co/PQ3rWhH/profile.jpg"
-                  alt="profile"
-                />
+                {this.someUser(message?.participants, user._id).map((user) => (
+                  <img
+                    key={user?._id}
+                    style={{ width: 60, height: 60, borderRadius: "50%" }}
+                    src={user?.profile_img}
+                    alt=""
+                  />
+                ))}
+
                 <div style={{ marginLeft: 12 }}>
-                  <p
-                    style={{
-                      fontWeight: "bold",
-                      color: "#131313",
-                      fontSize: 17,
-                    }}
-                  >
-                    {user.username}
-                  </p>
+                  {this.someUser(message?.participants, user._id).map(
+                    (user) => (
+                      <p
+                        key={user?._id}
+                        style={{
+                          fontWeight: "bold",
+                          color: "#131313",
+                          fontSize: 17,
+                        }}
+                      >
+                        {user?.username}
+                      </p>
+                    )
+                  )}
+
                   <p style={{ color: "#5e5e5e" }}>someting else</p>
                 </div>
 
@@ -127,13 +145,11 @@ class Messages extends Component {
                     fontSize: 14,
                   }}
                 >
-                  14:02
+                  <TimeAgo date={message?.updatedAt} />
                 </p>
               </div>
             </NavLink>
-          ))} */}
-
-          <div style={{ height: 20 }}>Start a Conversation</div>
+          ))}
         </MessageSection>
 
         {/* <section id="chat_section" className="chat_section">
@@ -149,6 +165,35 @@ class Messages extends Component {
               )}
             />
           </section> */}
+
+        <div
+          style={{
+            marginTop: "auto",
+            marginLeft: "auto",
+          }}
+        >
+          {this.state.showPannel ? (
+            <div style={{ height: 250, width: 200, overflowY: "scroll" }}>
+              {user?.following?.map((follow) => (
+                <Link
+                  to={`messages/6165dac379db3dc336866f0e`}
+                  key={follow?._id}
+                >
+                  {follow?.username}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+
+          <p
+            style={{ color: "#fff", backgroundColor: "blue" }}
+            onClick={() =>
+              this.setState({ showPannel: !this.state.showPannel })
+            }
+          >
+            Start
+          </p>
+        </div>
       </Container>
     );
   }
@@ -156,8 +201,8 @@ class Messages extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.user.users,
+    user: state.user.user,
   };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(Messages);
+export default connect(mapStateToProps, { fetchUser })(Messages);

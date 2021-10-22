@@ -12,7 +12,16 @@ router.get("/:username", (req, res) => {
   User.findOne({ username: req.params.username })
     .populate("followers", "_id username firstname lastname profile_img")
     .populate("following", "_id username firstname lastname profile_img")
-    .select("_id username firstname lastname profile_img cover_img")
+    .populate({
+      path: "conversations",
+      populate: {
+        path: "participants",
+        select: "_id username profile_img",
+        // model: "User",
+        // populate: { path: "users", model: "User" },
+      },
+    })
+    .select("_id username firstname lastname profile_img cover_img messages")
     .then((user) => res.send(user))
     .catch((err) => console.log({ msg: err }));
 });
@@ -95,6 +104,7 @@ router.post("/login", async (req, res) => {
 router.get("/auth/user", auth, (req, res) => {
   User.findById(req.user.id)
     .select("_id username firstname lastname profile_img email cover_img")
+    .sort("-timestamp")
     .then((user) => res.send(user))
     .catch((err) => res.status(400).send(err));
 });

@@ -92,7 +92,7 @@ class FeedCard extends Component {
                 <Popover.Content
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <p disable style={{ margin: 8, cursor: "pointer" }}>
+                  <p disable="true" style={{ margin: 8, cursor: "pointer" }}>
                     <strong>Report Feed</strong>
                   </p>
 

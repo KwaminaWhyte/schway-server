@@ -56,13 +56,17 @@ class App extends Component {
 
             <PrivateRoute path="/profile/:username/:id" component={Profile} />
 
-            <PrivateRoute exact path="/messages/:username" component={Chats} />
+            <PrivateRoute exact path="/messages/:id" component={Chats} />
 
             <PrivateRoute exact path="/feeds/d/:id" component={FeedDetail} />
 
             <PrivateRoute exact path="/search" component={Search} />
 
-            <PrivateRoute exact path="/messages" component={Messages} />
+            <PrivateRoute
+              exact
+              path="/messages/:username/:id"
+              component={Messages}
+            />
 
             <PrivateRoute
               exact

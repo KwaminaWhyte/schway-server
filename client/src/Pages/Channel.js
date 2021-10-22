@@ -39,7 +39,7 @@ class Channel extends Component {
   };
 
   componentDidMount() {
-    this.props.getChannel(this.props.match.params.id);
+    this.props.getChannel(this.props.computedMatch.params.id);
 
     setTimeout(() => {
       document.title = "Schway |c " + this.props.channel.name;

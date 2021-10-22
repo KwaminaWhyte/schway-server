@@ -30,7 +30,6 @@ class Profile extends Component {
     this.props.fetchUser(this.props.computedMatch.params.username);
     this.props.fetchUserFeeds(this.props.computedMatch.params.id);
     document.title = "Schway | Profile";
-    console.log(this.props);
   }
 
   render() {
@@ -100,6 +99,21 @@ class Profile extends Component {
                 marginTop: "auto",
               }}
             >
+              <Link
+                to={`/followings/${user?.username}`}
+                style={{
+                  color: "white",
+                  backgroundColor: "purple",
+                  padding: "4px 12px",
+                  borderRadius: 12,
+                  marginTop: "auto",
+                  fontSize: 12,
+                }}
+              >
+                {user?.followers?.length} Fllowers / {user?.following?.length}{" "}
+                Following
+              </Link>
+
               {currentUser?._id === user?._id ? (
                 <Link
                   to="/update"
@@ -108,7 +122,7 @@ class Profile extends Component {
                     backgroundColor: "purple",
                     padding: "4px 12px",
                     borderRadius: 12,
-                    marginTop: "auto",
+                    marginTop: 10,
                     fontSize: 12,
                   }}
                 >
@@ -129,21 +143,6 @@ class Profile extends Component {
               <Link to="/create_channel">Create Channel</Link>
               <Link to="/create_group">Create Group</Link>
             </div>
-
-            <Link
-              to={`/followings/${user?.username}`}
-              style={{
-                color: "white",
-                backgroundColor: "purple",
-                padding: "4px 12px",
-                borderRadius: 12,
-                marginTop: "auto",
-                fontSize: 12,
-              }}
-            >
-              {user?.followers?.length} Fllowers / {user?.following?.length}{" "}
-              Following
-            </Link>
 
             <div
               style={{

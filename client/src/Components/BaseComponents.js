@@ -6,9 +6,9 @@ export const Container = styled.section`
   width: 100%;
   flex-direction: column;
 
-  @media (max-width: 1290px) {
+  @media (max-width: 1111px) {
     height: calc(100vh - 55px);
-    width: 70vw;
+    width: 100%;
   }
 
   @media (max-width: 1000px) {
@@ -126,9 +126,9 @@ export const FeedCardContainer = styled.div`
     font-size: 15px;
     display: flex;
     padding: 4px 0;
+    flex-direction: column;
 
     @media (max-width: 600px) {
-      flex-direction: column;
       padding: 0;
     }
   }
@@ -141,7 +141,6 @@ export const FeedCardContainer = styled.div`
 
   .feed_card_profile_link span {
     color: grey;
-    margin-left: 8px;
     padding: 0px;
 
     @media (max-width: 600px) {

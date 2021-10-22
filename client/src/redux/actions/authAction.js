@@ -94,9 +94,8 @@ export const updateUser = (body) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(
-        returnError(err.response.data, err.response.status, "UPDATE_FAIL")
-      );
+      dispatch();
+      // returnError(err.response.data, err.response.status, "UPDATE_FAIL")
     });
 };
 
